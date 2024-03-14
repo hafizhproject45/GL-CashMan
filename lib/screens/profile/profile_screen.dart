@@ -11,25 +11,28 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 20),
-              height: 200,
-              width: double.infinity,
-              child: Image(
-                  image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover),
-            ),
-            ListOfFeatures(
-              name: "Contact",
-              icon: Icons.contact_phone,
-              route: 'profile/contact',
-            ),
-            SizedBox(
-              height: 200,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 20),
+                height: 200,
+                width: double.infinity,
+                child: Image(
+                    image: AssetImage('assets/images/bg.png'),
+                    fit: BoxFit.cover),
+              ),
+              ListOfFeatures(
+                name: "List Kontak",
+                icon: Icons.contact_phone,
+                route: 'profile/contact',
+              ),
+              SizedBox(
+                height: 200,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
@@ -63,43 +66,41 @@ class ListOfFeatures extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 20),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Icon(
-                icon,
-                size: 24,
-                color: ColorPallete.primaryColor,
-              ),
-              Text(
-                name,
-                style: ThemeText.thinTextPrimary,
-              ),
-              TextButton(
-                  onPressed: () {
-                    // Navigator.of(context)
-                    //     .pushReplacementNamed(PaymentPage.routeName);
-                  },
-                  child: IconButton(
-                    onPressed: () {
-                      context.go('/$route');
-                    },
-                    icon: Icon(Icons.arrow_forward_ios),
-                  )),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 3),
-            width: double.infinity,
-            height: 0.5,
-            color: Colors.grey,
-          ),
-          SizedBox(height: 5),
-        ],
+    return GestureDetector(
+      onTap: () => context.go('/$route'),
+      child: Container(
+        color: Colors.transparent,
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  icon,
+                  size: 24,
+                  color: ColorPallete.primaryColor,
+                ),
+                Text(
+                  name,
+                  style: TextPrimary.thin,
+                ),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: ColorPallete.primaryColor,
+                  size: 24,
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 15),
+              width: double.infinity,
+              height: 0.5,
+              color: Colors.grey,
+            ),
+            SizedBox(height: 5),
+          ],
+        ),
       ),
     );
   }

@@ -30,7 +30,7 @@ class LandingScreen extends StatelessWidget {
                   fontWeight: FontWeight.w700),
             ),
             Text(
-              'Aplikasi untuk mengelola pembayaran uang kas.',
+              'Aplikasi pengelola pembayaran uang kas.',
               style: TextStyle(fontSize: 10, color: Colors.white),
             ),
             SizedBox(height: 20),
@@ -40,9 +40,8 @@ class LandingScreen extends StatelessWidget {
                 //! LOGIN BUTTON
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    minimumSize: Size(100, 40),
-                  ),
+                      backgroundColor: Colors.white,
+                      padding: EdgeInsets.symmetric(horizontal: 50)),
                   onPressed: () {
                     context.go('/login');
                   },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/utils/color_pallete.dart';
-import 'package:gl_app/utils/text_styles.dart';
+
+import '/utils/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -12,28 +12,36 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
               children: [
                 SizedBox(height: 30),
                 Text(
                   'Selamat datang di ',
-                  style: ThemeText.thinTextPrimary,
+                  style: TextPrimary.thin,
                 ),
-                Text(
-                  'Aplikasi GL Manager',
-                  style: TextStyle(
-                      color: ColorPallete.primaryColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                Text('Aplikasi GL Manager', style: TextPrimary.header),
+                SizedBox(height: 30),
+                Container(
+                  height: 1,
+                  width: 350,
+                  color: Colors.grey.withOpacity(0.3),
                 ),
                 SizedBox(height: 30),
                 Container(
-                  padding: EdgeInsets.all(20),
-                  height: 100,
-                  child: Column(
-                    children: [],
+                  width: 350,
+                  child: Text(
+                    '${' ' * 5}this page issdlfjlskdjfkldsjjfljdskfjdskljfsdjfkljdsjflksdjfkjsdkfjldsjflsdjlfjkldsjfkjsdklfjdjfldsjflsjdfjsdfjdsjfldskjfsdjfsdjlfjsdfjsdkjfksdjfkjsdkfjlksdjfkdsjfkjsdfjldskfjsdjdksfjlj built with flutter-web. For a better user experience, please use a mobile device to open this link.lasjdlfjlsdkjfljdslkfjkldsjfkldsjflk',
+                    style: TextGrey.thin,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  width: 350,
+                  child: Text(
+                    '${' ' * 5}this page issdlfjlskdjfkldsjjfljdskfjdskljfsdjfkljdsjflksdjfkjsdkfjldsjflsdjlfjkldsjfkjsdklfjdjfldsjflsjdfjsdfjdsjfldskjfsdjfsdjlfjsdfjsdkjfksdjfkjsdkfjlksdjfkdsjfkjsdfjldskfjsdjdksfjlj built with flutter-web. For a better user experience, please use a mobile device to open this link.lasjdlfjlsdkjfljdslkfjkldsjfkldsjflk',
+                    style: TextGrey.thin,
                   ),
                 ),
               ],

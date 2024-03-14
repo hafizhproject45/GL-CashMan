@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gl_app/utils/text_styles.dart';
 import 'package:go_router/go_router.dart';
 
 import '/utils/color_pallete.dart';
@@ -35,23 +36,14 @@ class ContactScreen extends StatelessWidget {
                 SizedBox(height: 30),
                 Text(
                   "Pengurus RT",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
+                  style: TextGrey.body,
                 ),
                 SizedBox(height: 10),
                 ContactList(
                   name: "Bpk. Winoto",
                 ),
                 SizedBox(height: 30),
-                Text(
-                  "Satpam",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey),
-                ),
+                Text("Satpam", style: TextGrey.body),
                 SizedBox(height: 10),
                 ContactList(
                   name: "Bpk. Winoto",
@@ -69,7 +61,7 @@ class ContactScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(top: 10, left: 10),
+        padding: EdgeInsets.all(10),
         child: FloatingActionButton(
           onPressed: () {
             context.go('/profile');

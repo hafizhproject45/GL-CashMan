@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '/utils/color_pallete.dart';
+import '/utils/text_styles.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -25,12 +26,10 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('LOGIN',
-                    style: TextStyle(
-                      // color: ColorPallete.primaryColor,
-                      fontSize: 27,
-                      fontWeight: FontWeight.w900,
-                    )),
+                Text(
+                  'LOGIN',
+                  style: TextPrimary.header,
+                ),
                 SizedBox(height: 40),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
