@@ -1,0 +1,25 @@
+name: gl_app
+description: "Money Management"
+publish_to: "none"
+version: 1.0.0
+
+environment:
+  sdk: ">=3.3.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  curved_navigation_bar: ^1.0.3
+  go_router: ^13.2.0
+  # url_launcher: ^6.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
