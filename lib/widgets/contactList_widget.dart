@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/utils/text_styles.dart';
+import 'package:gl_app/styles/text_styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactListWidget extends StatelessWidget {
-  final String name;
-  // final int phoneNumber;
-
   const ContactListWidget({
     required this.name,
-    // required this.phoneNumber,
+    required this.contactNumber,
     super.key,
   });
+
+  final String name;
+  final String contactNumber;
+
+  void launchWhatsapp(contactNumber) async {
+    Uri url = Uri.parse("https://wa.me/$contactNumber");
+    await launchUrl(url);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +23,16 @@ class ContactListWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
       child: ElevatedButton(
         onPressed: () {
-          // launchUrl(whatsapp);
+          launchWhatsapp(contactNumber);
         },
+        style: ElevatedButton.styleFrom(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(5),
+            ),
+          ),
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

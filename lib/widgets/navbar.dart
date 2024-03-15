@@ -1,8 +1,8 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:gl_app/utils/color_pallete.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:go_router/go_router.dart';
+
+import '../styles/color_pallete.dart';
 
 class MyNavigationBar extends StatefulWidget {
   MyNavigationBar({
@@ -30,8 +30,8 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
       bottomNavigationBar: CurvedNavigationBar(
         // index: 0,
         backgroundColor: Color.fromARGB(0, 255, 255, 255),
-        buttonBackgroundColor: ColorPallete.primaryColor,
-        color: ColorPallete.primaryColor,
+        buttonBackgroundColor: Colorz.primary,
+        color: Colorz.primary,
         animationDuration: Duration(milliseconds: 400),
         items: <Widget>[
           Icon(

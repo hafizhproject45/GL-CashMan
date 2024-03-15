@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import '/widgets/imagePicker_widget.dart';
-import '/utils/color_pallete.dart';
-import '/utils/text_styles.dart';
+import '../../styles/color_pallete.dart';
+import '../../styles/text_styles.dart';
 
 class PaymentScreen extends StatefulWidget {
   PaymentScreen({
@@ -50,7 +50,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       'Masukkan',
                       style: TextPrimary.thin,
                     ),
-                    Text('Bukti Pembayaran', style: TextPrimary.header),
+                    Text('Bukti Pembayaran 2024', style: TextPrimary.header),
                     SizedBox(height: 30),
                     Container(
                       height: 1,
@@ -66,8 +66,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           contentPadding: EdgeInsets.symmetric(vertical: 16),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  BorderSide(color: ColorPallete.primaryColor)),
+                              borderSide: BorderSide(color: Colorz.primary)),
                           // Add more decoration..
                         ),
                         hint: Text(
@@ -75,15 +74,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           style: TextPrimary.thin,
                         ),
                         items: monthItems
-                            .map((item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
+                            .map(
+                              (item) => DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                  item,
+                                  style: TextStyle(
+                                    fontSize: 12,
                                   ),
-                                ))
+                                ),
+                              ),
+                            )
                             .toList(),
                         validator: (value) {
                           if (value == null) {
@@ -91,9 +92,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           }
                           return null;
                         },
-                        onChanged: (value) {
-                          //Do something when selected item is changed.
-                        },
+                        onChanged: (value) {},
                         onSaved: (value) {
                           selectedValue = value.toString();
                         },
@@ -103,7 +102,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         iconStyleData: IconStyleData(
                           icon: Icon(
                             Icons.arrow_drop_down,
-                            color: ColorPallete.primaryColor,
+                            color: Colorz.primary,
                           ),
                           iconSize: 24,
                         ),
@@ -131,8 +130,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 80),
-                          backgroundColor: ColorPallete.primaryColor),
+                        backgroundColor: Colorz.primary,
+                        padding: EdgeInsets.symmetric(horizontal: 130),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
                     )
                   ],
                 ),

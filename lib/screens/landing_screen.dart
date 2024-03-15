@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '/utils/color_pallete.dart';
-
 class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -47,17 +45,19 @@ class LandingScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
                       SizedBox(height: 20),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(horizontal: 50),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(horizontal: 35),
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
                         ),
                         onPressed: () {
                           context.go('/login');
                         },
                         child: Text(
                           'Login',
-                          style: TextStyle(color: ColorPallete.primaryColor),
                         ),
                       ),
                     ],

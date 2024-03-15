@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/utils/color_pallete.dart';
+import 'package:gl_app/styles/color_pallete.dart';
 
 abstract class TextPrimary {
   static const TextStyle header = TextStyle(
-    color: ColorPallete.primaryColor,
+    color: Colorz.primary,
     fontSize: 24,
     fontWeight: FontWeight.w900,
   );
 
   static const TextStyle body = TextStyle(
-    color: ColorPallete.primaryColor,
+    color: Colorz.primary,
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
 
   static const TextStyle thin = TextStyle(
-    color: ColorPallete.primaryColor,
+    color: Colorz.primary,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );

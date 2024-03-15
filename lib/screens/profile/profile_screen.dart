@@ -26,18 +26,47 @@ class ProfileScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Text(
-                    'Hafizh Athallah Y.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w900,
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(height: 60),
+                      Text(
+                        'Hafizh Athallah Y.',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.go('/');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          maximumSize: Size(125, 40),
+                          backgroundColor: Colors.red,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              'Logout',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
               ListOfFeaturesWidget(
-                name: "List Kontak",
+                name: "List Kontak Pengurus RT",
                 icon: Icons.contact_phone,
                 route: 'profile/contact',
               ),
@@ -45,20 +74,6 @@ class ProfileScreen extends StatelessWidget {
                 height: 200,
               ),
             ],
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.all(10),
-        child: FloatingActionButton(
-          onPressed: () {
-            context.go('/');
-          },
-          backgroundColor: Colors.red,
-          child: Icon(
-            Icons.logout,
-            color: Colors.white,
           ),
         ),
       ),

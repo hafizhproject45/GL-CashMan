@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/utils/text_styles.dart';
+import 'package:gl_app/styles/text_styles.dart';
 import 'package:go_router/go_router.dart';
 
-import '/utils/color_pallete.dart';
+import '../../styles/color_pallete.dart';
 import '/widgets/contactList_widget.dart';
 
 class ContactScreen extends StatelessWidget {
@@ -40,35 +40,20 @@ class ContactScreen extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                Center(child: Text('Contact List', style: TextPrimary.header)),
+                Center(child: Text('List Kontak', style: TextPrimary.header)),
+                Center(child: Text('Pengurus RT', style: TextPrimary.header)),
                 SizedBox(height: 30),
-                Center(
-                  child: Text('Satpam', style: TextGrey.body),
-                ),
-                ContactListWidget(
-                  name: "Bpk. Rahmat",
-                ),
-                ContactListWidget(
-                  name: "Bpk. Arifin",
-                ),
-                ContactListWidget(
-                  name: "Bpk. Tatang",
-                ),
-                ContactListWidget(
-                  name: "Bpk. Koswara",
-                ),
-                SizedBox(height: 30),
-                Center(
-                  child: Text('Pengurus RT', style: TextGrey.body),
-                ),
                 ContactListWidget(
                   name: "Bpk. Winoto (Ketua)",
+                  contactNumber: "+6285175435207",
                 ),
                 ContactListWidget(
                   name: "Bpk. Hendar (Sekertaris)",
+                  contactNumber: "+6285175435207",
                 ),
                 ContactListWidget(
                   name: "Bpk. Andry (Bendahara)",
+                  contactNumber: "+6285175435207",
                 ),
               ],
             ),
@@ -85,7 +70,7 @@ class ContactScreen extends StatelessWidget {
           },
           child: Icon(Icons.arrow_back_ios_new),
           backgroundColor: Colors.white,
-          foregroundColor: ColorPallete.primaryColor,
+          foregroundColor: Colorz.primary,
         ),
       ),
     );

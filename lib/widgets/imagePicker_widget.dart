@@ -5,8 +5,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
-import '/utils/color_pallete.dart';
-import '/utils/text_styles.dart';
+import '../styles/color_pallete.dart';
+import '../styles/text_styles.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   const ImagePickerWidget({
@@ -48,7 +48,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                 DottedBorder(
                   borderType: BorderType.RRect,
                   dashPattern: [10, 5],
-                  color: ColorPallete.primaryColor,
+                  color: Colorz.primary,
                   radius: Radius.circular(10),
                   strokeWidth: 2,
                   stackFit: StackFit.loose,
@@ -56,7 +56,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                     width: 300,
                     height: 300,
                     decoration: BoxDecoration(
-                      color: ColorPallete.primaryColor.withOpacity(0.05),
+                      color: Colorz.primary.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
@@ -64,7 +64,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                       children: [
                         Icon(
                           Icons.image_outlined,
-                          color: ColorPallete.primaryColor,
+                          color: Colorz.primary,
                           size: 100,
                         ),
                         SizedBox(height: 10),
@@ -91,11 +91,11 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
         uiSettings: [
           AndroidUiSettings(
               toolbarTitle: 'Crop Image',
-              toolbarColor: ColorPallete.primaryColor,
-              cropGridColor: ColorPallete.primaryColor,
-              statusBarColor: ColorPallete.primaryColor,
-              cropFrameColor: ColorPallete.primaryColor,
-              activeControlsWidgetColor: ColorPallete.primaryColor,
+              toolbarColor: Colorz.primary,
+              cropGridColor: Colorz.primary,
+              statusBarColor: Colorz.primary,
+              cropFrameColor: Colorz.primary,
+              activeControlsWidgetColor: Colorz.primary,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.original,
               lockAspectRatio: false),

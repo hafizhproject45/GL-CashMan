@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '/utils/color_pallete.dart';
-import '/utils/text_styles.dart';
+import '../styles/color_pallete.dart';
+import '../styles/text_styles.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 200),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 250),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -47,10 +47,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         enableInteractiveSelection: true,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                            label: Text('Username'),
-                            border: OutlineInputBorder(),
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 10)),
+                          label: Text('Username'),
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          fillColor: Colors.grey[200],
+                          filled: true,
+                        ),
                       ),
                     ),
                     SizedBox(height: 10),
@@ -74,14 +76,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : Icons.visibility),
                           ),
                           contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          fillColor: Colors.grey[200],
+                          filled: true,
                         ),
                       ),
                     ),
-                    SizedBox(height: 50),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        backgroundColor: ColorPallete.primaryColor,
-                        minimumSize: Size(250, 0),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colorz.primary,
+                        padding: EdgeInsets.symmetric(horizontal: 135),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                        ),
                       ),
                       onPressed: () {
                         context.go('/home');

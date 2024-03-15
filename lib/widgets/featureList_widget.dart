@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '/utils/color_pallete.dart';
-import '/utils/text_styles.dart';
+import '../styles/color_pallete.dart';
+import '../styles/text_styles.dart';
 
 class ListOfFeaturesWidget extends StatelessWidget {
   final String name;
@@ -31,7 +31,7 @@ class ListOfFeaturesWidget extends StatelessWidget {
                 Icon(
                   icon,
                   size: 24,
-                  color: ColorPallete.primaryColor,
+                  color: Colorz.primary,
                 ),
                 Text(
                   name,
@@ -39,7 +39,7 @@ class ListOfFeaturesWidget extends StatelessWidget {
                 ),
                 Icon(
                   Icons.arrow_forward_ios,
-                  color: ColorPallete.primaryColor,
+                  color: Colorz.primary,
                   size: 24,
                 ),
               ],

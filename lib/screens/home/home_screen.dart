@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gl_app/widgets/carousel_widget.dart';
-import '/utils/text_styles.dart';
+import '../../styles/text_styles.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({

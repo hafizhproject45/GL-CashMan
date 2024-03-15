@@ -16,8 +16,12 @@ dependencies:
   image_picker: ^1.0.7
   dotted_border: ^2.1.0
   image_cropper: ^5.0.1
+  url_launcher: ^6.2.5
+  # firebase_core: any
+  # cloud_firestore: ^4.15.9
+  # firebase_auth: ^4.17.9
+  # firebase_storage: ^11.6.10
   # insta_image_viewer: ^1.0.2 UNTUK REVIEW IMAGE
-  # url_launcher: ^6.2.5 UNTUK LINK KE WA
 
 dev_dependencies:
   flutter_test:

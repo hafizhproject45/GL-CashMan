@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
-import '/utils/color_pallete.dart';
+import '../styles/color_pallete.dart';
 
 class CarouselWidget extends StatelessWidget {
   const CarouselWidget({
@@ -14,7 +14,7 @@ class CarouselWidget extends StatelessWidget {
       width: 350,
       height: 200,
       initialPage: 0,
-      indicatorColor: ColorPallete.primaryColor,
+      indicatorColor: Colorz.primary,
       indicatorBackgroundColor: Colors.grey,
       children: [
         Image.asset(
