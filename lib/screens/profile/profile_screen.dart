@@ -45,6 +45,9 @@ class ProfileScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           maximumSize: Size(125, 40),
                           backgroundColor: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -64,6 +67,11 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ],
+              ),
+              ListOfFeaturesWidget(
+                name: "Catatan Rilis",
+                icon: Icons.numbers,
+                route: 'profile/release',
               ),
               ListOfFeaturesWidget(
                 name: "List Kontak Pengurus RT",

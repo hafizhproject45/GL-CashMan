@@ -6,8 +6,9 @@ import '/screens/home/home_screen.dart';
 import '/screens/landing_screen.dart';
 import '/screens/login_screen.dart';
 import '/screens/payment/payment_screen.dart';
-import '/screens/profile/contact_screen.dart';
 import '/screens/profile/profile_screen.dart';
+import '/screens/profile/release_screen.dart';
+import '/screens/profile/contact_screen.dart';
 
 class AppRoute {
   AppRoute._();
@@ -38,43 +39,50 @@ class AppRoute {
 
       //! NAVBAR ROUTE
       StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) =>
-              MyNavigationBar(navigationShell: navigationShell),
-          branches: <StatefulShellBranch>[
-            //! BRANCH HOME
-            StatefulShellBranch(navigatorKey: _rootNavigatorHome, routes: [
-              GoRoute(
-                path: '/home',
-                builder: (context, state) => HomeScreen(
-                  key: state.pageKey,
-                ),
+        builder: (context, state, navigationShell) =>
+            MyNavigationBar(navigationShell: navigationShell),
+        branches: <StatefulShellBranch>[
+          //! BRANCH HOME
+          StatefulShellBranch(navigatorKey: _rootNavigatorHome, routes: [
+            GoRoute(
+              path: '/home',
+              builder: (context, state) => HomeScreen(
+                key: state.pageKey,
               ),
-            ]),
-            //! BRANCH PAYMENT
-            StatefulShellBranch(navigatorKey: _rootNavigatorPayment, routes: [
-              GoRoute(
-                path: '/payment',
-                builder: (context, state) => PaymentScreen(
-                  key: state.pageKey,
-                ),
-              ),
-            ]),
-            //! BRANCH PROFILE
-            StatefulShellBranch(navigatorKey: _rootNavigatorProfile, routes: [
-              GoRoute(
-                path: '/profile',
-                builder: (context, state) => ProfileScreen(
-                  key: state.pageKey,
-                ),
-              ),
-              GoRoute(
-                path: '/profile/contact',
-                builder: (context, state) => ContactScreen(
-                  key: state.pageKey,
-                ),
-              ),
-            ]),
+            ),
           ]),
+          //! BRANCH PAYMENT
+          StatefulShellBranch(navigatorKey: _rootNavigatorPayment, routes: [
+            GoRoute(
+              path: '/payment',
+              builder: (context, state) => PaymentScreen(
+                key: state.pageKey,
+              ),
+            ),
+          ]),
+          //! BRANCH PROFILE
+          StatefulShellBranch(navigatorKey: _rootNavigatorProfile, routes: [
+            GoRoute(
+              path: '/profile',
+              builder: (context, state) => ProfileScreen(
+                key: state.pageKey,
+              ),
+            ),
+            GoRoute(
+              path: '/profile/contact',
+              builder: (context, state) => ContactScreen(
+                key: state.pageKey,
+              ),
+            ),
+            GoRoute(
+              path: '/profile/release',
+              builder: (context, state) => ReleaseScreen(
+                key: state.pageKey,
+              ),
+            ),
+          ]),
+        ],
+      ),
     ],
   );
 }

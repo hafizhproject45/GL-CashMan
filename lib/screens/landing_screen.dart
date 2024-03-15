@@ -47,17 +47,23 @@ class LandingScreen extends StatelessWidget {
                       SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 35),
+                          padding: EdgeInsets.symmetric(horizontal: 25),
                           elevation: 10,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                         ),
                         onPressed: () {
                           context.go('/login');
                         },
-                        child: Text(
-                          'Login',
+                        child: Row(
+                          children: [
+                            Icon(Icons.login),
+                            SizedBox(width: 10),
+                            Text(
+                              'Login',
+                            ),
+                          ],
                         ),
                       ),
                     ],
