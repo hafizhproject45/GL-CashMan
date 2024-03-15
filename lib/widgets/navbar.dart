@@ -29,9 +29,10 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         // index: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(0, 255, 255, 255),
         buttonBackgroundColor: ColorPallete.primaryColor,
         color: ColorPallete.primaryColor,
+        animationDuration: Duration(milliseconds: 400),
         items: <Widget>[
           Icon(
             Icons.home,

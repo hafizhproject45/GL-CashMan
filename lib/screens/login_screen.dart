@@ -4,7 +4,14 @@ import 'package:go_router/go_router.dart';
 import '/utils/color_pallete.dart';
 import '/utils/text_styles.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,59 +26,93 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           //! ISI
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            margin: EdgeInsets.symmetric(horizontal: 50, vertical: 230),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'LOGIN',
-                  style: TextPrimary.header,
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 200),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'LOGIN',
+                      style: TextPrimary.header,
+                    ),
+                    SizedBox(height: 40),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: TextField(
+                        enableInteractiveSelection: true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            label: Text('Username'),
+                            border: OutlineInputBorder(),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10)),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: TextField(
+                        enableInteractiveSelection: true,
+                        keyboardType: TextInputType.text,
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: Icon(_obscureText
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 50),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: ColorPallete.primaryColor,
+                        minimumSize: Size(250, 0),
+                      ),
+                      onPressed: () {
+                        context.go('/home');
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 40),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: TextField(
-                    enableInteractiveSelection: true,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                        label: Text('Username'),
-                        border: OutlineInputBorder(),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10)),
+              ),
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 10,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      '© Copyright 2024 by Grand Laswi, Al Right Reserved',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  child: TextField(
-                    enableInteractiveSelection: true,
-                    keyboardType: TextInputType.text,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        label: Text('Password'),
-                        border: OutlineInputBorder(),
-                        suffix: Icon(Icons.remove_red_eye),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10)),
-                  ),
-                ),
-                SizedBox(height: 30),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: ColorPallete.primaryColor,
-                    minimumSize: Size(200, 0),
-                  ),
-                  onPressed: () {
-                    context.go('/home');
-                  },
-                  child: Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

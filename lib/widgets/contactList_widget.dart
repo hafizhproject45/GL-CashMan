@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gl_app/utils/text_styles.dart';
 
-import '/utils/color_pallete.dart';
-
-class ContactList extends StatelessWidget {
+class ContactListWidget extends StatelessWidget {
   final String name;
   // final int phoneNumber;
 
-  const ContactList({
+  const ContactListWidget({
     required this.name,
     // required this.phoneNumber,
     super.key,
@@ -15,7 +14,7 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 60, vertical: 7),
+      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
       child: ElevatedButton(
         onPressed: () {
           // launchUrl(whatsapp);
@@ -25,15 +24,12 @@ class ContactList extends StatelessWidget {
           children: [
             Icon(
               Icons.phone,
-              size: 30,
+              size: 20,
             ),
-            SizedBox(width: 16),
+            SizedBox(width: 10),
             Text(
               name,
-              style: TextStyle(
-                color: ColorPallete.primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextPrimary.thin,
             )
           ],
         ),

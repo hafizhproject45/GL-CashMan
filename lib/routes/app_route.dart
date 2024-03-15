@@ -35,10 +35,6 @@ class AppRoute {
         path: '/login',
         builder: (context, state) => LoginScreen(),
       ),
-      GoRoute(
-        path: '/profile/contact',
-        builder: (context, state) => ContactScreen(),
-      ),
 
       //! NAVBAR ROUTE
       StatefulShellRoute.indexedStack(
@@ -68,6 +64,12 @@ class AppRoute {
               GoRoute(
                 path: '/profile',
                 builder: (context, state) => ProfileScreen(
+                  key: state.pageKey,
+                ),
+              ),
+              GoRoute(
+                path: '/profile/contact',
+                builder: (context, state) => ContactScreen(
                   key: state.pageKey,
                 ),
               ),

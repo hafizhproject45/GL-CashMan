@@ -15,48 +15,65 @@ class ContactScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 20),
-            height: 250,
-            width: double.infinity,
-            child: Image(
-                image: AssetImage('assets/images/bg.png'), fit: BoxFit.cover),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 20),
+                height: 250,
+                width: double.infinity,
+                child: Image(
+                  image: AssetImage('assets/images/bg.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Text(
+                'Hafizh Athallah Y.',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Column(
+          Expanded(
+            child: ListView(
               children: [
-                Text(
-                  "Contact Number",
-                  style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                Center(child: Text('Contact List', style: TextPrimary.header)),
+                SizedBox(height: 30),
+                Center(
+                  child: Text('Satpam', style: TextGrey.body),
+                ),
+                ContactListWidget(
+                  name: "Bpk. Rahmat",
+                ),
+                ContactListWidget(
+                  name: "Bpk. Arifin",
+                ),
+                ContactListWidget(
+                  name: "Bpk. Tatang",
+                ),
+                ContactListWidget(
+                  name: "Bpk. Koswara",
                 ),
                 SizedBox(height: 30),
-                Text(
-                  "Pengurus RT",
-                  style: TextGrey.body,
+                Center(
+                  child: Text('Pengurus RT', style: TextGrey.body),
                 ),
-                SizedBox(height: 10),
-                ContactList(
-                  name: "Bpk. Winoto",
+                ContactListWidget(
+                  name: "Bpk. Winoto (Ketua)",
                 ),
-                SizedBox(height: 30),
-                Text("Satpam", style: TextGrey.body),
-                SizedBox(height: 10),
-                ContactList(
-                  name: "Bpk. Winoto",
+                ContactListWidget(
+                  name: "Bpk. Hendar (Sekertaris)",
                 ),
-                ContactList(
-                  name: "Bpk. Winoto",
-                ),
-                ContactList(
-                  name: "Bpk. Winoto",
+                ContactListWidget(
+                  name: "Bpk. Andry (Bendahara)",
                 ),
               ],
             ),
           ),
+          SizedBox(height: 30),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,

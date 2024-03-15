@@ -1,0 +1,37 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+
+import '/utils/color_pallete.dart';
+
+class CarouselWidget extends StatelessWidget {
+  const CarouselWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ImageSlideshow(
+      width: 350,
+      height: 200,
+      initialPage: 0,
+      indicatorColor: ColorPallete.primaryColor,
+      indicatorBackgroundColor: Colors.grey,
+      children: [
+        Image.asset(
+          'assets/images/bg.png',
+          fit: BoxFit.cover,
+        ),
+        Image.asset(
+          'assets/images/tv.jpg',
+          fit: BoxFit.cover,
+        ),
+        Image.asset(
+          'assets/images/kiosk.jpg',
+          fit: BoxFit.cover,
+        ),
+      ],
+      autoPlayInterval: 5000,
+      isLoop: true,
+    );
+  }
+}
