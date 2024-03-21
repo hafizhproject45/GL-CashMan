@@ -8,8 +8,8 @@ class LandingScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            width: double.infinity,
-            height: double.infinity,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
@@ -47,10 +47,9 @@ class LandingScreen extends StatelessWidget {
                       SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 25),
                           elevation: 10,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
                           ),
                         ),
                         onPressed: () {
@@ -84,7 +83,7 @@ class LandingScreen extends StatelessWidget {
                   '© Copyright 2024 by Grand Laswi, Al Right Reserved',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 12,
+                    fontSize: 10,
                   ),
                 ),
               ),

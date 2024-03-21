@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/styles/text_styles.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../styles/text_styles.dart';
 import '../../styles/color_pallete.dart';
 
 class ReleaseScreen extends StatelessWidget {
@@ -79,7 +79,7 @@ class ReleaseScreen extends StatelessWidget {
                   ),
                   Text(
                     'Awal rilis',
-                    style: TextGrey.body,
+                    style: TextGrey.thin,
                   ),
                   SizedBox(height: 20),
                   Text(
@@ -91,7 +91,7 @@ class ReleaseScreen extends StatelessWidget {
                   ),
                   Text(
                     'Firur:\n1. Image Picker\n2. Print to PDF',
-                    style: TextGrey.body,
+                    style: TextGrey.thin,
                   )
                 ],
               ),

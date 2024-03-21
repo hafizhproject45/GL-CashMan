@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './routes/app_route.dart';
-import 'styles/color_pallete.dart';
+import '../../routes/app_route.dart';
+import '../styles/color_pallete.dart';
 
 void main() => runApp(MyApp());
 

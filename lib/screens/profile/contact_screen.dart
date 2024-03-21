@@ -38,24 +38,27 @@ class ContactScreen extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: ListView(
-              children: [
-                Center(child: Text('List Kontak', style: TextPrimary.header)),
-                Center(child: Text('Pengurus RT', style: TextPrimary.header)),
-                SizedBox(height: 30),
-                ContactListWidget(
-                  name: "Bpk. Winoto (Ketua)",
-                  contactNumber: "+6285175435207",
-                ),
-                ContactListWidget(
-                  name: "Bpk. Hendar (Sekertaris)",
-                  contactNumber: "+6285175435207",
-                ),
-                ContactListWidget(
-                  name: "Bpk. Andry (Bendahara)",
-                  contactNumber: "+6285175435207",
-                ),
-              ],
+            child: Container(
+              width: 300,
+              child: ListView(
+                children: [
+                  Center(child: Text('List Kontak', style: TextPrimary.header)),
+                  Center(child: Text('Pengurus RT', style: TextPrimary.header)),
+                  SizedBox(height: 30),
+                  ContactListWidget(
+                    name: "Bpk. Winoto (Ketua)",
+                    contactNumber: "+6285175435207",
+                  ),
+                  ContactListWidget(
+                    name: "Bpk. Hendar (Sekertaris)",
+                    contactNumber: "+6285175435207",
+                  ),
+                  ContactListWidget(
+                    name: "Bpk. Andry (Bendahara)",
+                    contactNumber: "+6285175435207",
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 30),

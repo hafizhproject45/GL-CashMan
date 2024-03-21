@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '/widgets/navbar.dart';
-import '/screens/home/home_screen.dart';
-import '/screens/landing_screen.dart';
-import '/screens/login_screen.dart';
-import '/screens/payment/payment_screen.dart';
-import '/screens/profile/profile_screen.dart';
-import '/screens/profile/release_screen.dart';
-import '/screens/profile/contact_screen.dart';
+import '../widgets/navbar.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/landing_screen.dart';
+import '../screens/auth/login_screen.dart';
+import '../screens/payment/payment_screen.dart';
+import '../screens/profile/profile_screen.dart';
+import '../screens/profile/release_screen.dart';
+import '../screens/profile/contact_screen.dart';
 
 class AppRoute {
   AppRoute._();

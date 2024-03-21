@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(bottom: 20),
                     height: 250,
-                    width: double.infinity,
+                    width: MediaQuery.of(context).size.width,
                     child: Image(
                       image: AssetImage('assets/images/bg.png'),
                       fit: BoxFit.cover,
@@ -43,8 +43,8 @@ class ProfileScreen extends StatelessWidget {
                           context.go('/');
                         },
                         style: ElevatedButton.styleFrom(
-                          maximumSize: Size(125, 40),
                           backgroundColor: Colors.red,
+                          fixedSize: Size.fromWidth(130),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),

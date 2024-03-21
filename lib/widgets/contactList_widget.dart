@@ -20,13 +20,14 @@ class ContactListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+      padding: EdgeInsets.only(bottom: 15),
       child: ElevatedButton(
         onPressed: () {
           launchWhatsapp(contactNumber);
         },
         style: ElevatedButton.styleFrom(
           elevation: 2,
+          fixedSize: Size.fromHeight(50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(5),
