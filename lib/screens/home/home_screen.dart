@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextPrimary.thin,
                   ),
                   Text('Aplikasi GL Manager', style: TextPrimary.header),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Container(
                     height: 1,
                     width: 350,
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: 350,
                     child: Text(
-                      '${' ' * 5}this page issdlfjlskdjfkldsjjfljdskfjdskljfsdjfkljdsjflksdjfkjsdkfjldsjflsdjlfjkldsjfkjsdklfjdjfldsjflsjdfjsdfjdsjfldskjfsdjfsdjlfjsdfjsdkjfksdjfkjsdkfjlksdjfkdsjfkjsdfjldskfjsdjdksfjlj built with flutter-web. For a better user experience, please use a mobile device to open this link.lasjdlfjlsdkjfljdslkfjkldsjfkldsjflk',
+                      "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,
                     ),
                   ),
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     width: 350,
                     child: Text(
-                      '${' ' * 5}this page issdlfjlskdjfkldsjjfljdskfjdskljfsdjfkljdsjflksdjfkjsdkfjldsjflsdjlfjkldsjfkjsdklfjdjfldsjflsjdfjsdfjdsjfldskjfsdjfsdjlfjsdfjsdkjfksdjfkjsdkfjlksdjfkdsjfkjsdfjldskfjsdjdksfjlj built with flutter-web. For a better user experience, please use a mobile device to open this link.lasjdlfjlsdkjfljdslkfjkldsjfkldsjflk',
+                      "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,
                     ),
                   ),

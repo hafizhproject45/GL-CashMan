@@ -1,29 +1,32 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../services/firebase_auth_services.dart';
 
+import '../../services/firebase_auth_services.dart';
 import '../../widgets/text_field_auth/text_field_password_widget.dart';
 import '../../widgets/text_field_auth/text_field_text_widget.dart';
 import '../../styles/color_pallete.dart';
 import '../../styles/text_styles.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final FireBaseAuthService _auth = FireBaseAuthService();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
 
-  bool _isLoading = false;
+  bool _isLoading = false; // variabel untuk mengontrol status loading
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -50,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Container(
                     width: 380,
-                    height: 450,
+                    height: 500,
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5)),
@@ -58,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'LOGIN',
+                          'REGISTER',
                           style: TextPrimary.header,
                         ),
                         SizedBox(height: 40),
@@ -85,6 +88,22 @@ class _LoginScreenState extends State<LoginScreen> {
                               return "Password tidak boleh kosong";
                             } else if (value.length < 6) {
                               return "Password minimal 6 karakter";
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        TextFieldPasswordWidget(
+                          name: "Confirm Password",
+                          controller: _confirmPasswordController,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Confirm password tidak boleh kosong";
+                            } else if (value.length < 6) {
+                              return "Password minimal 6 karakter";
+                            } else if (_passwordController.text !=
+                                _confirmPasswordController.text) {
+                              return "Password harus sama";
                             }
                             return null;
                           },
@@ -104,15 +123,16 @@ class _LoginScreenState extends State<LoginScreen> {
                               : () {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
-                                    _login();
+                                    _register();
                                   }
                                 },
                           child: _isLoading
                               ? CircularProgressIndicator(
-                                  backgroundColor: Colors.white,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
                                 )
                               : Text(
-                                  'Login',
+                                  'Register',
                                   style: TextStyle(color: Colors.white),
                                 ),
                         ),
@@ -120,17 +140,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Already have an account?",
+                              "Have an account?",
                               style: TextStyle(fontSize: 14),
                             ),
                             TextButton(
                               child: Text(
-                                'Register',
+                                'Login',
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.bold),
                               ),
                               onPressed: () {
-                                context.go('/register');
+                                context.go('/login');
                               },
                             ),
                           ],
@@ -165,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _login() async {
+  void _register() async {
     setState(() {
       _isLoading = true;
     });
@@ -173,18 +193,18 @@ class _LoginScreenState extends State<LoginScreen> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     setState(() {
       _isLoading = false;
     });
 
     if (user != null) {
-      context.go('/home');
+      context.go('/login');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Email atau Password tidak dikenal.'),
+          content: Text('Terjadi kesalahan'),
           duration: Duration(seconds: 3),
           backgroundColor: Colors.red,
         ),

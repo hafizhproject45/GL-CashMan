@@ -4,7 +4,14 @@ import '../styles/color_pallete.dart';
 import '../styles/text_styles.dart';
 
 class DropDownWidget extends StatefulWidget {
-  DropDownWidget({super.key});
+  final String name;
+  final List<String> items;
+
+  DropDownWidget({
+    super.key,
+    required this.items,
+    required this.name,
+  });
 
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState();
@@ -14,21 +21,21 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
+      width: 146,
       child: DropdownButtonFormField2<String>(
         isExpanded: true,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 16),
+          contentPadding: EdgeInsets.symmetric(vertical: 15),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(color: Colorz.primary)),
           // Add more decoration..
         ),
         hint: Text(
-          'Pilih Bulan',
+          widget.name,
           style: TextPrimary.thin,
         ),
-        items: monthItems
+        items: widget.items
             .map(
               (item) => DropdownMenuItem<String>(
                 value: item,
@@ -43,7 +50,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             .toList(),
         validator: (value) {
           if (value == null) {
-            return 'Pilih Bulan';
+            return "Masukkan ${widget.name}";
           }
           return null;
         },
@@ -74,18 +81,4 @@ class _DropDownWidgetState extends State<DropDownWidget> {
   }
 }
 
-final List<String> monthItems = [
-  'Januari',
-  'Februari',
-  'Maret',
-  'April',
-  'Mei',
-  'Juni',
-  'Juli',
-  'Agustus',
-  'September',
-  'Oktober',
-  'November',
-  'Desember ',
-];
 String? selectedValue;

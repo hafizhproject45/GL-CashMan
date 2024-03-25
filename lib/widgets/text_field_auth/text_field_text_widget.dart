@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
 
-class TextFieldNameWidget extends StatelessWidget {
+class TextFieldTextWidget extends StatelessWidget {
   final String name;
+  final TextEditingController? controller;
+  final String? Function(String? value)? validator;
 
-  TextFieldNameWidget({required this.name});
+  TextFieldTextWidget({
+    required this.name,
+    this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 5),
       width: 300,
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
+        controller: controller,
         enableInteractiveSelection: true,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(

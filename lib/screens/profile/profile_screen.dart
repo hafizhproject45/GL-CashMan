@@ -1,12 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_app/widgets/featureList_widget.dart';
 import 'package:go_router/go_router.dart';
 
-class ProfileScreen extends StatelessWidget {
+import '../../widgets/featureList_widget.dart';
+
+class ProfileScreen extends StatefulWidget {
   ProfileScreen({
     Key? key,
   });
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +47,7 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
+                          FirebaseAuth.instance.signOut();
                           context.go('/');
                         },
                         style: ElevatedButton.styleFrom(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../screens/auth/register.dart';
 import '../widgets/navbar.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/landing_screen.dart';
@@ -35,6 +36,10 @@ class AppRoute {
       GoRoute(
         path: '/login',
         builder: (context, state) => LoginScreen(),
+      ),
+      GoRoute(
+        path: '/register',
+        builder: (context, state) => RegisterScreen(),
       ),
 
       //! NAVBAR ROUTE
