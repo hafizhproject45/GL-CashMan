@@ -42,7 +42,7 @@ class ReleaseScreen extends StatelessWidget {
                             style: TextWhite.thin,
                           ),
                           Text(
-                            'V 1.1.0',
+                            'V 1.0.0',
                             style: TextWhite.body,
                           ),
                         ],

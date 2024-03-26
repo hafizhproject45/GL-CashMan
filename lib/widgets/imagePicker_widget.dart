@@ -82,8 +82,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   }
 
   Future _pickImageFromGallery() async {
-    final pickedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedImage = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 25);
     if (pickedImage != null) {
       final croppedImage = await ImageCropper().cropImage(
         sourcePath: pickedImage.path,

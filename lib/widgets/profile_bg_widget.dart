@@ -12,13 +12,15 @@ class ProfileBackgroundWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
 
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       alignment: Alignment.center,
       children: [
         Container(
           margin: EdgeInsets.only(bottom: 20),
           height: 250,
-          width: MediaQuery.of(context).size.width,
+          width: screenWidth,
           child: Image(
             image: AssetImage('assets/images/bg.png'),
             fit: BoxFit.cover,

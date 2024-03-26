@@ -13,13 +13,15 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Column(
         children: [
           ProfileBackgroundWidget(),
           Expanded(
             child: Container(
-              width: 300,
+              width: screenWidth * 0.7,
               child: ListView(
                 children: [
                   Center(child: Text('List Kontak', style: TextPrimary.header)),

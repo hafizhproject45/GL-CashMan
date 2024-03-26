@@ -43,11 +43,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: screenWidth,
+          height: screenHeight,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/bg.png'),
@@ -62,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(
-                      width: 350,
+                      width: screenWidth * 0.8,
                       padding: EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -124,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (value!.isEmpty) {
                                 return 'Email tidak boleh kosong';
                               } else if (!regex.hasMatch(value)) {
-                                return 'Masukkan alamat email yang valid';
+                                return 'Email tidak valid';
                               }
                               return null;
                             },
@@ -275,7 +278,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     ).toJson();
 
     try {
-      await userCollection.doc(id).set(newUser);
+      await userCollection.doc(userModel.email).set(newUser);
       _register();
     } catch (error) {
       setState(() {

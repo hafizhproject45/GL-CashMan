@@ -10,6 +10,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -27,14 +29,14 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   Container(
                     height: 1,
-                    width: 350,
+                    width: screenWidth * 0.8,
                     color: Colors.grey.withOpacity(0.3),
                   ),
                   SizedBox(height: 30),
                   CarouselWidget(),
                   SizedBox(height: 30),
                   Container(
-                    width: 350,
+                    width: screenWidth * 0.8,
                     child: Text(
                       "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,
@@ -42,12 +44,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Container(
-                    width: 350,
+                    width: screenWidth * 0.8,
                     child: Text(
                       "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,
                     ),
                   ),
+                  SizedBox(height: 30),
                 ],
               ),
             ],

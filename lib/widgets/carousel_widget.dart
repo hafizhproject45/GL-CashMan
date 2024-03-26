@@ -10,8 +10,10 @@ class CarouselWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return ImageSlideshow(
-      width: 350,
+      width: screenWidth * 0.8,
       height: 200,
       initialPage: 0,
       indicatorColor: Colorz.primary,

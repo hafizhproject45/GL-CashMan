@@ -43,8 +43,9 @@ android {
     defaultConfig {
         applicationId "com.example.gl_app"
         minSdkVersion 21
+        targetSdkVersion 30
         // minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        // targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true

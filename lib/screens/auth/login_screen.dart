@@ -31,11 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: screenWidth,
+          height: screenHeight,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/bg.png'),
@@ -50,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(
-                      width: 350,
+                      width: screenWidth * 0.8,
                       padding: EdgeInsets.symmetric(vertical: 25),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -75,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value!.isEmpty) {
                                 return 'Email tidak boleh kosong';
                               } else if (!regex.hasMatch(value)) {
-                                return 'Masukkan alamat email yang valid';
+                                return 'Email tidak valid';
                               }
                               return null;
                             },

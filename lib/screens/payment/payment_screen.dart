@@ -37,6 +37,8 @@ class PaymentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -56,7 +58,7 @@ class PaymentScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     Container(
                       height: 1,
-                      width: 350,
+                      width: screenWidth * 0.8,
                       color: Colors.grey.withOpacity(0.3),
                     ),
                     SizedBox(height: 20),
