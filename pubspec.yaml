@@ -20,6 +20,7 @@ dependencies:
   firebase_auth: ^4.17.9
   firebase_core: ^2.27.1
   fluttertoast: ^8.2.4
+  cloud_firestore: ^4.15.9
   # insta_image_viewer: ^1.0.2 UNTUK REVIEW IMAGE
 
 dev_dependencies:

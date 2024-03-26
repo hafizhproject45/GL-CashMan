@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/widgets/text_field_normal/text_field_normal_widget.dart';
 
 import '../../widgets/dropdown_widget.dart';
 import '../../widgets/imagePicker_widget.dart';
@@ -61,26 +60,26 @@ class PaymentScreen extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.3),
                     ),
                     SizedBox(height: 20),
-                    TextFieldNormalWidget(
-                      name: "Nama Lengkap",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Masukkan Nama Lengkap";
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    TextFieldNormalWidget(
-                      name: "Blok",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Masukkan Blok";
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: 10),
+                    // TextFieldNormalWidget(
+                    //   name: "Nama Lengkap",
+                    //   validator: (value) {
+                    //     if (value!.isEmpty) {
+                    //       return "Masukkan Nama Lengkap";
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
+                    // SizedBox(height: 10),
+                    // TextFieldNormalWidget(
+                    //   name: "Blok",
+                    //   validator: (value) {
+                    //     if (value!.isEmpty) {
+                    //       return "Masukkan Blok";
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
+                    // SizedBox(height: 10),
                     Row(
                       children: [
                         DropDownWidget(name: "Bulan", items: monthItems),

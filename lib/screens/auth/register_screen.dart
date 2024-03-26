@@ -1,29 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_app/models/M_user.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/toast.dart';
 import '../../services/firebase_auth_services.dart';
 import '../../widgets/text_field_auth/text_field_password_widget.dart';
 import '../../widgets/text_field_auth/text_field_text_widget.dart';
 import '../../styles/color_pallete.dart';
 import '../../styles/text_styles.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final FireBaseAuthService _auth = FireBaseAuthService();
 
+  TextEditingController _fullnameController = TextEditingController();
+  TextEditingController _blockController = TextEditingController();
+  TextEditingController _contactController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
 
-  bool _isLoading = false;
+  bool _isLoading = false; // variabel untuk mengontrol status loading
+
   @override
   void dispose() {
+    _fullnameController.dispose();
+    _blockController.dispose();
+    _contactController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -51,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: SingleChildScrollView(
                     child: Container(
                       width: 350,
-                      padding: EdgeInsets.symmetric(vertical: 25),
+                      padding: EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5)),
@@ -59,10 +71,47 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'LOGIN',
+                            'REGISTER',
                             style: TextPrimary.header,
                           ),
-                          SizedBox(height: 40),
+                          SizedBox(height: 30),
+                          TextFieldTextWidget(
+                            name: "Nama Lengkap",
+                            iconz: Icons.person_pin_sharp,
+                            controller: _fullnameController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Nama Lengkap tidak boleh kosong";
+                              }
+                              return null;
+                            },
+                          ),
+                          TextFieldTextWidget(
+                            name: "Blok",
+                            iconz: Icons.home_work_rounded,
+                            controller: _blockController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Blok tidak boleh kosong";
+                              } else if (value.length > 5) {
+                                return "Blok tidak valid";
+                              }
+                              return null;
+                            },
+                          ),
+                          TextFieldTextWidget(
+                            name: "Kontak",
+                            iconz: Icons.phone_android,
+                            controller: _contactController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Kontak tidak boleh kosong";
+                              } else if (value.length > 15) {
+                                return "Kontak tidak valid";
+                              }
+                              return null;
+                            },
+                          ),
                           TextFieldTextWidget(
                             name: "Email",
                             iconz: Icons.email,
@@ -86,6 +135,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Password tidak boleh kosong";
+                              } else if (value.length < 6) {
+                                return "Password minimal 6 karakter";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                          TextFieldPasswordWidget(
+                            name: "Confirm Password",
+                            iconz: Icons.lock,
+                            controller: _confirmPasswordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Confirm Password tidak boleh kosong";
+                              } else if (value.length < 6) {
+                                return "Password minimal 6 karakter";
+                              } else if (_passwordController.text !=
+                                  _confirmPasswordController.text) {
+                                return "Password harus sama";
                               }
                               return null;
                             },
@@ -105,15 +173,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                 : () {
                                     if (_formKey.currentState!.validate()) {
                                       _formKey.currentState!.save();
-                                      _login();
+                                      _createData(M_user(
+                                        fullname: _fullnameController.text,
+                                        block: _blockController.text,
+                                        contact: _contactController.text,
+                                        email: _emailController.text,
+                                      ));
                                     }
                                   },
                             child: _isLoading
                                 ? CircularProgressIndicator(
-                                    backgroundColor: Colors.white,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white),
                                   )
                                 : Text(
-                                    'Login',
+                                    'Register',
                                     style: TextStyle(color: Colors.white),
                                   ),
                           ),
@@ -121,18 +195,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Already have an account?",
+                                "Have an account?",
                                 style: TextStyle(fontSize: 12),
                               ),
                               TextButton(
                                 child: Text(
-                                  'Register',
+                                  'Login',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
-                                  context.go('/register');
+                                  context.go('/login');
                                 },
                               ),
                             ],
@@ -165,7 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _login() async {
+  void _register() async {
     setState(() {
       _isLoading = true;
     });
@@ -173,14 +247,40 @@ class _LoginScreenState extends State<LoginScreen> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await _auth.signInWithEmailAndPassword(email, password);
+    User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
     setState(() {
       _isLoading = false;
     });
 
     if (user != null) {
-      context.go('/home');
+      showToast(message: "Berhasil membuat akun");
+      context.go('/login');
+    } else {
+      showToast(message: "Terjadi kesalahan dalam membuat akun");
+    }
+  }
+
+  Future<void> _createData(M_user userModel) async {
+    final userCollection = FirebaseFirestore.instance.collection("users");
+
+    String id = userCollection.doc().id;
+
+    final newUser = M_user(
+      id: id,
+      fullname: userModel.fullname,
+      block: userModel.block,
+      contact: userModel.contact,
+      email: userModel.email,
+    ).toJson();
+
+    try {
+      await userCollection.doc(id).set(newUser);
+      _register();
+    } catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 }

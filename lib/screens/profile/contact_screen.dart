@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gl_app/styles/text_styles.dart';
+import 'package:gl_app/widgets/profile_bg_widget.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../styles/color_pallete.dart';
@@ -15,28 +16,7 @@ class ContactScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 20),
-                height: 250,
-                width: double.infinity,
-                child: Image(
-                  image: AssetImage('assets/images/bg.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Text(
-                'Hafizh Athallah Y.',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ],
-          ),
+          ProfileBackgroundWidget(),
           Expanded(
             child: Container(
               width: 300,
