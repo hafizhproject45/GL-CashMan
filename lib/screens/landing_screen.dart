@@ -60,7 +60,7 @@ class LandingScreen extends StatelessWidget {
                             Icon(Icons.login),
                             SizedBox(width: 10),
                             Text(
-                              'Login',
+                              'Login / Register',
                             ),
                           ],
                         ),
@@ -83,7 +83,7 @@ class LandingScreen extends StatelessWidget {
                   '© Copyright 2024 by Grand Laswi, Al Right Reserved',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 10,
+                    fontSize: 8,
                   ),
                 ),
               ),

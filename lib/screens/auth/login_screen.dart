@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
 
   bool _isLoading = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -53,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(
-                      width: screenWidth * 0.8,
+                      width: screenWidth * 0.93,
                       padding: EdgeInsets.symmetric(vertical: 25),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -120,25 +121,30 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Already have an account?",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'Register',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10, bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Don't have an account?",
+                                  style: TextStyle(fontSize: 12),
                                 ),
-                                onPressed: () {
-                                  context.go('/register');
-                                },
-                              ),
-                            ],
+                                GestureDetector(
+                                  child: Text(
+                                    ' Register',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colorz.primary),
+                                  ),
+                                  onTap: () {
+                                    context.go('/register');
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -156,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     '© Copyright 2024 by Grand Laswi, Al Right Reserved',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 10,
+                      fontSize: 8,
                     ),
                   ),
                 ),

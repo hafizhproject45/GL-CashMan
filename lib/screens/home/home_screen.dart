@@ -29,14 +29,14 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   Container(
                     height: 1,
-                    width: screenWidth * 0.8,
+                    width: 300,
                     color: Colors.grey.withOpacity(0.3),
                   ),
                   SizedBox(height: 30),
                   CarouselWidget(),
                   SizedBox(height: 30),
                   Container(
-                    width: screenWidth * 0.8,
+                    width: screenWidth * 0.9,
                     child: Text(
                       "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Container(
-                    width: screenWidth * 0.8,
+                    width: screenWidth * 0.9,
                     child: Text(
                       "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                       style: TextGrey.thin,

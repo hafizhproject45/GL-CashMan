@@ -65,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(
-                      width: screenWidth * 0.8,
+                      width: screenWidth * 0.93,
                       padding: EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -194,25 +194,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Have an account?",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              TextButton(
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
+                          SizedBox(height: 10),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10, bottom: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Already have an account?",
+                                  style: TextStyle(fontSize: 12),
                                 ),
-                                onPressed: () {
-                                  context.go('/login');
-                                },
-                              ),
-                            ],
+                                GestureDetector(
+                                  child: Text(
+                                    ' Login',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colorz.primary),
+                                  ),
+                                  onTap: () {
+                                    context.go('/login');
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
