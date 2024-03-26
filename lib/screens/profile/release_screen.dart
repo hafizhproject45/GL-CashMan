@@ -61,18 +61,6 @@ class ReleaseScreen extends StatelessWidget {
                     'Awal rilis',
                     style: TextGrey.thin,
                   ),
-                  SizedBox(height: 20),
-                  Text(
-                    '# 1.1.0',
-                    style: TextPrimary.subHeader,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Firur:\n1. Image Picker\n2. Print to PDF',
-                    style: TextGrey.thin,
-                  )
                 ],
               ),
             ),
