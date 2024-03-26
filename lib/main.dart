@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import '../secret/firebase_code.dart';
 import '../../routes/app_route.dart';
 import '../styles/color_pallete.dart';
 
@@ -8,10 +9,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: "AIzaSyAAC-ki-KW-rvx82M7Bvhzfave-CrDoxkM",
-      appId: "1:164251625311:android:4a070e2254b0a96406b8ea",
-      messagingSenderId: "164251625311",
-      projectId: "gl-manager-dev",
+      apiKey: FirebaseCode.apikey,
+      appId: FirebaseCode.appId,
+      messagingSenderId: FirebaseCode.messagingSenderId,
+      projectId: FirebaseCode.projectId,
     ),
   );
   runApp(MyApp());
