@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../widgets/toast.dart';
 
 class ProfileBackgroundWidget extends StatelessWidget {
@@ -58,7 +59,7 @@ class ProfileBackgroundWidget extends StatelessWidget {
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 context.go('/');
-                showToast(message: "Berhasil Logout");
+                successToast(message: "Berhasil Logout");
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,

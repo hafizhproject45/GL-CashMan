@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../services/firebase_auth_services.dart';
+import '../../controller/C_Auth.dart';
 import '../../widgets/text_field_auth/text_field_password_widget.dart';
 import '../../widgets/text_field_auth/text_field_text_widget.dart';
 import '../../styles/color_pallete.dart';
@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final FireBaseAuthService _auth = FireBaseAuthService();
+  final C_Auth _auth = C_Auth();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();

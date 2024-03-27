@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/styles/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../styles/text_styles.dart';
 
 class ContactListWidget extends StatelessWidget {
   const ContactListWidget({

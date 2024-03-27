@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/widgets/profile_bg_widget.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../widgets/profile_bg_widget.dart';
 import '../../styles/text_styles.dart';
 import '../../styles/color_pallete.dart';
 

@@ -3,4 +3,5 @@ class FirebaseCode {
   static const appId = "XXXXXXXXXXXXXXXXX";
   static const messagingSenderId = "XXXXXXXXXXXXXXXXX";
   static const projectId = "XXXXXXXXXXXXXXXXX";
+  static const bucket_url = "XXXXXXXXXXXXXXXXX";
 }

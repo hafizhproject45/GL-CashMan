@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_app/models/M_user.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
+import '../../controller/C_Auth.dart';
+import '../../models/M_User.dart';
 import '../../widgets/toast.dart';
-import '../../services/firebase_auth_services.dart';
 import '../../widgets/text_field_auth/text_field_password_widget.dart';
 import '../../widgets/text_field_auth/text_field_text_widget.dart';
 import '../../styles/color_pallete.dart';
@@ -18,7 +18,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final FireBaseAuthService _auth = FireBaseAuthService();
+  final C_Auth _auth = C_Auth();
 
   TextEditingController _fullnameController = TextEditingController();
   TextEditingController _blockController = TextEditingController();
@@ -177,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 : () {
                                     if (_formKey.currentState!.validate()) {
                                       _formKey.currentState!.save();
-                                      _createData(M_user(
+                                      _createData(M_User(
                                         fullname: _fullnameController.text,
                                         block: _blockController.text,
                                         contact: _contactController.text,
@@ -267,14 +267,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     if (user != null) {
-      showToast(message: "Berhasil membuat akun");
+      successToast(message: "Berhasil membuat akun");
       context.go('/login');
-    } else {
-      showToast(message: "Terjadi kesalahan dalam membuat akun");
-    }
+    } else {}
   }
 
-  Future<void> _createData(M_user userModel) async {
+  Future<void> _createData(M_User userModel) async {
     final userCollection = FirebaseFirestore.instance.collection("users");
 
     DateTime dateTimeNow = DateTime.now();
@@ -283,7 +281,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     String id = userCollection.doc().id;
 
-    final newUser = M_user(
+    final newUser = M_User(
       id: id,
       fullname: userModel.fullname,
       block: userModel.block,

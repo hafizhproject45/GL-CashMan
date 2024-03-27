@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/styles/text_styles.dart';
-import 'package:gl_app/widgets/profile_bg_widget.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../styles/text_styles.dart';
+import '../../widgets/profile_bg_widget.dart';
 import '../../styles/color_pallete.dart';
-import '/widgets/contactList_widget.dart';
+import '../../widgets/contactList_widget.dart';
 
 class ContactScreen extends StatelessWidget {
   ContactScreen({

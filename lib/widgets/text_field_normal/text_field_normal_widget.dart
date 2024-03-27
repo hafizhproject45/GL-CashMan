@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/styles/color_pallete.dart';
-import 'package:gl_app/styles/text_styles.dart';
+import '../../styles/color_pallete.dart';
+import '../../styles/text_styles.dart';
 
 class TextFieldNormalWidget extends StatelessWidget {
   final String name;

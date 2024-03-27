@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../widgets/toast.dart';
 
-class FireBaseAuthService {
+class C_Auth {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<User?> signUpWithEmailAndPassword(
@@ -12,9 +13,9 @@ class FireBaseAuthService {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        showToast(message: 'Email sudah digunakan');
+        dangerToast(message: 'Email sudah digunakan!');
       } else {
-        showToast(message: 'Terjadi kesalahan: ${e.code}');
+        dangerToast(message: 'Terjadi kesalahan: ${e.code}!');
       }
     }
     return null;
@@ -28,9 +29,9 @@ class FireBaseAuthService {
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        showToast(message: 'Email dan Password tidak ditemukan');
+        dangerToast(message: 'Email dan Password tidak ditemukan!');
       } else {
-        showToast(message: 'Akun tidak ditemukan');
+        dangerToast(message: 'Akun tidak ditemukan!');
       }
     }
     return null;

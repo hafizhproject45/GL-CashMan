@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class M_user {
+class M_User {
   final String? id;
   final String? fullname;
   final String? block;
@@ -8,7 +8,7 @@ class M_user {
   final String? email;
   final String? createdAt;
 
-  M_user({
+  M_User({
     this.id,
     this.fullname,
     this.block,
@@ -17,8 +17,8 @@ class M_user {
     this.createdAt,
   });
 
-  static M_user fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
-    return M_user(
+  static M_User fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    return M_User(
       id: snapshot['id'],
       fullname: snapshot['fullname'],
       block: snapshot['block'],
