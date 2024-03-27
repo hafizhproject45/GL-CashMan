@@ -224,6 +224,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   Future<void> _refreshData() async {
+    await Future.delayed(Duration(milliseconds: 1500));
+
     setState(() {
       isLoading = false;
       _formKey.currentState!.reset();
