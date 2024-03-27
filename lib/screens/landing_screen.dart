@@ -53,7 +53,7 @@ class LandingScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          context.go('/login');
+                          context.push('/login');
                         },
                         child: Row(
                           children: [

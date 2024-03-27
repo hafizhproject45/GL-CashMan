@@ -19,7 +19,7 @@ class ListOfFeaturesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go('/$route'),
+      onTap: () => context.push('/$route'),
       child: Container(
         color: Colors.transparent,
         padding: EdgeInsets.symmetric(horizontal: 20),

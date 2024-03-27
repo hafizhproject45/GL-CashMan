@@ -185,9 +185,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     }
                                   },
                             child: _isLoading
-                                ? CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white),
+                                ? Container(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
+                                    ),
                                   )
                                 : Text(
                                     'Register',

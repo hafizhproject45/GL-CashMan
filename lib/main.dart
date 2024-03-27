@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -18,7 +19,37 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final _auth = FirebaseAuth.instance;
+  bool isLogin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkIfLogin();
+  }
+
+  // Method untuk memeriksa apakah pengguna sudah masuk
+  void checkIfLogin() {
+    _auth.authStateChanges().listen((User? user) {
+      if (user != null && mounted) {
+        setState(() {
+          isLogin = true;
+        });
+        AppRoute.router.go('/home');
+      } else {
+        setState(() {
+          isLogin = false;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
