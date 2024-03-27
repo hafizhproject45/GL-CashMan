@@ -6,6 +6,7 @@ class M_user {
   final String? block;
   final String? contact;
   final String? email;
+  final String? createdAt;
 
   M_user({
     this.id,
@@ -13,6 +14,7 @@ class M_user {
     this.block,
     this.contact,
     this.email,
+    this.createdAt,
   });
 
   static M_user fromSnapshot(DocumentSnapshot<Map<String, dynamic>> snapshot) {
@@ -22,6 +24,7 @@ class M_user {
       block: snapshot['block'],
       contact: snapshot['contact'],
       email: snapshot['email'],
+      createdAt: snapshot['createdAt'],
     );
   }
 
@@ -32,6 +35,7 @@ class M_user {
       "block": block,
       "contact": contact,
       "email": email,
+      "createdAt": createdAt.toString(),
     };
   }
 }

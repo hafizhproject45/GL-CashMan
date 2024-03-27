@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,6 +15,7 @@ void main() async {
       appId: FirebaseCode.appId,
       messagingSenderId: FirebaseCode.messagingSenderId,
       projectId: FirebaseCode.projectId,
+      storageBucket: FirebaseCode.bucket_url,
     ),
   );
   runApp(MyApp());
@@ -31,11 +33,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    checkIfLogin();
+    _checkIfLogin();
   }
 
   // Method untuk memeriksa apakah pengguna sudah masuk
-  void checkIfLogin() {
+  void _checkIfLogin() {
     _auth.authStateChanges().listen((User? user) {
       if (user != null && mounted) {
         setState(() {

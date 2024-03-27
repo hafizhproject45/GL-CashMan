@@ -4,10 +4,6 @@ import '../widgets/toast.dart';
 class FireBaseAuthService {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  FireBaseAuthService() {
-    _auth.setPersistence(Persistence.LOCAL);
-  }
-
   Future<User?> signUpWithEmailAndPassword(
       String email, String password) async {
     try {

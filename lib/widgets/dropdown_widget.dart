@@ -6,16 +6,20 @@ import '../styles/text_styles.dart';
 class DropDownWidget extends StatefulWidget {
   final String name;
   final List<String> items;
+  final Function(String? value)? onSaved;
 
   DropDownWidget({
     super.key,
-    required this.items,
     required this.name,
+    required this.items,
+    this.onSaved,
   });
 
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState();
 }
+
+String? selectedValue;
 
 class _DropDownWidgetState extends State<DropDownWidget> {
   @override
@@ -29,7 +33,6 @@ class _DropDownWidgetState extends State<DropDownWidget> {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(color: Colorz.primary)),
-          // Add more decoration..
         ),
         hint: Text(
           widget.name,
@@ -55,9 +58,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
           return null;
         },
         onChanged: (value) {},
-        onSaved: (value) {
-          selectedValue = value.toString();
-        },
+        onSaved: widget.onSaved,
         buttonStyleData: ButtonStyleData(
           padding: EdgeInsets.only(right: 8),
         ),
@@ -80,5 +81,3 @@ class _DropDownWidgetState extends State<DropDownWidget> {
     );
   }
 }
-
-String? selectedValue;

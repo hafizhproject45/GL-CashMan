@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_app/models/M_user.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import '../../widgets/toast.dart';
 import '../../services/firebase_auth_services.dart';
@@ -276,6 +277,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future<void> _createData(M_user userModel) async {
     final userCollection = FirebaseFirestore.instance.collection("users");
 
+    DateTime dateTimeNow = DateTime.now();
+    String dateOnlyDate = DateFormat('dd-MMM-yyyy').format(dateTimeNow);
+
     String id = userCollection.doc().id;
 
     final newUser = M_user(
@@ -284,6 +288,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       block: userModel.block,
       contact: userModel.contact,
       email: userModel.email,
+      createdAt: dateOnlyDate,
     ).toJson();
 
     try {

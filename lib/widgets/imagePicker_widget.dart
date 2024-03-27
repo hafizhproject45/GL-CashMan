@@ -17,27 +17,27 @@ class ImagePickerWidget extends StatefulWidget {
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
 
-class _ImagePickerWidgetState extends State<ImagePickerWidget> {
-  File? _selectedImage;
+File? selectedImage;
 
+class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         _pickImageFromGallery();
       },
-      child: _selectedImage != null
+      child: selectedImage != null
           ? Container(
-              width: _selectedImage != null
+              width: selectedImage != null
                   ? MediaQuery.of(context).size.width
                   : 300,
-              height: _selectedImage != null
+              height: selectedImage != null
                   ? MediaQuery.of(context).size.width
                   : 300,
-              decoration: _selectedImage != null
+              decoration: selectedImage != null
                   ? BoxDecoration(
                       image: DecorationImage(
-                        image: FileImage(_selectedImage!),
+                        image: FileImage(selectedImage!),
                         fit: BoxFit.contain,
                       ),
                     )
@@ -110,7 +110,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
 
       if (croppedImage != null) {
         setState(() {
-          _selectedImage = File(croppedImage.path);
+          selectedImage = File(croppedImage.path);
         });
       }
     }
