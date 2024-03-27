@@ -201,7 +201,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       await userCollection
           .doc(email)
           .collection('payment')
-          .doc(dateWithTime)
+          .doc('${paymentModel.month} - ${paymentModel.year}')
           .set(newPayment);
 
       showToast(

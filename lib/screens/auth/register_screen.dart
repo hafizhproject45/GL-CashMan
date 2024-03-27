@@ -278,7 +278,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final userCollection = FirebaseFirestore.instance.collection("users");
 
     DateTime dateTimeNow = DateTime.now();
-    String dateOnlyDate = DateFormat('dd-MMM-yyyy').format(dateTimeNow);
+    String dateWithTime =
+        DateFormat('dd-MMM-yyyy HH:mm:ss').format(dateTimeNow);
 
     String id = userCollection.doc().id;
 
@@ -288,7 +289,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       block: userModel.block,
       contact: userModel.contact,
       email: userModel.email,
-      createdAt: dateOnlyDate,
+      createdAt: dateWithTime,
     ).toJson();
 
     try {

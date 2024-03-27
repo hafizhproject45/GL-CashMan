@@ -22,7 +22,6 @@ class TextFieldNormalWidget extends StatelessWidget {
         controller: controller,
         enableInteractiveSelection: true,
         keyboardType: TextInputType.text,
-        textCapitalization: TextCapitalization.characters,
         decoration: InputDecoration(
           label: Text(
             name,
