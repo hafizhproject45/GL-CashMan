@@ -63,6 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Form(
+                  autovalidateMode: AutovalidateMode.always,
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(
@@ -84,21 +85,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             iconz: Icons.person_pin_sharp,
                             controller: _fullnameController,
                             validator: (value) {
+                              String pattern = r'(^[a-zA-Z\s]*$)';
+                              RegExp regExp = new RegExp(pattern);
                               if (value!.isEmpty) {
                                 return "Nama Lengkap tidak boleh kosong";
+                              } else if (!regExp.hasMatch(value)) {
+                                return "Nama Lengkap tidak boleh berisi angka";
                               }
                               return null;
                             },
                           ),
                           TextFieldTextWidget(
-                            name: "Blok",
+                            name: "Nomor rumah",
                             iconz: Icons.home_work_rounded,
                             controller: _blockController,
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return "Blok tidak boleh kosong";
+                                return "Nomor rumah tidak boleh kosong";
                               } else if (value.length > 5) {
-                                return "Blok tidak valid";
+                                return "Nomor rumah tidak valid";
                               }
                               return null;
                             },
@@ -108,9 +113,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             iconz: Icons.phone_android,
                             controller: _contactController,
                             validator: (value) {
+                              String pattern = r'(^[0-9]{10,15}$)';
+                              RegExp regExp = new RegExp(pattern);
+
                               if (value!.isEmpty) {
                                 return "Kontak tidak boleh kosong";
-                              } else if (value.length > 15) {
+                              } else if (!regExp.hasMatch(value)) {
                                 return "Kontak tidak valid";
                               }
                               return null;
@@ -141,9 +149,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 return "Password tidak boleh kosong";
                               } else if (value.length < 6) {
                                 return "Password minimal 6 karakter";
-                              } else {
-                                return null;
+                              } else if (value.length >= 30) {
+                                return "Password maksimal 30 karakter";
                               }
+                              return null;
                             },
                           ),
                           TextFieldPasswordWidget(
@@ -158,6 +167,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               } else if (_passwordController.text !=
                                   _confirmPasswordController.text) {
                                 return "Password harus sama";
+                              } else if (value.length >= 30) {
+                                return "Password maksimal 30 karakter";
                               }
                               return null;
                             },
@@ -288,6 +299,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       contact: userModel.contact,
       email: userModel.email,
       createdAt: dateWithTime,
+      updateAt: dateWithTime,
     ).toJson();
 
     try {
