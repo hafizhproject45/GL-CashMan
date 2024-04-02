@@ -202,11 +202,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     try {
       await _payment_controller.uploadImg();
-      await userCollection
-          .doc(email)
-          .collection('payment')
-          .doc('${paymentModel.month} - ${paymentModel.year}')
-          .set(newPayment);
+      await userCollection.doc(dateWithTime).set(newPayment);
 
       successToast(
           message:
@@ -224,7 +220,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   Future<void> _refreshData() async {
-    await Future.delayed(Duration(milliseconds: 1500));
+    await Future.delayed(Duration(milliseconds: 1000));
 
     setState(() {
       isLoading = false;

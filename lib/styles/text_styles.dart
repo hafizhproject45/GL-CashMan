@@ -80,6 +80,11 @@ abstract class TextBlack {
     fontWeight: FontWeight.w500,
   );
 
+  static const TextStyle upperThin = TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
   static const TextStyle thin = TextStyle(
     color: Colors.black,
     fontSize: 12,

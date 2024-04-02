@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gl_app/screens/profile/biodata_screen.dart';
+import 'package:gl_app/screens/profile/history_payment_screen.dart';
+import 'package:gl_app/screens/profile/question_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/auth/register_screen.dart';
@@ -74,8 +77,26 @@ class AppRoute {
               ),
             ),
             GoRoute(
+              path: '/profile/biodata',
+              builder: (context, state) => BiodataScreen(
+                key: state.pageKey,
+              ),
+            ),
+            GoRoute(
+              path: '/profile/history',
+              builder: (context, state) => HistoryPaymentScreen(
+                key: state.pageKey,
+              ),
+            ),
+            GoRoute(
               path: '/profile/contact',
               builder: (context, state) => ContactScreen(
+                key: state.pageKey,
+              ),
+            ),
+            GoRoute(
+              path: '/profile/question',
+              builder: (context, state) => QuestionScreen(
                 key: state.pageKey,
               ),
             ),

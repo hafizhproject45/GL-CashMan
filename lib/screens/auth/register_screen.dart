@@ -109,7 +109,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             },
                           ),
                           TextFieldTextWidget(
-                            name: "Kontak",
+                            name: "Nomor Handphone",
                             iconz: Icons.phone_android,
                             controller: _contactController,
                             validator: (value) {

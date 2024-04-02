@@ -16,40 +16,41 @@ class ReleaseScreen extends StatelessWidget {
       body: Column(
         children: [
           ProfileBackgroundWidget(),
+          SizedBox(height: 40),
+          Center(
+            child: Column(
+              children: [
+                Text('Catatan Rilis', style: TextPrimary.header),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    color: Colorz.primary,
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Versi saat ini:',
+                        style: TextWhite.thin,
+                      ),
+                      Text(
+                        'V 1.0.0',
+                        style: TextWhite.body,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
               child: ListView(
                 children: [
-                  Center(
-                    child: Text('Catatan Rilis', style: TextPrimary.header),
-                  ),
-                  SizedBox(height: 10),
-                  Center(
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        color: Colorz.primary,
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            'Versi saat ini:',
-                            style: TextWhite.thin,
-                          ),
-                          Text(
-                            'V 1.0.0',
-                            style: TextWhite.body,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
                   Text(
                     '# 1.0.0',
                     style: TextPrimary.subHeader,
@@ -73,7 +74,7 @@ class ReleaseScreen extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: FloatingActionButton(
           onPressed: () {
-            context.go('/profile');
+            context.pop();
           },
           child: Icon(Icons.arrow_back_ios_new),
           backgroundColor: Colors.white,

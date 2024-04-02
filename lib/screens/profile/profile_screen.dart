@@ -22,14 +22,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               ProfileBackgroundWidget(),
               ListOfFeaturesWidget(
-                name: "Catatan Rilis",
-                icon: Icons.numbers,
-                route: 'profile/release',
+                name: "Data Diri",
+                icon: Icons.person_pin_sharp,
+                route: 'profile/biodata',
               ),
               ListOfFeaturesWidget(
-                name: "List Kontak Pengurus RT",
+                name: "Riwayat Pembayaran",
+                icon: Icons.account_balance_wallet,
+                route: 'profile/history',
+              ),
+              ListOfFeaturesWidget(
+                name: "List Kontak",
                 icon: Icons.contact_phone,
                 route: 'profile/contact',
+              ),
+              ListOfFeaturesWidget(
+                name: "Pertanyaan & Jawaban",
+                icon: Icons.question_answer,
+                route: 'profile/question',
+              ),
+              ListOfFeaturesWidget(
+                name: "Catatan Rilis",
+                icon: Icons.featured_play_list,
+                route: 'profile/release',
               ),
               SizedBox(
                 height: 200,

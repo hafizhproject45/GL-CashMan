@@ -19,14 +19,21 @@ class ContactScreen extends StatelessWidget {
       body: Column(
         children: [
           ProfileBackgroundWidget(),
+          SizedBox(height: 40),
+          Center(child: Text('List Kontak', style: TextPrimary.header)),
           Expanded(
             child: Container(
               width: screenWidth * 0.7,
               child: ListView(
                 children: [
-                  Center(child: Text('List Kontak', style: TextPrimary.header)),
-                  Center(child: Text('Pengurus RT', style: TextPrimary.header)),
+                  ContactListWidget(
+                    name: "ADMIN",
+                    contactNumber: "+6285175435207",
+                  ),
                   SizedBox(height: 30),
+                  Center(
+                      child: Text('Pengurus RT', style: TextBlack.upperThin)),
+                  SizedBox(height: 20),
                   ContactListWidget(
                     name: "Bpk. Winoto (Ketua)",
                     contactNumber: "+6285175435207",
@@ -51,7 +58,7 @@ class ContactScreen extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: FloatingActionButton(
           onPressed: () {
-            context.go('/profile');
+            context.pop();
           },
           child: Icon(Icons.arrow_back_ios_new),
           backgroundColor: Colors.white,
