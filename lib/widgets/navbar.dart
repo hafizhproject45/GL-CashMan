@@ -43,7 +43,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             activeColor: Colorz.primary,
             iconSize: 24,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            duration: Duration(milliseconds: 500),
+            duration: Duration(milliseconds: 300),
             tabBackgroundColor: Colors.white,
             color: Colors.white,
             curve: Curves.easeInOut,

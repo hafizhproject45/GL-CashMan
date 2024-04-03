@@ -24,11 +24,11 @@ class CarouselWidget extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         Image.asset(
-          'assets/images/tv.jpg',
+          'assets/images/bg.png',
           fit: BoxFit.cover,
         ),
         Image.asset(
-          'assets/images/kiosk.jpg',
+          'assets/images/bg.png',
           fit: BoxFit.cover,
         ),
       ],

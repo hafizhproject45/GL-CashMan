@@ -181,11 +181,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
     setState(() {
       isLoading = true;
     });
-    final userCollection = FirebaseFirestore.instance.collection("payments");
 
-    String id = userCollection.doc().id;
-    String imageUrl = await _payment_controller.getImageUrl();
+    final paymentCollection = FirebaseFirestore.instance.collection("payments");
+
+    // Mendapatkan email pengguna yang saat ini login
     String email = _auth.currentUser!.email.toString();
+
+    String id = paymentCollection.doc().id;
+    String imageUrl = await _payment_controller.getImageUrl();
+
     DateTime dateTimeNow = DateTime.now();
     String dateWithTime =
         DateFormat('dd-MMM-yyyy HH:mm:ss').format(dateTimeNow);
@@ -202,7 +206,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
     try {
       await _payment_controller.uploadImg();
-      await userCollection.doc(dateWithTime).set(newPayment);
+      await paymentCollection.doc(dateWithTime).set(newPayment);
 
       successToast(
           message:

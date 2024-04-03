@@ -32,19 +32,20 @@ class ContactScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
                   Center(
-                      child: Text('Pengurus RT', style: TextBlack.upperThin)),
+                      child:
+                          Text('Pengurus RT 08', style: TextBlack.upperThin)),
                   SizedBox(height: 20),
                   ContactListWidget(
                     name: "Bpk. Winoto (Ketua)",
-                    contactNumber: "+6285175435207",
+                    contactNumber: "+6281573245878",
                   ),
                   ContactListWidget(
                     name: "Bpk. Hendar (Sekertaris)",
-                    contactNumber: "+6285175435207",
+                    contactNumber: "+6282240244333",
                   ),
                   ContactListWidget(
                     name: "Bpk. Andry (Bendahara)",
-                    contactNumber: "+6285175435207",
+                    contactNumber: "+6281394711055",
                   ),
                 ],
               ),
