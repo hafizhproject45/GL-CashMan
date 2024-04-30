@@ -28,11 +28,11 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
     return Scaffold(
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colorz.primary,
+          color: Colors.white.withOpacity(0.3),
           boxShadow: [
             BoxShadow(
-              blurRadius: 30,
-              color: Colors.black.withOpacity(.15),
+              blurRadius: 50,
+              color: Colors.black.withOpacity(.13),
             )
           ],
         ),
@@ -40,15 +40,15 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: GNav(
             gap: 6,
-            activeColor: Colorz.primary,
+            activeColor: Colors.white,
             iconSize: 24,
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             duration: Duration(milliseconds: 300),
-            tabBackgroundColor: Colors.white,
-            color: Colors.white,
+            tabBackgroundColor: Colorz.primary,
+            color: Colorz.primary,
             curve: Curves.easeInOut,
             tabBorderRadius: 15,
-            rippleColor: Colors.white,
+            rippleColor: Colorz.primary,
             tabs: [
               GButton(
                 icon: Icons.home,

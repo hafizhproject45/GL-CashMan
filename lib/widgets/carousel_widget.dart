@@ -4,7 +4,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import '../styles/color_pallete.dart';
 
 class CarouselWidget extends StatelessWidget {
-  const CarouselWidget({
+  CarouselWidget({
     super.key,
   });
 

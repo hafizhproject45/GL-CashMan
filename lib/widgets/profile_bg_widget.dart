@@ -50,30 +50,30 @@ class _ProfileBackgroundWidgetState extends State<ProfileBackgroundWidget> {
                     textAlign: TextAlign.center,
                   ),
                   StreamBuilder<List<M_User>>(
-                      stream: _readData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        if (snapshot.hasError) {
-                          return Text('Error: ${snapshot.error}');
-                        }
-                        final user = snapshot.data!
-                            .firstWhere((user) => user.email == emailAuth);
-
-                        return Text(
-                          user.fullname ?? '{Unknown user}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                          ),
-                          textAlign: TextAlign.center,
+                    stream: _readData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
                         );
-                      }),
+                      }
+                      if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      }
+                      final user = snapshot.data!
+                          .firstWhere((user) => user.email == emailAuth);
+
+                      return Text(
+                        user.fullname ?? '{Unknown user}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                        textAlign: TextAlign.center,
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

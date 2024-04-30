@@ -51,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Form(
-                  autovalidateMode: AutovalidateMode.always,
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(

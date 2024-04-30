@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gl_app/widgets/contactList_widget.dart';
 
 import '../../widgets/carousel_widget.dart';
 import '../../styles/text_styles.dart';
@@ -25,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                     'Selamat datang di ',
                     style: TextPrimary.thin,
                   ),
-                  Text('Aplikasi GL Manager', style: TextPrimary.header),
+                  Text('GL Manager APP', style: TextPrimary.header),
                   SizedBox(height: 20),
                   Container(
                     height: 1,
@@ -37,18 +38,57 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 30),
                   Container(
                     width: screenWidth * 0.9,
-                    child: Text(
-                      "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1000s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                      style: TextGrey.thin,
+                    child: RichText(
+                      text: TextSpan(
+                        style: TextGrey.thin.copyWith(
+                          height: 1.8,
+                        ),
+                        children: [
+                          TextSpan(
+                              text: '${' ' * 5}GL Manager APP',
+                              style: TextStyle(fontStyle: FontStyle.italic)),
+                          TextSpan(
+                            text:
+                                ' adalah sebuah aplikasi yang dirancang khusus untuk memfasilitasi ',
+                          ),
+                          TextSpan(
+                              text: 'pengelolaan keuangan kas',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                              text:
+                                  ' di komplek "Grand Laswi". Dengan fitur-fitur unggulannya, aplikasi ini tidak hanya menyederhanakan proses rekapitulasi keuangan, tetapi juga memberikan bukti pembayaran yang akurat dan mudah diakses. Selain itu, GL Manager APP memberikan kemudahan dalam mengelola transaksi keuangan sehari-hari di komplek, menjadikan pengalaman pengguna lebih efisien dan efektif.')
+                        ],
+                      ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    width: screenWidth * 0.9,
-                    child: Text(
-                      "${' ' * 5}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1000s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                      style: TextGrey.thin,
-                    ),
+                  SizedBox(height: 30),
+                  Column(
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Ada Pertanyaan?',
+                              style: TextBlack.thin,
+                            ),
+                            SizedBox(height: 10),
+                            ContactListWidget(
+                              name: "WA ADMIN",
+                              contactNumber: "+6285175435207",
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Terima Kasih',
+                        style: TextBlack.body,
+                      ),
+                      Text(
+                        'Telah menggunakan aplikasi ini.',
+                        style: TextGrey.thin,
+                      ),
+                    ],
                   ),
                   SizedBox(height: 30),
                 ],

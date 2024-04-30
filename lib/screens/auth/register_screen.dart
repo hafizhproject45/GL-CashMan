@@ -63,7 +63,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Form(
-                  autovalidateMode: AutovalidateMode.always,
                   key: _formKey,
                   child: SingleChildScrollView(
                     child: Container(

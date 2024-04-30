@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:gl_app/widgets/toast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
@@ -41,7 +42,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                         fit: BoxFit.contain,
                       ),
                     )
-                  : null, // Jika gambar belum dipilih, tidak perlu ada dekorasi
+                  : null,
             )
           : Column(
               children: [
@@ -81,15 +82,22 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     );
   }
 
-  Future _pickImageFromGallery() async {
-    final pickedImage = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 25);
+  Future<void> _pickImageFromGallery() async {
+    final pickedImage = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     if (pickedImage != null) {
-      final croppedImage = await ImageCropper().cropImage(
-        sourcePath: pickedImage.path,
-        aspectRatioPresets: [CropAspectRatioPreset.ratio16x9],
-        uiSettings: [
-          AndroidUiSettings(
+      final File imageFile = File(pickedImage.path);
+
+      int fileSize = await imageFile.length();
+
+      if (fileSize > 300 * 1024) {
+        dangerToast(message: 'Ukuran file tidak boleh lebih dari 300kb');
+      } else {
+        final croppedImage = await ImageCropper().cropImage(
+          sourcePath: imageFile.path,
+          uiSettings: [
+            AndroidUiSettings(
               toolbarTitle: 'Crop Image',
               toolbarColor: Colorz.primary,
               cropGridColor: Colorz.primary,
@@ -97,21 +105,19 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
               cropFrameColor: Colorz.primary,
               activeControlsWidgetColor: Colorz.primary,
               toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          IOSUiSettings(
-            title: 'Crop Image',
-          ),
-          WebUiSettings(
-            context: context,
-          ),
-        ],
-      );
+              lockAspectRatio: false,
+            ),
+            IOSUiSettings(
+              title: 'Crop Image',
+            ),
+          ],
+        );
 
-      if (croppedImage != null) {
-        setState(() {
-          selectedImage = File(croppedImage.path);
-        });
+        if (croppedImage != null) {
+          setState(() {
+            selectedImage = File(croppedImage.path);
+          });
+        }
       }
     }
   }

@@ -45,7 +45,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
         children: [
           ProfileBackgroundWidget(),
           SizedBox(height: 40),
-          Center(child: Text('List Kontak', style: TextPrimary.header)),
+          Center(child: Text('Data Diri', style: TextPrimary.header)),
           Expanded(
             child: StreamBuilder<List<M_User>>(
                 stream: _readData(),

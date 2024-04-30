@@ -39,7 +39,7 @@ class QuestionScreen extends StatelessWidget {
                   QuestionContainerWidget(
                     question: 'Apakah Email bisa diganti?',
                     answer:
-                        'Tidak bisa, maka lebih teliti lah untuk register akun. Opsinya adalah membuat akun kembali, namun hubungi kontak admin terlebih dahulu',
+                        'Tidak bisa, maka lebih teliti untuk register akun. Opsinya adalah membuat akun kembali, namun hubungi kontak admin terlebih dahulu',
                   ),
                 ],
               ),
