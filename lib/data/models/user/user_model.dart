@@ -4,13 +4,15 @@ import '../../../domain/entities/user/user_entity.dart';
 
 class UserModel extends UserEntity {
   const UserModel({
-    required super.id,
-    required super.fullname,
-    required super.block,
-    required super.contact,
-    required super.email,
-    required super.createdAt,
-    required super.updateAt,
+    super.id,
+    super.fullname,
+    super.block,
+    super.contact,
+    super.email,
+    super.password,
+    super.status,
+    super.createdAt,
+    super.updateAt,
   });
 
   static UserModel fromJson(DocumentSnapshot<Map<String, dynamic>> json) {
@@ -20,6 +22,8 @@ class UserModel extends UserEntity {
       block: json['block'],
       contact: json['contact'],
       email: json['email'],
+      password: json['password'],
+      status: json['status'],
       createdAt: json['created_at'],
       updateAt: json['update_at'],
     );

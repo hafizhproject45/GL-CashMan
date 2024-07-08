@@ -1,12 +1,10 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gl_app/presentation/pages/home/home_page.dart';
-import 'package:gl_app/presentation/pages/payment/payment_page.dart';
-import 'package:gl_app/presentation/pages/profile/profile_page.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
+import '../pages/home/home_page.dart';
+import '../pages/payment/payment_page.dart';
+import '../pages/profile/profile_page.dart';
 import '../../../core/utils/colors.dart';
 
 class MyNavigationBar extends StatefulWidget {

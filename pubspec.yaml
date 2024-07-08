@@ -1,7 +1,7 @@
 name: gl_app
 description: "Money Management"
 publish_to: "none"
-version: 1.0.0
+version: 2.0.0
 
 environment:
   sdk: ">=3.3.1 <4.0.0"
@@ -28,6 +28,7 @@ dependencies:
   firebase_auth: ^4.19.5
   cloud_firestore: ^4.17.3
   firebase_storage: ^11.7.5
+  google_sign_in: ^6.2.1
 
   # Internationalization & Localization
   intl: ^0.19.0

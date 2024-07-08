@@ -12,7 +12,7 @@ class ServerException implements Exception {
   static ServerException _handleError(int statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
-        throw ServerException(message: error['message'] ?? EXCEPTION_UNKNOWN);
+        throw ServerException(message: EXCEPTION_UNKNOWN);
       case 404:
         throw ServerException(message: EXCEPTION_NOT_FOUND);
       case 405:
@@ -20,7 +20,7 @@ class ServerException implements Exception {
       case 415:
         throw ServerException(message: EXCEPTION_MEDIA_TYPE);
       case 422:
-        throw ServerException(message: error['message'] ?? EXCEPTION_UNKNOWN);
+        throw ServerException(message: EXCEPTION_UNKNOWN);
       case 500:
         throw ServerException(message: EXCEPTION_ISE);
       default:
@@ -39,7 +39,7 @@ class AuthException implements Exception {
   static AuthException _handleError(int statusCode, dynamic error) {
     switch (statusCode) {
       case 400:
-        throw ServerException(message: error['message'] ?? EXCEPTION_UNKNOWN);
+        throw ServerException(message: EXCEPTION_UNKNOWN);
       case 401:
         throw AuthException(message: EXCEPTION_AUTH_INVALID);
       case 404:
