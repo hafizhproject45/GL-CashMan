@@ -1,4 +1,4 @@
-package com.example.gl_app
+package com.gl.gl_app
 
 import io.flutter.embedding.android.FlutterActivity
 
