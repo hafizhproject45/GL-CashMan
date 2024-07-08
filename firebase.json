@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "glmanager-app",
+          "appId": "1:407886851604:android:e3d3823a0d8b6cebcf0101",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "glmanager-app",
+          "configurations": {
+            "android": "1:407886851604:android:e3d3823a0d8b6cebcf0101",
+            "ios": "1:407886851604:ios:bbdeef4827f97f8dcf0101"
+          }
+        }
+      }
+    }
+  }
+}

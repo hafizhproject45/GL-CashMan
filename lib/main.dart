@@ -1,68 +1,42 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
-import '../secret/firebase_code.dart';
-import '../../routes/app_route.dart';
-import '../styles/color_pallete.dart';
+import 'core/utils/colors.dart';
+import 'core/utils/route.dart';
+import 'presentation/widgets/navbar.dart';
+import 'services/initialize_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-      apiKey: FirebaseCode.apikey,
-      appId: FirebaseCode.appId,
-      messagingSenderId: FirebaseCode.messagingSenderId,
-      projectId: FirebaseCode.projectId,
-      storageBucket: FirebaseCode.bucket_url,
-    ),
-  );
-  runApp(MyApp());
+
+  // Force orientation portrait
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  await InitializeApp.init();
+
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final _auth = FirebaseAuth.instance;
-  bool isLogin = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _checkIfLogin();
-  }
-
-  // Method untuk memeriksa apakah pengguna sudah masuk
-  void _checkIfLogin() {
-    _auth.authStateChanges().listen((User? user) {
-      if (user != null && mounted) {
-        setState(() {
-          isLogin = true;
-        });
-        AppRoute.router.go('/home');
-      } else {
-        setState(() {
-          isLogin = false;
-        });
-      }
-    });
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRoute.router,
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'GL Manager',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colorz.primary,
-          primary: Colorz.primary,
+          seedColor: AppColor.primary,
+          primary: AppColor.primary,
           brightness: Brightness.light,
         ),
       ),
+      home: const MyNavigationBar(),
+      getPages: AppRoute.pageRoute,
     );
   }
 }

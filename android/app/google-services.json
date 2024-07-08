@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "407886851604",
+    "project_id": "glmanager-app",
+    "storage_bucket": "glmanager-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407886851604:android:e3d3823a0d8b6cebcf0101",
+        "android_client_info": {
+          "package_name": "com.gl.gl_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmap-ovoQ7F8HXnPmS3qwS4Rq1DKKmVzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
