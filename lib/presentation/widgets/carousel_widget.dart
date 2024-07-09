@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../../core/utils/colors.dart';
+import '../../core/utils/images.dart';
 
 class CarouselWidget extends StatelessWidget {
   const CarouselWidget({
@@ -22,15 +23,15 @@ class CarouselWidget extends StatelessWidget {
       isLoop: true,
       children: [
         Image.asset(
-          'assets/images/bg.png',
+          AppImages.bg,
           fit: BoxFit.cover,
         ),
         Image.asset(
-          'assets/images/bg.png',
+          AppImages.bg,
           fit: BoxFit.cover,
         ),
         Image.asset(
-          'assets/images/bg.png',
+          AppImages.bg,
           fit: BoxFit.cover,
         ),
       ],

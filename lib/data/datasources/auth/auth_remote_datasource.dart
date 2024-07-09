@@ -1,24 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
+import 'package:gl_app/domain/entities/auth/register_request_entity.dart';
+import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../presentation/widgets/toast.dart';
-import '../../models/user/user_model.dart';
+import '../../models/auth/user_model.dart';
 import '../../../core/errors/exceptions.dart';
-import '../../../domain/entities/user/user_entity.dart';
+import '../../../domain/entities/auth/user_entity.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<bool> checkLogin();
-  Future<void> login(UserEntity request);
-  Future<void> register(UserEntity request);
+  Future<void> login(LoginRequestEntity request);
+  Future<void> register(RegisterRequestEntity request);
   Future<void> logout();
   Future<void> googleAuth();
   Future<void> forgotPassword(String email);
-  Future<void> getCreateCurrentUser(UserEntity request);
-  Future<void> getUpdateUser(UserEntity request);
+  Future<void> getCreateCurrentUser(RegisterRequestEntity request);
+  Future<void> getUpdateUser(UpdateRequestEntity request);
   Future<String> getCurrentUID();
-  Future<List<UserEntity>> getUserData(UserEntity request);
+  Future<List<UserEntity>> getRemoteUserData(String params);
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -40,15 +41,14 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<void> getCreateCurrentUser(UserEntity request) async {
+  Future<void> getCreateCurrentUser(RegisterRequestEntity request) async {
     await _handleExceptions(() async {
       final userCollection = firestore.collection('users');
-      final uid = await getCurrentUID();
 
-      final userDoc = await userCollection.doc(uid).get();
+      final userDoc = await userCollection.doc(request.email).get();
       if (!userDoc.exists) {
         final newUser = request.toJson();
-        await userCollection.doc(uid).set(newUser);
+        await userCollection.doc(request.email).set(newUser);
       } else {
         if (kDebugMode) {
           print('User already exists');
@@ -65,7 +65,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<void> getUpdateUser(UserEntity request) async {
+  Future<void> getUpdateUser(UpdateRequestEntity request) async {
     await _handleExceptions(() async {
       final userCollection = firestore.collection('users');
       final userInformation = request.toUpdateMap();
@@ -99,16 +99,11 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<bool> checkLogin() async {
-    return auth.currentUser?.uid != null;
-  }
-
-  @override
-  Future<void> login(UserEntity request) async {
+  Future<void> login(LoginRequestEntity request) async {
     await _handleExceptions(() async {
       await auth.signInWithEmailAndPassword(
-        email: request.email!,
-        password: request.password!,
+        email: request.email,
+        password: request.password,
       );
     });
   }
@@ -121,24 +116,22 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<void> register(UserEntity request) async {
+  Future<void> register(RegisterRequestEntity request) async {
     await _handleExceptions(() async {
       await auth.createUserWithEmailAndPassword(
-        email: request.email!,
-        password: request.password!,
+        email: request.email,
+        password: request.password,
       );
       await getCreateCurrentUser(request);
     });
   }
 
   @override
-  Future<List<UserEntity>> getUserData(UserEntity request) async {
+  Future<List<UserEntity>> getRemoteUserData(String params) async {
     try {
       final userCollection = firestore.collection('users');
-      final querySnapshot = await userCollection
-          .limit(1)
-          .where('id', isEqualTo: request.id)
-          .get();
+      final querySnapshot =
+          await userCollection.limit(1).where('id', isEqualTo: params).get();
 
       return querySnapshot.docs.map((doc) => UserModel.fromJson(doc)).toList();
     } catch (e) {
@@ -158,20 +151,15 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     } catch (e) {
       if (e is FirebaseAuthException) {
         if (e.code == 'email-already-in-use') {
-          dangerToast(message: 'Email sudah digunakan!');
-        } else {
-          dangerToast(message: 'Terjadi kesalahan: ${e.code}!');
-        }
-
-        if (e.code == 'user-not-found') {
-          dangerToast(message: 'Email tidak ditemukan!');
+          throw AuthException(message: 'Email already use!');
+        } else if (e.code == 'invalid-credential' ||
+            e.code == 'user-not-found') {
+          throw AuthException(message: 'User not found!');
         } else if (e.code == 'wrong-password') {
-          dangerToast(message: 'Password salah!');
+          throw AuthException(message: 'Wrong password!');
         } else {
-          dangerToast(message: 'Terjadi kesalahan: ${e.code}!');
+          throw AuthException(message: '${e.message}!');
         }
-
-        throw AuthException(message: e.message);
       } else if (e is AuthException || e is ServerException) {
         rethrow;
       } else {
@@ -181,13 +169,14 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 }
 
-extension on UserEntity {
+extension on UpdateRequestEntity {
   Map<String, dynamic> toUpdateMap() {
     final map = <String, dynamic>{};
-    if (fullname != null && fullname!.isNotEmpty) map['fullname'] = fullname;
-    if (block != null && block!.isNotEmpty) map['block'] = block;
-    if (contact != null && contact!.isNotEmpty) map['contact'] = contact;
-    if (email != null && email!.isNotEmpty) map['email'] = email;
+    map['fullname'] = fullname;
+    map['block'] = block;
+    map['contact'] = contact;
+    map['email'] = email;
+    map['updated_at'] = updatedAt;
     return map;
   }
 }

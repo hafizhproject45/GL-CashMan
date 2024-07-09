@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../widgets/profile_bg_widget.dart';
-import '../../widgets/text_field_auth/text_field_text_widget.dart';
+import '../../widgets/global/text_field_auth/text_field_text_widget.dart';
 
 class BiodataPage extends StatefulWidget {
   const BiodataPage({super.key});
@@ -181,7 +181,7 @@ class _BiodataPageState extends State<BiodataPage> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       const SizedBox(height: 20),
-                                      TextFieldTextWidget(
+                                      MyTextFieldText(
                                         iconz: Icons.person_pin_sharp,
                                         name: "Nama Lengkap",
                                         controller: _fullnameController,
@@ -196,7 +196,7 @@ class _BiodataPageState extends State<BiodataPage> {
                                           return null;
                                         },
                                       ),
-                                      TextFieldTextWidget(
+                                      MyTextFieldText(
                                         iconz: Icons.home_work_rounded,
                                         name: "Blok",
                                         controller: _blockController,
@@ -209,7 +209,7 @@ class _BiodataPageState extends State<BiodataPage> {
                                           return null;
                                         },
                                       ),
-                                      TextFieldTextWidget(
+                                      MyTextFieldText(
                                         iconz: Icons.phone_android,
                                         name: "Nomor Handphone",
                                         controller: _contactController,

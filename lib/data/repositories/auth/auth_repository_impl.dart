@@ -1,19 +1,41 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gl_app/data/datasources/auth/auth_local_datasource.dart';
+import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
+import 'package:gl_app/domain/entities/auth/register_request_entity.dart';
+import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
 
+import '../../../core/utils/constants.dart';
 import '../../../domain/repositories/auth/auth_repository.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
-import '../../../domain/entities/user/user_entity.dart';
+import '../../../domain/entities/auth/user_entity.dart';
 import '../../datasources/auth/auth_remote_datasource.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource authRemoteDataSource;
+  final AuthLocalDatasource authLocalDatasource;
 
   AuthRepositoryImpl({
     required this.authRemoteDataSource,
+    required this.authLocalDatasource,
   });
+
+  @override
+  Future<Either<Failure, bool>> checkLogin() async {
+    try {
+      await authLocalDatasource.checkLogin();
+
+      return const Right(true);
+    } catch (e) {
+      if (e is CacheException) {
+        return Left(CacheFailure(message: e.message));
+      } else {
+        return const Left(UnknownFailure(message: FAILURE_UNKNOWN));
+      }
+    }
+  }
 
   @override
   Future<Either<Failure, void>> forgotPassword(String email) async {
@@ -26,7 +48,8 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getCreateCurrentUser(UserEntity request) async {
+  Future<Either<Failure, void>> getCreateCurrentUser(
+      RegisterRequestEntity request) async {
     try {
       await authRemoteDataSource.getCreateCurrentUser(request);
       return const Right(null);
@@ -46,7 +69,8 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getUpdateUser(UserEntity request) async {
+  Future<Either<Failure, void>> getUpdateUser(
+      UpdateRequestEntity request) async {
     try {
       await authRemoteDataSource.getUpdateUser(request);
       return const Right(null);
@@ -66,17 +90,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> checkLogin() async {
-    try {
-      final isLoggedIn = await authRemoteDataSource.checkLogin();
-      return Right(isLoggedIn);
-    } catch (e) {
-      return Left(_handleException(e));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> login(UserEntity request) async {
+  Future<Either<Failure, void>> login(LoginRequestEntity request) async {
     try {
       await authRemoteDataSource.login(request);
       return const Right(null);
@@ -96,7 +110,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> register(UserEntity request) async {
+  Future<Either<Failure, void>> register(RegisterRequestEntity request) async {
     try {
       await authRemoteDataSource.register(request);
       return const Right(null);
@@ -106,10 +120,10 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, List<UserEntity>>> getUserData(
-      UserEntity request) async {
+  Future<Either<Failure, List<UserEntity>>> getRemoteUserData(
+      String params) async {
     try {
-      final result = await authRemoteDataSource.getUserData(request);
+      final result = await authRemoteDataSource.getRemoteUserData(params);
       return Right(result);
     } catch (e) {
       return Left(_handleException(e));

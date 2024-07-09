@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../widgets/imagePicker_widget.dart';
-import '../../widgets/text_field_normal/text_field_normal_widget.dart';
+import '../../widgets/global/text_field_normal/text_field_normal_widget.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});

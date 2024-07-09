@@ -1,8 +1,15 @@
 import 'dart:math';
+import 'package:gl_app/core/utils/constants.dart';
 
 import 'package:intl/intl.dart';
 
 class Utility {
+  /// Format date post API
+  static String formatDatePostApi(DateTime date) {
+    DateFormat formattor = DateFormat('yyyy-MM-dd hh:mm:ss', DATE_LOCALE);
+    return formattor.format(date);
+  }
+
   /// Format date to `25 April 2024`
   static String formatDateFromString(String dateString) {
     try {
@@ -10,7 +17,7 @@ class Utility {
       DateTime date = DateTime.parse(dateString);
 
       // Format the date
-      DateFormat formatter = DateFormat('dd MMM yyyy');
+      DateFormat formatter = DateFormat('dd MMM yyyy', DATE_LOCALE);
       return formatter.format(date);
     } catch (e) {
       // Handle invalid date format
@@ -24,7 +31,7 @@ class Utility {
       return '-';
     }
 
-    DateFormat formattor = DateFormat('dd MMMM yyyy');
+    DateFormat formattor = DateFormat('dd MMMM yyyy', DATE_LOCALE);
     return formattor.format(date);
   }
 
@@ -33,7 +40,7 @@ class Utility {
       return '-';
     }
 
-    DateFormat formattor = DateFormat('EEEE, dd MMMM yyyy');
+    DateFormat formattor = DateFormat('EEEE, dd MMMM yyyy', DATE_LOCALE);
     return formattor.format(date);
   }
 
@@ -42,7 +49,7 @@ class Utility {
     if (date == null) {
       return '-';
     }
-    DateFormat formattor = DateFormat('HH:mm:ss');
+    DateFormat formattor = DateFormat('HH:mm:ss', DATE_LOCALE);
     return formattor.format(date);
   }
 
@@ -51,7 +58,7 @@ class Utility {
     if (date == null) {
       return '-';
     }
-    DateFormat formattor = DateFormat('HH:mm');
+    DateFormat formattor = DateFormat('HH:mm', DATE_LOCALE);
     return formattor.format(date);
   }
 
@@ -110,8 +117,12 @@ class Utility {
     return htmlText.replaceAll(regex, '');
   }
 
+  static String imagePlaceHolder(int width, int height) {
+    return 'https://via.placeholder.com/${width}x$height.png?text=No+Image';
+  }
+
   /// Generate random string
-  static getRandomString(int length) {
+  static String getRandomString(int length) {
     const charset =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     Random random = Random.secure();
@@ -120,9 +131,5 @@ class Utility {
       return charset[randomIndex];
     });
     return result.join();
-  }
-
-  static String imagePlaceHolder(int width, int height) {
-    return 'https://via.placeholder.com/${width}x$height.png?text=No+Image';
   }
 }

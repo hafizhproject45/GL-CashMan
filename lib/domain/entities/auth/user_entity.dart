@@ -7,8 +7,6 @@ class UserEntity extends Equatable {
   final String? block;
   final String? contact;
   final String? email;
-  final String? password;
-  final bool? status;
   final String? createdAt;
   final String? updateAt;
 
@@ -18,25 +16,9 @@ class UserEntity extends Equatable {
     this.block,
     this.contact,
     this.email,
-    this.password,
-    this.status,
     this.createdAt,
     this.updateAt,
   });
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'fullname': fullname,
-      'block': block,
-      'contact': contact,
-      'email': email,
-      'password': password,
-      'status': status,
-      'created_at': createdAt,
-      'update_at': updateAt,
-    };
-  }
 
   @override
   List<Object?> get props {
@@ -46,8 +28,6 @@ class UserEntity extends Equatable {
       block,
       contact,
       email,
-      password,
-      status,
       createdAt,
       updateAt,
     ];

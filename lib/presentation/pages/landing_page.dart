@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:gl_app/core/utils/text_style.dart';
+import 'package:gl_app/presentation/widgets/global/button/my_button_widget.dart';
+
+import '../../core/utils/images.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -15,7 +19,7 @@ class LandingPage extends StatelessWidget {
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  'assets/images/bg.png',
+                  AppImages.bg,
                 ),
                 fit: BoxFit.cover,
               ),
@@ -27,11 +31,13 @@ class LandingPage extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 50),
-                    height: 150,
-                    child: Image.asset('assets/icon/ic_gl.png'),
+                  Image.asset(
+                    AppImages.logoGL,
+                    width: 150,
+                    fit: BoxFit.cover,
+                    filterQuality: FilterQuality.high,
                   ),
+                  const SizedBox(height: 30),
                   Column(
                     children: [
                       const Text(
@@ -46,27 +52,26 @@ class LandingPage extends StatelessWidget {
                         'Aplikasi pengelola pembayaran uang kas.',
                         style: TextStyle(fontSize: 10, color: Colors.white),
                       ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: 10,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                          ),
-                        ),
-                        onPressed: () {
-                          Get.toNamed('/login');
-                        },
+                      const SizedBox(height: 30),
+                      MyButtonWidget(
+                        borderRadius: 10,
+                        width: 200,
+                        onPressed: () => Get.offNamed('/login'),
                         child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.login),
+                            Icon(
+                              Icons.login,
+                              color: Colors.white,
+                            ),
                             SizedBox(width: 10),
                             Text(
                               'Login / Register',
+                              style: AppTextStyle.bodyWhite,
                             ),
                           ],
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ],

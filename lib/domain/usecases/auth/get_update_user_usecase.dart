@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
 
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
-import '../../entities/user/user_entity.dart';
 import '../../repositories/auth/auth_repository.dart';
 
-class GetUpdateUserUsecase implements UseCase<void, UserEntity> {
+class GetUpdateUserUsecase implements UseCase<void, UpdateRequestEntity> {
   final AuthRepository authRepository;
 
   GetUpdateUserUsecase({
@@ -13,7 +13,7 @@ class GetUpdateUserUsecase implements UseCase<void, UserEntity> {
   });
 
   @override
-  Future<Either<Failure, void>> call(UserEntity params) async {
+  Future<Either<Failure, void>> call(UpdateRequestEntity params) async {
     Either<Failure, void> result = await authRepository.getUpdateUser(params);
 
     return result.fold(

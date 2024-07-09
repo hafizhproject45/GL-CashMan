@@ -1,8 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
-import 'toast.dart';
+import '../../core/usecases/usecase.dart';
+import '../../core/utils/images.dart';
+import '../../domain/usecases/auth/logout_usecase.dart';
+import '../../injection_container.dart';
+import 'global/my_dialog_confirmation.dart';
 
 class ProfileBackgroundWidget extends StatefulWidget {
   const ProfileBackgroundWidget({
@@ -27,7 +31,7 @@ class _ProfileBackgroundWidgetState extends State<ProfileBackgroundWidget> {
           height: 250,
           width: screenWidth,
           child: const Image(
-            image: AssetImage('assets/images/bg.png'),
+            image: AssetImage(AppImages.bg),
             fit: BoxFit.cover,
           ),
         ),
@@ -61,11 +65,7 @@ class _ProfileBackgroundWidgetState extends State<ProfileBackgroundWidget> {
             const SizedBox(height: 10),
             const SizedBox(width: 10),
             ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Get.offNamed('/');
-                successToast(message: "Berhasil Logout");
-              },
+              onPressed: () => _onLogout(context),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
                 fixedSize: const Size.fromWidth(130),
@@ -94,14 +94,18 @@ class _ProfileBackgroundWidgetState extends State<ProfileBackgroundWidget> {
     );
   }
 
-  // Stream<List<M_User>> _readData() {
-  //   final emailAuth = FirebaseAuth.instance.currentUser!.email;
-
-  //   final userCollection = FirebaseFirestore.instance
-  //       .collection("users")
-  //       .where('email', isEqualTo: emailAuth);
-
-  //   return userCollection.snapshots().map((querySnapshot) =>
-  //       querySnapshot.docs.map((e) => M_User.fromSnapshot(e)).toList());
-  // }
+  void _onLogout(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => DialogConfirmation(
+        title: 'LOGOUT',
+        text: 'Apakah anda yakin ingin keluar dari aplikasi?',
+        onClick: () {
+          Get.close(1);
+          sl<LogoutUsecase>().call(NoParams());
+          Get.offAllNamed('/');
+        },
+      ),
+    );
+  }
 }

@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 //! Exception messages
-
 const String EXCEPTION_CANCEL = 'Permintaan ke server dibatalkan';
 const String EXCEPTION_CONNECTION_RTO = 'Waktu koneksi habis';
 const String EXCEPTION_RECEIVE_RTO = 'Receive timeout in connection';
@@ -32,8 +31,6 @@ const String MESSAGE__CONNECTED = 'Terhubung ke Internet';
 //! Hive Key
 const String LOGIN_DATA_BOX = 'LOGIN_DATA_BOX';
 const String LOGIN_DATA_ID = 'LOGIN_DATA_ID';
-const String OFFICE_DATA_BOX = 'OFFICE_DATA_BOX';
-const String OFFICE_DATA_ID = 'OFFICE_DATA_ID';
 
 //! Date Locale
 const String DATE_LOCALE = 'id';
