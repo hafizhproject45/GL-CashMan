@@ -28,70 +28,75 @@ class _PaymentPageState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 30),
-                    const Text(
-                      'Masukkan',
-                      style: AppTextStyle.medium,
-                    ),
-                    const Text('Bukti Pembayaran',
-                        style: AppTextStyle.headingPrimary),
-                    const SizedBox(height: 20),
-                    Container(
-                      height: 1,
-                      width: 300,
-                      color: Colors.grey.withOpacity(0.3),
-                    ),
-                    const SizedBox(height: 20),
-                    MyTextFieldText(
-                      name: 'Payment date',
-                      width: 310,
-                      focusNode: _dateFocusNode,
-                      controller: _dateController,
-                      nameStyle: AppTextStyle.mediumPrimary,
-                      iconz: Icons.date_range,
-                      iconColor: AppColor.primary,
-                      isDate: true,
-                    ),
-                    const SizedBox(height: 10),
-                    const ImagePickerWidget(),
-                    const SizedBox(height: 30),
-                    MyButtonWidget(
-                      label: 'SEND PAYMENT',
-                      width: 310,
-                      onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState!.save();
-                        //   _payment(M_Payment(
-                        //     paymentFrom: _paymentFromController.text,
-                        //     month: selectedMonth,
-                        //     year: selectedYear,
-                        //   ));
-                        //   if (selectedImage == null) {
-                        //     setState(() {
-                        //       dangerToast(message: "Masukkan foto!");
-                        //       isLoading = false;
-                        //     });
-                        //   }
-                        // }
-                      },
-                    ),
-                    const SizedBox(height: 50),
-                  ],
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 80,
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Good morning, ',
+              style: AppTextStyle.body,
+            ),
+            SizedBox(height: 3),
+            Text(
+              'Hafizh Athallah Yovanka',
+              style: AppTextStyle.bodyBoldPrimary,
+            ),
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 30),
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(height: 30),
+                  MyTextFieldText(
+                    name: 'Payment date',
+                    width: 310,
+                    focusNode: _dateFocusNode,
+                    controller: _dateController,
+                    nameStyle: AppTextStyle.mediumPrimary,
+                    iconz: Icons.date_range,
+                    iconColor: AppColor.primary,
+                    isDate: true,
+                  ),
+                  const SizedBox(height: 40),
+                  const ImagePickerWidget(),
+                  const SizedBox(height: 30),
+                  MyButtonWidget(
+                    label: 'SEND',
+                    width: 310,
+                    onPressed: () {
+                      // if (_formKey.currentState!.validate()) {
+                      //   _formKey.currentState!.save();
+                      //   _payment(M_Payment(
+                      //     paymentFrom: _paymentFromController.text,
+                      //     month: selectedMonth,
+                      //     year: selectedYear,
+                      //   ));
+                      //   if (selectedImage == null) {
+                      //     setState(() {
+                      //       dangerToast(message: "Masukkan foto!");
+                      //       isLoading = false;
+                      //     });
+                      //   }
+                      // }
+                    },
+                  ),
+                  const SizedBox(height: 50),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

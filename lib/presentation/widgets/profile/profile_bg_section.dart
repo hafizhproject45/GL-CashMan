@@ -39,7 +39,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
               child: Column(
                 children: [
                   Text(
-                    'Hallo,',
+                    'Good morning,',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -47,7 +47,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    'Unknown user',
+                    'Hafizh Athallah Yovanka',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
@@ -62,6 +62,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
             MyButtonWidget(
               height: 45,
               width: 170,
+              borderRadius: 10,
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
