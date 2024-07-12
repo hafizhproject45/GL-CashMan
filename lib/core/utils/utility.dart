@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:gl_app/core/utils/constants.dart';
+import 'constants.dart';
 
 import 'package:intl/intl.dart';
 

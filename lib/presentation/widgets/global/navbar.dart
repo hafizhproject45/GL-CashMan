@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../pages/home/home_page.dart';
-import '../pages/payment/payment_page.dart';
-import '../pages/profile/profile_page.dart';
-import '../../../core/utils/colors.dart';
+import '../../../../core/utils/colors.dart';
+import '../../pages/home/main_home_page.dart';
+import '../../pages/payment/main_payment_page.dart';
+import '../../pages/profile/main_profile_page.dart';
 
 class MyNavigationBar extends StatefulWidget {
   const MyNavigationBar({super.key});
@@ -71,7 +71,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         inactiveColorPrimary: AppColor.textSmall,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.history),
+        icon: const Icon(Icons.payment),
         title: ("Payment"),
         activeColorPrimary: AppColor.primary,
         inactiveColorPrimary: AppColor.textSmall,

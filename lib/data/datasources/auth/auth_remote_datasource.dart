@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/register_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
+import '../../../domain/entities/auth/login_request_entity.dart';
+import '../../../domain/entities/auth/register_request_entity.dart';
+import '../../../domain/entities/auth/update_request_entity.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../models/auth/user_model.dart';

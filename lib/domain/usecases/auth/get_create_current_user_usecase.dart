@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
-import '../../repositories/auth/auth_repository.dart';
 import '../../entities/auth/register_request_entity.dart';
+import '../../repositories/auth/auth_repository.dart';
 
 class GetCreateCurrentUserUsecase
     implements UseCase<void, RegisterRequestEntity> {

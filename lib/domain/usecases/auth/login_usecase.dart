@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
+import '../../entities/auth/login_request_entity.dart';
 
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';

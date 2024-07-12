@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/register_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
+import '../../entities/auth/login_request_entity.dart';
+import '../../entities/auth/register_request_entity.dart';
+import '../../entities/auth/update_request_entity.dart';
 import '../../../core/errors/failures.dart';
 import '../../entities/auth/user_entity.dart';
 

@@ -8,8 +8,8 @@ import 'package:gl_app/core/utils/text_style.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../core/utils/colors.dart';
-import 'toast.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/toast.dart';
 
 class ImagePickerWidget extends StatefulWidget {
   const ImagePickerWidget({
@@ -72,8 +72,8 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Foto Pembayaran',
-                          style: AppTextStyle.medium,
+                          'Payment Photo',
+                          style: AppTextStyle.mediumPrimary,
                         ),
                       ],
                     ),
@@ -94,7 +94,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
       int fileSize = await imageFile.length();
 
       if (fileSize > 300 * 1024) {
-        dangerToast(message: 'Ukuran file tidak boleh lebih dari 300kb');
+        dangerToast(msg: 'Ukuran file tidak boleh lebih dari 300kb');
       } else {
         final croppedImage = await ImageCropper().cropImage(
           sourcePath: imageFile.path,

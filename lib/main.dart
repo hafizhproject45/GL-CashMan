@@ -10,7 +10,7 @@ import 'presentation/pages/splash/splash_page.dart';
 import 'core/utils/colors.dart';
 import 'core/utils/route.dart';
 import 'injection_container.dart';
-import 'presentation/widgets/navbar.dart';
+import 'presentation/widgets/global/navbar.dart';
 import 'services/initialize_app.dart';
 import 'presentation/cubit/auth/login/login_cubit.dart';
 
@@ -39,7 +39,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool isLogin = false;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _auth = sl<FirebaseAuth>();
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
     _checkIfLogin();
   }
 
-  // Method untuk memeriksa apakah pengguna sudah masuk
+  // Method untuk memeriksa apakah pengguna sudah login
   void _checkIfLogin() {
     _auth.authStateChanges().listen((User? user) async {
       if (user != null && mounted) {
@@ -72,6 +72,8 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'GL Manager',
         theme: ThemeData(
+          scaffoldBackgroundColor: AppColor.background,
+          primaryColor: AppColor.primary,
           colorScheme: ColorScheme.fromSeed(
             seedColor: AppColor.primary,
             primary: AppColor.primary,

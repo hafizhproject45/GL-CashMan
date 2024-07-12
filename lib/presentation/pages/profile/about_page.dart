@@ -5,8 +5,8 @@ import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../widgets/profile/profile_bg_section.dart';
 
-class HistoryPaymentPage extends StatelessWidget {
-  const HistoryPaymentPage({super.key});
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,19 +16,13 @@ class HistoryPaymentPage extends StatelessWidget {
           ProfileBgSection(),
           SizedBox(height: 40),
           Center(
-            child: Text('Riwayat Pembayaran', style: AppTextStyle.heading),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 30),
-                ],
-              ),
+            child: Column(
+              children: [
+                Text('About this Application', style: AppTextStyle.heading),
+                SizedBox(height: 20),
+              ],
             ),
           ),
-          SizedBox(height: 30),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
@@ -45,15 +39,4 @@ class HistoryPaymentPage extends StatelessWidget {
       ),
     );
   }
-
-  // Stream<List<M_Payment>> _readData() {
-  //   final emailAuth = FirebaseAuth.instance.currentUser!.email;
-
-  //   final userCollection = FirebaseFirestore.instance
-  //       .collection("payments")
-  //       .where('email', isEqualTo: emailAuth);
-
-  //   return userCollection.snapshots().map((querySnapshot) =>
-  //       querySnapshot.docs.map((e) => M_Payment.fromSnapshot(e)).toList());
-  // }
 }

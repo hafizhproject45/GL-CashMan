@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:gl_app/presentation/cubit/auth/register/register_cubit.dart';
 
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
 import '../../../domain/entities/auth/register_request_entity.dart';
+import '../../cubit/auth/register/register_cubit.dart';
 import '../global/button/my_button_widget.dart';
 import '../global/text_field_auth/text_field_password_widget.dart';
 import '../global/text_field_auth/text_field_text_widget.dart';
@@ -72,7 +72,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             const SizedBox(height: 30),
             MyTextFieldText(
               name: "Nama Lengkap",
-              iconz: Icons.person_pin_sharp,
+              iconz: Icons.person,
               textInputAction: TextInputAction.next,
               focusNode: _fullnameFocusNode,
               controller: _fullnameController,

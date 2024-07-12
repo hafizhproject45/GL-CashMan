@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../core/utils/text_style.dart';
 
 import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/text_style.dart';
 
 class TextFieldNormalWidget extends StatelessWidget {
   final String name;

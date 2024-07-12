@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/utils/text_style.dart';
+import '../../../core/utils/text_style.dart';
 
 class QuestionContainerWidget extends StatelessWidget {
   final String question;
@@ -20,7 +20,7 @@ class QuestionContainerWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
-          color: Colors.grey.shade200,
+          color: Colors.grey.shade300,
           borderRadius: const BorderRadius.all(
             Radius.circular(10),
           ),

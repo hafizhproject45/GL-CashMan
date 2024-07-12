@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/global/button/my_button_widget.dart';
+import '../../widgets/global/text_field_auth/text_field_text_widget.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
-import '../../widgets/imagePicker_widget.dart';
-import '../../widgets/global/text_field_normal/text_field_normal_widget.dart';
+import '../../widgets/global/imagePicker_widget.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
@@ -13,12 +14,17 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  final TextEditingController _paymentFromController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final FocusNode _dateFocusNode = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
 
-  String? selectedMonth;
-  String? selectedYear;
+  @override
+  void dispose() {
+    _dateController.dispose();
+    _dateFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +44,8 @@ class _PaymentPageState extends State<PaymentPage> {
                       'Masukkan',
                       style: AppTextStyle.medium,
                     ),
-                    const Text('Bukti Pembayaran', style: AppTextStyle.heading),
+                    const Text('Bukti Pembayaran',
+                        style: AppTextStyle.headingPrimary),
                     const SizedBox(height: 20),
                     Container(
                       height: 1,
@@ -46,20 +53,22 @@ class _PaymentPageState extends State<PaymentPage> {
                       color: Colors.grey.withOpacity(0.3),
                     ),
                     const SizedBox(height: 20),
-                    TextFieldNormalWidget(
-                      controller: _paymentFromController,
-                      name: "Nama Pembayar",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Masukkan Nama Pembayar";
-                        }
-                        return null;
-                      },
+                    MyTextFieldText(
+                      name: 'Payment date',
+                      width: 310,
+                      focusNode: _dateFocusNode,
+                      controller: _dateController,
+                      nameStyle: AppTextStyle.mediumPrimary,
+                      iconz: Icons.date_range,
+                      iconColor: AppColor.primary,
+                      isDate: true,
                     ),
                     const SizedBox(height: 10),
                     const ImagePickerWidget(),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
+                    const SizedBox(height: 30),
+                    MyButtonWidget(
+                      label: 'SEND PAYMENT',
+                      width: 310,
                       onPressed: () {
                         // if (_formKey.currentState!.validate()) {
                         //   _formKey.currentState!.save();
@@ -76,17 +85,6 @@ class _PaymentPageState extends State<PaymentPage> {
                         //   }
                         // }
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.primary,
-                        fixedSize: const Size.fromWidth(310),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                      child: const Text(
-                        'Simpan',
-                        style: TextStyle(color: Colors.white),
-                      ),
                     ),
                     const SizedBox(height: 50),
                   ],

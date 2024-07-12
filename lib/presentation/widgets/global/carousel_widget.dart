@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
-import '../../core/utils/colors.dart';
-import '../../core/utils/images.dart';
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/images.dart';
 
 class CarouselWidget extends StatelessWidget {
   const CarouselWidget({

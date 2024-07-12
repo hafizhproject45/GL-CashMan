@@ -2,12 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../domain/usecases/auth/check_login_usecase.dart';
-import '../../../../domain/usecases/auth/login_usecase.dart';
-import '../../../../domain/usecases/auth/logout_usecase.dart';
 import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../../../domain/entities/auth/login_request_entity.dart';
+import '../../../../domain/usecases/auth/check_login_usecase.dart';
+import '../../../../domain/usecases/auth/login_usecase.dart';
+import '../../../../domain/usecases/auth/logout_usecase.dart';
 
 part 'login_state.dart';
 

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:gl_app/core/utils/colors.dart';
 import 'package:gl_app/core/utils/text_style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,7 +30,8 @@ class ContactListWidget extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           elevation: 2,
-          fixedSize: const Size.fromHeight(50),
+          fixedSize: const Size.fromHeight(60),
+          backgroundColor: AppColor.primary,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(5),
@@ -42,11 +44,12 @@ class ContactListWidget extends StatelessWidget {
             const Icon(
               Icons.phone,
               size: 20,
+              color: Colors.white,
             ),
             const SizedBox(width: 10),
             Text(
               name,
-              style: AppTextStyle.medium,
+              style: AppTextStyle.mediumWhite,
             )
           ],
         ),

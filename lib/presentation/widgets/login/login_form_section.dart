@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
-import 'package:gl_app/presentation/cubit/auth/login/login_cubit.dart';
 
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
+import '../../cubit/auth/login/login_cubit.dart';
 import '../global/button/my_button_widget.dart';
 import '../global/text_field_auth/text_field_password_widget.dart';
 import '../global/text_field_auth/text_field_text_widget.dart';

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'data/datasources/auth/auth_local_datasource.dart';
 import 'data/datasources/auth/auth_remote_datasource.dart';
@@ -36,10 +36,10 @@ Future<void> initLocator() async {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  sl.registerSingleton(() => auth);
-  sl.registerSingleton(() => fireStore);
-  sl.registerSingleton(() => googleSignIn);
-  sl.registerSingleton(() => storage);
+  sl.registerSingleton<FirebaseAuth>(auth);
+  sl.registerSingleton<FirebaseFirestore>(fireStore);
+  sl.registerSingleton<GoogleSignIn>(googleSignIn);
+  sl.registerSingleton<FirebaseStorage>(storage);
 
   ///////////////
   ///! Bloc / Cubit

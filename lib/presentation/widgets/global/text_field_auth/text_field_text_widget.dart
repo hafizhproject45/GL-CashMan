@@ -1,18 +1,20 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: no_leading_underscores_for_local_identifiers, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/text_style.dart';
 
-class MyTextFieldText extends StatelessWidget {
+class MyTextFieldText extends StatefulWidget {
   final String name;
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final TextInputType? type;
+  final TextStyle? nameStyle;
   final bool? isDate;
   final double? width;
   final IconData? iconz;
+  final Color? iconColor;
   final TextEditingController? controller;
   final String? Function(String? value)? validator;
 
@@ -22,7 +24,9 @@ class MyTextFieldText extends StatelessWidget {
     this.focusNode,
     this.isDate = false,
     this.textInputAction,
+    this.nameStyle,
     this.iconz,
+    this.iconColor,
     this.controller,
     this.validator,
     this.width = 300,
@@ -30,26 +34,33 @@ class MyTextFieldText extends StatelessWidget {
   });
 
   @override
+  _MyTextFieldTextState createState() => _MyTextFieldTextState();
+}
+
+class _MyTextFieldTextState extends State<MyTextFieldText> {
+  DateTime? _selectedDate;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      width: width,
+      width: widget.width,
       child: TextFormField(
-        validator: validator,
+        validator: widget.validator,
         cursorColor: AppColor.white,
-        controller: controller,
-        focusNode: isDate! ? null : focusNode,
-        textInputAction: isDate! ? null : textInputAction,
-        enableInteractiveSelection: !isDate!,
-        keyboardType: isDate! ? null : type,
-        readOnly: isDate!,
-        style: AppTextStyle.bodyThinWhite,
-        onTap: isDate!
+        controller: widget.controller,
+        focusNode: widget.isDate! ? null : widget.focusNode,
+        textInputAction: widget.isDate! ? null : widget.textInputAction,
+        enableInteractiveSelection: !widget.isDate!,
+        keyboardType: widget.isDate! ? null : widget.type,
+        readOnly: widget.isDate!,
+        style: widget.nameStyle ?? AppTextStyle.bodyThinWhite,
+        onTap: widget.isDate!
             ? () async {
-                DateTime? _picked = await showDatePicker(
+                DateTime? picked = await showDatePicker(
                   context: context,
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(1500),
+                  initialDate: _selectedDate ?? DateTime.now(),
+                  firstDate: DateTime(2024),
                   lastDate: DateTime(DateTime.now().year + 1),
                   builder: (BuildContext context, Widget? child) {
                     return Theme(
@@ -66,8 +77,13 @@ class MyTextFieldText extends StatelessWidget {
                     );
                   },
                 );
-                if (_picked != null && controller != null) {
-                  controller!.text = _picked.toString().split(" ")[0];
+                if (picked != null) {
+                  setState(() {
+                    _selectedDate = picked;
+                  });
+                  if (widget.controller != null) {
+                    widget.controller!.text = picked.toString().split(" ")[0];
+                  }
                 }
               }
             : null,
@@ -77,12 +93,12 @@ class MyTextFieldText extends StatelessWidget {
             borderSide: BorderSide(color: Colors.red),
           ),
           prefixIcon: Icon(
-            iconz,
-            color: AppColor.white,
+            widget.iconz,
+            color: widget.iconColor ?? AppColor.white,
           ),
           label: Text(
-            name,
-            style: AppTextStyle.bodyThinWhite,
+            widget.name,
+            style: widget.nameStyle ?? AppTextStyle.bodyThinWhite,
           ),
           border: const OutlineInputBorder(),
           contentPadding: const EdgeInsets.symmetric(horizontal: 10),
