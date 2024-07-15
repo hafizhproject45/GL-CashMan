@@ -2,9 +2,14 @@
   <img style="border-radius: 20%; width: 240px;" src="assets/images/thumbnail.png">
 </p>
 
-# GL Manager App
+# GL CashMan
 
-GL Manager App adalah aplikasi yang diperuntukan bagi warga Grand Laswi untuk mempermudah rekap keuangan kas yang ada di komplek Grand Laswi.
+GL CashMan adalah aplikasi yang diperuntukan bagi warga Grand Laswi untuk mempermudah rekap keuangan kas yang ada di komplek Grand Laswi.
+
+## Technology
+
+- Language: Dart
+- Database: Supabase
 
 ## Getting Started
 
