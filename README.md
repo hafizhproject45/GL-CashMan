@@ -9,7 +9,7 @@ GL CashMan adalah aplikasi yang diperuntukan bagi warga Grand Laswi untuk memper
 ## Technology
 
 - Language: Dart
-- Database: Supabase
+- Database: Firebase
 
 ## Getting Started
 
