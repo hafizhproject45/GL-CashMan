@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gl_app/core/utils/colors.dart';
-import 'package:gl_app/presentation/widgets/global/button/my_button_widget.dart';
+import '../../../core/utils/colors.dart';
+import '../../widgets/global/button/my_button_widget.dart';
 import '../../../core/utils/text_style.dart';
 
 class HomePage extends StatelessWidget {

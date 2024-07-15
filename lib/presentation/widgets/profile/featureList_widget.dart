@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:gl_app/core/utils/text_style.dart';
 
+import '../../../core/utils/text_style.dart';
 import '../../../core/utils/colors.dart';
 
 class ListOfFeaturesWidget extends StatelessWidget {

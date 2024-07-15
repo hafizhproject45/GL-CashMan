@@ -3,17 +3,17 @@
     "platforms": {
       "android": {
         "default": {
-          "projectId": "glmanager-app",
-          "appId": "1:407886851604:android:e3d3823a0d8b6cebcf0101",
+          "projectId": "gl-cashman",
+          "appId": "1:771080936325:android:f52e070ef84af86847c2ec",
           "fileOutput": "android/app/google-services.json"
         }
       },
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "glmanager-app",
+          "projectId": "gl-cashman",
           "configurations": {
-            "android": "1:407886851604:android:e3d3823a0d8b6cebcf0101",
-            "ios": "1:407886851604:ios:bbdeef4827f97f8dcf0101"
+            "android": "1:771080936325:android:f52e070ef84af86847c2ec",
+            "ios": "1:771080936325:ios:a46537c23c75976347c2ec"
           }
         }
       }

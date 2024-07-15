@@ -4,10 +4,10 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_app/core/utils/text_style.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../core/utils/text_style.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/toast.dart';
 

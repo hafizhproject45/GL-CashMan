@@ -1,4 +1,4 @@
-package com.gl.gl_app
+package com.gl.cashman
 
 import io.flutter.embedding.android.FlutterActivity
 

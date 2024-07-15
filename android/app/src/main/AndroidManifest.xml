@@ -15,7 +15,7 @@
         </intent>
       </queries>
     <application
-        android:label="GL Manager"
+        android:label="GL CashMan"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

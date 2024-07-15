@@ -1,9 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:gl_app/core/utils/colors.dart';
-import 'package:gl_app/core/utils/text_style.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../core/utils/colors.dart';
+import '../../../core/utils/text_style.dart';
 
 class ContactListWidget extends StatelessWidget {
   const ContactListWidget({

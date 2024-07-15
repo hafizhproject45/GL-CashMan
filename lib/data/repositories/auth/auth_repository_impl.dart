@@ -1,16 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gl_app/data/datasources/auth/auth_local_datasource.dart';
-import 'package:gl_app/domain/entities/auth/login_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/register_request_entity.dart';
-import 'package:gl_app/domain/entities/auth/update_request_entity.dart';
 
-import '../../../core/utils/constants.dart';
-import '../../../domain/repositories/auth/auth_repository.dart';
+import '../../datasources/auth/auth_local_datasource.dart';
+import '../../../domain/entities/auth/login_request_entity.dart';
+import '../../../domain/entities/auth/register_request_entity.dart';
+import '../../../domain/entities/auth/update_request_entity.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
+import '../../../core/utils/constants.dart';
 import '../../../domain/entities/auth/user_entity.dart';
+import '../../../domain/repositories/auth/auth_repository.dart';
 import '../../datasources/auth/auth_remote_datasource.dart';
 
 class AuthRepositoryImpl extends AuthRepository {

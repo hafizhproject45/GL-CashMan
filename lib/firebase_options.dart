@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBmap-ovoQ7F8HXnPmS3qwS4Rq1DKKmVzU',
-    appId: '1:407886851604:android:e3d3823a0d8b6cebcf0101',
-    messagingSenderId: '407886851604',
-    projectId: 'glmanager-app',
-    storageBucket: 'glmanager-app.appspot.com',
+    apiKey: 'AIzaSyBlIuAYAwbhTrlHuxfQKJad7z5Z3jyoDc8',
+    appId: '1:771080936325:android:f52e070ef84af86847c2ec',
+    messagingSenderId: '771080936325',
+    projectId: 'gl-cashman',
+    storageBucket: 'gl-cashman.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC5K9GDxig_HT-TL5rqh6Myd8vbslRXs5E',
-    appId: '1:407886851604:ios:bbdeef4827f97f8dcf0101',
-    messagingSenderId: '407886851604',
-    projectId: 'glmanager-app',
-    storageBucket: 'glmanager-app.appspot.com',
+    apiKey: 'AIzaSyBtAGeYdXP-GMYUtw1ncRIKeMbL3CN9ksU',
+    appId: '1:771080936325:ios:a46537c23c75976347c2ec',
+    messagingSenderId: '771080936325',
+    projectId: 'gl-cashman',
+    storageBucket: 'gl-cashman.appspot.com',
     iosBundleId: 'com.example.glApp',
   );
 }

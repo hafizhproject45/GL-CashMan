@@ -1,8 +1,8 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as get_trans;
-import 'package:gl_app/presentation/pages/profile/about_page.dart';
 
+import '../../presentation/pages/profile/about_page.dart';
 import '../../presentation/pages/auth/login_page.dart';
 import '../../presentation/pages/auth/register_page.dart';
 import '../../presentation/pages/landing_page.dart';

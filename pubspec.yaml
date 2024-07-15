@@ -1,5 +1,5 @@
-name: gl_app
-description: "Money Management"
+name: gl_cashman
+description: "Cash Manager"
 publish_to: "none"
 version: 2.0.0
 
