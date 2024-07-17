@@ -15,15 +15,19 @@ class LoginLocalModel extends LoginLocalEntity {
   final String email;
   @HiveField(2)
   final String fullname;
+  @HiveField(3)
+  final String session;
 
   const LoginLocalModel({
     required this.userId,
     required this.email,
     required this.fullname,
+    required this.session,
   }) : super(
           userId: userId,
           email: email,
           fullname: fullname,
+          session: session,
         );
 
   factory LoginLocalModel.fromJson(Map<String, dynamic> map) {
@@ -31,6 +35,7 @@ class LoginLocalModel extends LoginLocalEntity {
       userId: map['id'] as int,
       email: map['email'] as String,
       fullname: map['fullname'] as String,
+      session: map['session'] as String,
     );
   }
 }

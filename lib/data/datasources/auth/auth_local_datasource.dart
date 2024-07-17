@@ -5,16 +5,9 @@ import '../../../core/utils/constants.dart';
 import '../../models/auth/login_local_model.dart';
 
 abstract class AuthLocalDatasource {
-  /// Check login
   Future<bool> checkLogin();
-
-  /// For fetch login data
-  Future<LoginLocalModel> getLoginData();
-
-  /// For saving user id
+  Future<LoginLocalModel> getLocalUserData();
   Future<void> saveLoginData(LoginLocalModel request);
-
-  /// For logout
   Future<bool> deleteLoginData();
 }
 
@@ -35,7 +28,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDatasource {
   }
 
   @override
-  Future<LoginLocalModel> getLoginData() async {
+  Future<LoginLocalModel> getLocalUserData() async {
     Box cacheBox = await getCacheBox();
 
     if (cacheBox.containsKey(LOGIN_DATA_ID)) {

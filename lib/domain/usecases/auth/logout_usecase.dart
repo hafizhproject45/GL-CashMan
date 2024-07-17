@@ -13,11 +13,11 @@ class LogoutUsecase implements UseCase<void, NoParams> {
 
   @override
   Future<Either<Failure, void>> call(NoParams noParams) async {
-    Either<Failure, void> result = await authRepository.logout();
+    final result = await authRepository.logout();
 
     return result.fold(
-      (failure) => Left(failure),
-      (value) => Right(value),
+      (l) => Left(l),
+      (r) => Right(r),
     );
   }
 }

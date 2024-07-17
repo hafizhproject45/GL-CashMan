@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import '../../core/utils/text_style.dart';
-import '../widgets/global/button/my_button_widget.dart';
 
 import '../../core/utils/images.dart';
+import '../../core/utils/text_style.dart';
+import '../widgets/global/button/my_button_widget.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -41,7 +41,7 @@ class LandingPage extends StatelessWidget {
                   Column(
                     children: [
                       const Text(
-                        'GL Manager APP',
+                        'GL CashMan',
                         style: TextStyle(
                           fontSize: 36,
                           color: Colors.white,

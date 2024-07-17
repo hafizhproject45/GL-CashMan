@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../../core/utils/colors.dart';
+import '../../../injection_container.dart';
 import '../../widgets/global/button/my_button_widget.dart';
 import '../../../core/utils/text_style.dart';
+import '../../widgets/global/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<GetUserCubit>()..getData(),
+      child: _content(),
+    );
+  }
+
+  Widget _content() {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        toolbarHeight: 80,
-        title: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Good morning, ',
-              style: AppTextStyle.body,
-            ),
-            SizedBox(height: 3),
-            Text(
-              'Hafizh Athallah Yovanka',
-              style: AppTextStyle.bodyBoldPrimary,
-            ),
-          ],
-        ),
-      ),
+      appBar: const MyAppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 30),
         physics: const AlwaysScrollableScrollPhysics(),

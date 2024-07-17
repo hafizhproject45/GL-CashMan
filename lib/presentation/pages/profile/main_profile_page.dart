@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import '../../cubit/auth/get_user/get_user_cubit.dart';
+import '../../cubit/auth/login/login_cubit.dart';
+import '../landing_page.dart';
 import '../../../core/utils/text_style.dart';
 
-import '../../../core/usecases/usecase.dart';
-import '../../../domain/usecases/auth/logout_usecase.dart';
 import '../../../injection_container.dart';
 import '../../widgets/global/button/my_button_widget.dart';
 import '../../widgets/global/my_dialog_confirmation.dart';
@@ -22,6 +24,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
+    return BlocProvider(
+      create: (context) => sl<GetUserCubit>()..getData(),
+      child: _content(screenWidth, context),
+    );
+  }
+
+  Widget _content(double screenWidth, BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -76,8 +85,8 @@ class _ProfilePageState extends State<ProfilePage> {
         text: 'Apakah anda yakin ingin keluar dari aplikasi?',
         onClick: () {
           Get.close(1);
-          sl<LogoutUsecase>().call(NoParams());
-          Get.offAllNamed('/');
+          sl<LoginCubit>().logout();
+          Get.offAll(() => const LandingPage());
         },
       ),
     );

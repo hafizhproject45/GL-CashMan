@@ -7,8 +7,8 @@ class RegisterRequestEntity extends Equatable {
   final String contact;
   final String email;
   final String password;
-  final String? createdAt;
-  final String? updatedAt;
+  final String createdAt;
+  final String updatedAt;
 
   const RegisterRequestEntity({
     this.id,
@@ -17,13 +17,12 @@ class RegisterRequestEntity extends Equatable {
     required this.contact,
     required this.email,
     required this.password,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'fullname': fullname,
       'block': block,
       'contact': contact,

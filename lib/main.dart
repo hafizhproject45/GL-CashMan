@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'core/utils/env.dart';
 import 'presentation/pages/landing_page.dart';
 import 'presentation/pages/splash/splash_page.dart';
 import 'core/utils/colors.dart';
@@ -22,8 +22,11 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
 
-  // initialize firebase service
-  await Firebase.initializeApp();
+  // initialize supabase
+  await Supabase.initialize(
+    url: Env.sbUrl,
+    anonKey: Env.sbAnonKey,
+  );
 
   await InitializeApp.init();
 
@@ -38,32 +41,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isLogin = false;
-  final _auth = sl<FirebaseAuth>();
-
-  @override
-  void initState() {
-    super.initState();
-    _checkIfLogin();
-  }
-
-  // Method untuk memeriksa apakah pengguna sudah login
-  void _checkIfLogin() {
-    _auth.authStateChanges().listen((User? user) async {
-      if (user != null && mounted) {
-        setState(() {
-          isLogin = true;
-        });
-        await Future.delayed(const Duration(seconds: 3));
-        Get.offNamed('/navbar');
-      } else {
-        setState(() {
-          isLogin = false;
-        });
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

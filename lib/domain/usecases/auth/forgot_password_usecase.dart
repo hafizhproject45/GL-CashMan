@@ -13,11 +13,11 @@ class ForgotPasswordUsecase implements UseCase<void, String> {
 
   @override
   Future<Either<Failure, void>> call(String params) async {
-    Either<Failure, void> result = await authRepository.forgotPassword(params);
+    final result = await authRepository.forgotPassword(params);
 
     return result.fold(
-      (failure) => Left(failure),
-      (value) => Right(value),
+      (l) => Left(l),
+      (r) => Right(r),
     );
   }
 }

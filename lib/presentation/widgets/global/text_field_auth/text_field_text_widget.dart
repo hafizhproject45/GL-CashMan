@@ -40,34 +40,34 @@ class MyTextFieldText extends StatefulWidget {
 class _MyTextFieldTextState extends State<MyTextFieldText> {
   DateTime? _selectedDate;
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.controller != null && widget.controller!.text.isNotEmpty) {
-      List<String> dateParts = widget.controller!.text.split('-');
-      int month = _getMonthIndex(dateParts[0]);
-      int year = int.parse(dateParts[1]);
-      _selectedDate = DateTime(year, month);
-    }
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (widget.controller != null && widget.controller!.text.isNotEmpty) {
+  //     List<String> dateParts = widget.controller!.text.split('-');
+  //     int month = _getMonthIndex(dateParts[0]);
+  //     int year = int.parse(dateParts[1]);
+  //     _selectedDate = DateTime(year, month);
+  //   }
+  // }
 
-  int _getMonthIndex(String monthName) {
-    List<String> months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    return months.indexOf(monthName) + 1;
-  }
+  // int _getMonthIndex(String monthName) {
+  //   List<String> months = [
+  //     "January",
+  //     "February",
+  //     "March",
+  //     "April",
+  //     "May",
+  //     "June",
+  //     "July",
+  //     "August",
+  //     "September",
+  //     "October",
+  //     "November",
+  //     "December"
+  //   ];
+  //   return months.indexOf(monthName) + 1;
+  // }
 
   Future<void> _selectMonthYear(BuildContext context) async {
     final now = DateTime.now();

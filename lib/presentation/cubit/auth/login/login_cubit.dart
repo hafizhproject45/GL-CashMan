@@ -1,8 +1,8 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/errors/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../../../../domain/entities/auth/login_request_entity.dart';
 import '../../../../domain/usecases/auth/check_login_usecase.dart';
@@ -25,26 +25,31 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> checkLogin() async {
     emit(LoginInitial());
 
-    Either<Failure, bool> result = await checkLoginUsecase.call(NoParams());
+    final result = await checkLoginUsecase.call(NoParams());
+
+    final check = result.fold(
+      (l) => false,
+      (r) => r == true,
+    );
+
     await Future.delayed(const Duration(seconds: 3));
 
-    result.fold(
-      (failure) => emit(LoginLoggedOut()),
-      (value) {
-        emit(LoginLoggedIn());
-      },
-    );
+    if (check) {
+      emit(LoginLoggedIn());
+    } else {
+      emit(LoginLoggedOut());
+    }
   }
 
   void login(String email, String password) async {
     emit(LoginLoading());
 
-    LoginRequestEntity loginData = LoginRequestEntity(
+    final loginData = LoginRequestEntity(
       email: email,
       password: password,
     );
 
-    Either<Failure, void> result = await loginUsecase.call(loginData);
+    final result = await loginUsecase.call(loginData);
 
     result.fold(
       (l) => emit(LoginFailed(message: l.message!)),
@@ -53,7 +58,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void logout() async {
-    Either<Failure, void> result = await logoutUsecase.call(NoParams());
+    final result = await logoutUsecase.call(NoParams());
 
     result.fold(
       (l) => emit(LoginFailed(message: l.message!)),

@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'dart:math';
 import 'constants.dart';
+import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:crypto/crypto.dart';
 
 import 'package:intl/intl.dart';
+
+import 'env.dart';
 
 class Utility {
   /// Format date post API
@@ -121,8 +126,36 @@ class Utility {
     return 'https://via.placeholder.com/${width}x$height.png?text=No+Image';
   }
 
+  /// Encrypting pin or password
+  static String encryption(String data) {
+    if (data.isEmpty) {
+      return '';
+    }
+
+    var key = encrypt.Key.fromBase64(Env.sbAnonKey);
+    var iv = encrypt.IV.fromUtf8(getRandomString(16));
+
+    var encrypter =
+        encrypt.Encrypter(encrypt.AES(key, mode: encrypt.AESMode.cbc));
+    var encryptedPassword = encrypter.encrypt(data, iv: iv);
+    var hmac = Hmac(sha256, key.bytes);
+    var mac = hmac.convert(utf8.encode(iv.base64 + encryptedPassword.base64));
+
+    var output = {
+      'iv': iv.base64,
+      'value': encryptedPassword.base64,
+      'mac': mac.toString(),
+      'tag': ''
+    };
+
+    var jsonString = json.encode(output);
+    var base64String = base64Encode(utf8.encode(jsonString));
+
+    return base64String;
+  }
+
   /// Generate random string
-  static String getRandomString(int length) {
+  static getRandomString(int length) {
     const charset =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     Random random = Random.secure();

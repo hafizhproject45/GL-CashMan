@@ -1,10 +1,27 @@
+// ignore_for_file: overridden_fields, annotate_overrides
+
 part of 'update_user_cubit.dart';
 
-sealed class UpdateUserState extends Equatable {
-  const UpdateUserState();
+abstract class UpdateUserState extends Equatable {
+  final String? message;
+
+  const UpdateUserState({this.message});
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [message];
 }
 
 final class UpdateUserInitial extends UpdateUserState {}
+
+final class UpdateUserLoading extends UpdateUserState {}
+
+final class UpdateUserSuccess extends UpdateUserState {}
+
+final class UpdateUserFailed extends UpdateUserState {
+  final String message;
+
+  const UpdateUserFailed({required this.message}) : super(message: message);
+
+  @override
+  List<Object> get props => [message];
+}

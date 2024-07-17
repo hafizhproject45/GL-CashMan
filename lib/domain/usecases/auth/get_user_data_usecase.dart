@@ -5,7 +5,7 @@ import '../../../core/usecases/usecase.dart';
 import '../../entities/auth/user_entity.dart';
 import '../../repositories/auth/auth_repository.dart';
 
-class GetUserDataUsecase implements UseCase<List<UserEntity>, String> {
+class GetUserDataUsecase implements UseCase<UserEntity, NoParams> {
   final AuthRepository authRepository;
 
   GetUserDataUsecase({
@@ -13,13 +13,21 @@ class GetUserDataUsecase implements UseCase<List<UserEntity>, String> {
   });
 
   @override
-  Future<Either<Failure, List<UserEntity>>> call(String params) async {
-    Either<Failure, List<UserEntity>> result =
-        await authRepository.getRemoteUserData(params);
+  Future<Either<Failure, UserEntity>> call(NoParams params) async {
+    final loginDataRequest = await authRepository.getUserID();
+
+    late int userID;
+
+    loginDataRequest.fold(
+      (l) => Left(l),
+      (r) => Right(userID = r),
+    );
+
+    final result = await authRepository.getRemoteUserData(userID);
 
     return result.fold(
-      (failure) => Left(failure),
-      (value) => Right(value),
+      (l) => Left(l),
+      (r) => Right(r),
     );
   }
 }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import '../../cubit/auth/get_user/get_user_cubit.dart';
+import '../global/shimmer/my_shimmer_custom.dart';
 
 import '../../../core/utils/images.dart';
 import '../../../core/utils/text_style.dart';
+import '../../../domain/entities/auth/user_entity.dart';
 import '../global/button/my_button_widget.dart';
 
 class ProfileBgSection extends StatefulWidget {
@@ -34,26 +38,50 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
         Column(
           children: [
             const SizedBox(height: 30),
-            const SizedBox(
+            SizedBox(
               width: 370,
               child: Column(
                 children: [
-                  Text(
-                    'Good morning,',
+                  const Text(
+                    'Welcome back,',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  Text(
-                    'Hafizh Athallah Yovanka',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                    ),
-                    textAlign: TextAlign.center,
+                  BlocBuilder<GetUserCubit, GetUserState>(
+                    builder: (context, state) {
+                      if (state is GetUserLoaded) {
+                        final UserEntity? data = state.data;
+
+                        if (data == null) {
+                          return const Center(
+                            child: Text('Unknown User'),
+                          );
+                        }
+
+                        return Text(
+                          data.fullname,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w900,
+                          ),
+                          textAlign: TextAlign.center,
+                        );
+                      } else if (state is GetUserLoading) {
+                        return const Padding(
+                          padding: EdgeInsets.only(top: 15),
+                          child: ShimmerCustomWidget(
+                            width: 200,
+                            height: 30,
+                          ),
+                        );
+                      } else {
+                        return Text(state.message!);
+                      }
+                    },
                   ),
                 ],
               ),

@@ -4,8 +4,8 @@ class AppColor {
   static const Color primary = Color(0xFF007466);
   static const Color secondary = Color(0xff75BB9E);
 
-  static const Color shimmerHighlight = Color.fromARGB(116, 229, 229, 229);
-  static Color shimmer = Colors.grey.shade700;
+  static const Color shimmer = Color.fromARGB(116, 229, 229, 229);
+  static Color shimmerHighlight = Colors.grey.shade700;
 
   //? BACKGROUND COLOR
   static const Color background = Color.fromARGB(255, 246, 246, 246);

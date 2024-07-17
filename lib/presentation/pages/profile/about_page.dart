@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 
+import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
+import '../../../injection_container.dart';
 import '../../widgets/profile/profile_bg_section.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
 
   @override
+  State<AboutPage> createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<GetUserCubit>()..getData(),
+      child: _content(),
+    );
+  }
+
+  Widget _content() {
     return Scaffold(
       body: const Column(
         children: [

@@ -20,19 +20,22 @@ class LoginLocalModelAdapter extends TypeAdapter<LoginLocalModel> {
       userId: fields[0] as int,
       email: fields[1] as String,
       fullname: fields[2] as String,
+      session: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, LoginLocalModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
       ..write(obj.email)
       ..writeByte(2)
-      ..write(obj.fullname);
+      ..write(obj.fullname)
+      ..writeByte(3)
+      ..write(obj.session);
   }
 
   @override

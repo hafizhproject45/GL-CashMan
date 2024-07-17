@@ -17,5 +17,5 @@ class LoginRequestEntity extends Equatable {
   }
 
   @override
-  List<Object> get props => [email, password];
+  List<Object?> get props => [email, password];
 }

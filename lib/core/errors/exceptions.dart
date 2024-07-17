@@ -1,5 +1,7 @@
 // ignore_for_file: unused_element
 
+import 'package:supabase/supabase.dart';
+
 import '../utils/constants.dart';
 
 class ServerException implements Exception {
@@ -29,33 +31,6 @@ class ServerException implements Exception {
   }
 }
 
-class AuthException implements Exception {
-  final String? message;
-
-  AuthException({
-    this.message = EXCEPTION_UNKNOWN,
-  });
-
-  static AuthException _handleError(int statusCode, dynamic error) {
-    switch (statusCode) {
-      case 400:
-        throw ServerException(message: EXCEPTION_UNKNOWN);
-      case 401:
-        throw AuthException(message: EXCEPTION_AUTH_INVALID);
-      case 404:
-        throw AuthException(message: EXCEPTION_NOT_FOUND);
-      case 405:
-        throw AuthException(message: EXCEPTION_METHOD);
-      case 422:
-        throw AuthException(message: EXCEPTION_AUTH_INVALID);
-      case 500:
-        throw AuthException(message: EXCEPTION_ISE);
-      default:
-        throw AuthException(message: EXCEPTION_UNKNOWN);
-    }
-  }
-}
-
 class CacheException implements Exception {
   final String? message;
 
@@ -72,4 +47,32 @@ class NotFoundException implements Exception {
   final String? message;
 
   NotFoundException({this.message});
+}
+
+class PostgrestConnectionInvalidUriException extends PostgrestException {
+  PostgrestConnectionInvalidUriException({required super.message});
+}
+
+class PostgrestConnectionFailedException extends PostgrestException {
+  PostgrestConnectionFailedException({required super.message});
+}
+
+class PostgrestInvalidAuthorizationTokenException extends PostgrestException {
+  PostgrestInvalidAuthorizationTokenException({required super.message});
+}
+
+class PostgrestQueryFailedException extends PostgrestException {
+  PostgrestQueryFailedException({required super.message});
+}
+
+class PostgrestResourceNotFoundException extends PostgrestException {
+  PostgrestResourceNotFoundException({required super.message});
+}
+
+class PostgrestServerException extends PostgrestException {
+  PostgrestServerException({required super.message});
+}
+
+class UnknownPostgrestException extends PostgrestException {
+  UnknownPostgrestException({required super.message});
 }

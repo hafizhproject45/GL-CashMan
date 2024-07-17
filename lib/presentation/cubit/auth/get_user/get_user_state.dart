@@ -20,7 +20,7 @@ class GetUserLoading extends GetUserState {
 }
 
 class GetUserLoaded extends GetUserState {
-  final List<UserEntity> data;
+  final UserEntity? data;
 
   const GetUserLoaded({
     required this.data,

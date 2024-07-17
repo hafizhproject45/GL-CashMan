@@ -2,22 +2,22 @@
 import 'package:equatable/equatable.dart';
 
 class UserEntity extends Equatable {
-  final String? id;
-  final String? fullname;
-  final String? block;
-  final String? contact;
-  final String? email;
+  final int? id;
+  final String fullname;
+  final String block;
+  final String contact;
+  final String email;
   final String? createdAt;
   final String? updateAt;
 
   const UserEntity({
-    this.id,
-    this.fullname,
-    this.block,
-    this.contact,
-    this.email,
-    this.createdAt,
-    this.updateAt,
+    required this.id,
+    required this.fullname,
+    required this.block,
+    required this.contact,
+    required this.email,
+    required this.createdAt,
+    required this.updateAt,
   });
 
   @override

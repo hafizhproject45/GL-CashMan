@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:dartz/dartz.dart';
 
 import '../../../core/errors/failures.dart';
@@ -13,11 +15,14 @@ class CheckLoginUsecase implements UseCase<bool, NoParams> {
 
   @override
   Future<Either<Failure, bool>> call(NoParams noParams) async {
-    Either<Failure, bool> result = await authRepository.checkLogin();
+    final result = await authRepository.checkLogin();
 
-    return result.fold(
-      (failure) => Left(failure),
-      (value) => Right(value),
+    final check =
+        result == const Right(true) ? const Right(true) : const Right(false);
+
+    return check.fold(
+      (l) => Left(l),
+      (r) => Right(r),
     );
   }
 }

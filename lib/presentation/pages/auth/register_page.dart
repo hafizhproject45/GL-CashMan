@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/utils/images.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../injection_container.dart';
 import '../../cubit/auth/register/register_cubit.dart';
 import '../../widgets/global/my_background_image.dart';
-
-import '../../../core/utils/images.dart';
 import '../../widgets/register/register_form_section.dart';
 
 class RegisterPage extends StatefulWidget {
