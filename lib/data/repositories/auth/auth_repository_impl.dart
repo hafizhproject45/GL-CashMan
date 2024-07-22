@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import '../../../core/utils/constants.dart';
 import 'package:supabase/supabase.dart' as sb;
 
 import '../../../core/errors/exceptions.dart';
@@ -27,7 +28,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -38,7 +39,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -53,7 +54,7 @@ class AuthRepositoryImpl extends AuthRepository {
         return const Right(false);
       }
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -64,7 +65,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -75,7 +76,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -85,7 +86,7 @@ class AuthRepositoryImpl extends AuthRepository {
       final data = await authRemoteDataSource.login(request);
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -96,7 +97,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -107,7 +108,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
@@ -118,21 +119,23 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return Right(data);
     } catch (e) {
-      return Left(_handleException(e));
+      return _handleException(e);
     }
   }
 
-  Failure _handleException(Object e) {
+  _handleException(Object e) {
     if (e is sb.AuthException) {
-      return ServerFailure(
-        message: e.message == 'Invalid login credentials'
-            ? 'Account not found'
-            : e.message,
+      return Left(
+        ServerFailure(
+          message: e.message == 'Invalid login credentials'
+              ? 'Account not found'
+              : e.message,
+        ),
       );
     } else if (e is ServerException) {
-      return const ServerFailure();
+      return Left(ServerFailure(message: e.message));
     } else {
-      return const UnknownFailure();
+      return const Left(UnknownFailure(message: FAILURE_UNKNOWN));
     }
   }
 }

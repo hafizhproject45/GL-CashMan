@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 
-import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../injection_container.dart';
+import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../widgets/profile/profile_bg_section.dart';
 
 class AboutPage extends StatefulWidget {

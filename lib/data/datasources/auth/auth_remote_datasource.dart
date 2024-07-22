@@ -1,12 +1,18 @@
+// ignore_for_file: unrelated_type_equality_checks
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supabase/supabase.dart' as sb;
 
 import '../../../core/errors/failures.dart';
+import '../../../core/utils/constants.dart';
 import '../../models/auth/user_model.dart';
 import '../../../domain/entities/auth/login_request_entity.dart';
 import '../../../domain/entities/auth/register_request_entity.dart';
 import '../../../domain/entities/auth/update_request_entity.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../domain/entities/auth/user_entity.dart';
+
+import 'dart:developer';
 
 abstract class AuthRemoteDataSource {
   sb.Session? get getCurrentUserSession;
@@ -24,9 +30,11 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   final sb.SupabaseClient supabase;
+  final FirebaseAuth auth;
 
   AuthRemoteDataSourceImpl({
     required this.supabase,
+    required this.auth,
   });
 
   @override
@@ -112,7 +120,8 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   Future<void> logout() async {
     try {
       await supabase.auth.signOut();
-    } catch (e) {
+    } catch (e, s) {
+      log('$e, $s');
       return _handleException(e);
     }
   }
@@ -120,13 +129,16 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<void> register(RegisterRequestEntity request) async {
     try {
+      //? SUPABASE AUTH
       await supabase.auth.signUp(
         email: request.email,
         password: request.password,
       );
 
+      //? UPLOAD TO SUPABASE TABLE
       await supabase.from('users').insert(request.toJson());
-    } catch (e) {
+    } catch (e, s) {
+      log('$e, $s');
       return _handleException(e);
     }
   }
@@ -151,9 +163,9 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
             : e.message,
       );
     } else if (e is ServerException) {
-      return const ServerFailure();
+      throw ServerFailure(message: e.message);
     } else {
-      throw const UnknownFailure();
+      throw const UnknownFailure(message: FAILURE_UNKNOWN);
     }
   }
 }

@@ -22,7 +22,7 @@ class QuestionContainerWidget extends StatelessWidget {
           shape: BoxShape.rectangle,
           color: Colors.grey.shade300,
           borderRadius: const BorderRadius.all(
-            Radius.circular(10),
+            Radius.circular(5),
           ),
         ),
         child: ListTile(

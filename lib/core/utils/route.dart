@@ -16,42 +16,46 @@ class AppRoute {
         GetPage<LandingPage>(
           name: '/',
           page: () => const LandingPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transitionDuration: const Duration(seconds: 2),
         ),
         GetPage<LoginPage>(
           name: '/login',
           page: () => const LoginPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 500),
         ),
         GetPage<RegisterPage>(
           name: '/register',
           page: () => const RegisterPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 500),
         ),
         GetPage<MyNavigationBar>(
           name: '/navbar',
           page: () => const MyNavigationBar(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.fadeIn,
+          transitionDuration: const Duration(seconds: 1),
         ),
         GetPage<UpdateUserPage>(
           name: '/profile/edit-profile',
           page: () => const UpdateUserPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 500),
         ),
         GetPage<ContactPage>(
           name: '/profile/contact',
           page: () => const ContactPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.rightToLeftWithFade,
         ),
         GetPage<QuestionPage>(
           name: '/profile/question',
           page: () => const QuestionPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.rightToLeftWithFade,
         ),
         GetPage<AboutPage>(
           name: '/profile/about',
           page: () => const AboutPage(),
-          transition: get_trans.Transition.leftToRightWithFade,
+          transition: get_trans.Transition.rightToLeftWithFade,
         ),
       ];
 }

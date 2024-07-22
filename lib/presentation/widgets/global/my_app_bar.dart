@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/utils/text_style.dart';
 import '../../../domain/entities/auth/user_entity.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
 import 'shimmer/my_shimmer_custom.dart';
-
-import '../../../core/utils/text_style.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
@@ -49,6 +49,8 @@ class _MyAppBarState extends State<MyAppBar> {
                   width: 150,
                   height: 20,
                 );
+              } else if (state is GetUserNotLoaded) {
+                return const Center(child: Text('Check connection'));
               } else {
                 return Text(state.message!);
               }

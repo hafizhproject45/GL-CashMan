@@ -1,18 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'core/utils/env.dart';
-import 'presentation/pages/landing_page.dart';
-import 'presentation/pages/splash/splash_page.dart';
 import 'core/utils/colors.dart';
+import 'core/utils/env.dart';
 import 'core/utils/route.dart';
 import 'injection_container.dart';
+import 'presentation/cubit/auth/login/login_cubit.dart';
+import 'presentation/pages/landing_page.dart';
+import 'presentation/pages/splash/splash_page.dart';
 import 'presentation/widgets/global/navbar.dart';
 import 'services/initialize_app.dart';
-import 'presentation/cubit/auth/login/login_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,12 +23,16 @@ void main() async {
     DeviceOrientation.portraitUp,
   ]);
 
-  // initialize supabase
+  // Initialize firebase service
+  await Firebase.initializeApp();
+
+  // Initialize supabase
   await Supabase.initialize(
     url: Env.sbUrl,
     anonKey: Env.sbAnonKey,
   );
 
+  // Initialize else
   await InitializeApp.init();
 
   runApp(const MyApp());

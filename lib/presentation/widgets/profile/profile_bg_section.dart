@@ -75,7 +75,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
                           padding: EdgeInsets.only(top: 15),
                           child: ShimmerCustomWidget(
                             width: 200,
-                            height: 30,
+                            height: 40,
                           ),
                         );
                       } else {

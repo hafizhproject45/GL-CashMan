@@ -1,10 +1,10 @@
 part of 'change_password_cubit.dart';
 
-sealed class ChangePasswordState extends Equatable {
-  const ChangePasswordState();
+sealed class ForgotPasswordState extends Equatable {
+  const ForgotPasswordState();
 
   @override
   List<Object> get props => [];
 }
 
-final class ChangePasswordInitial extends ChangePasswordState {}
+final class ForgotPasswordInitial extends ForgotPasswordState {}

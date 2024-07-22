@@ -3,6 +3,6 @@ import 'package:equatable/equatable.dart';
 
 part 'change_password_state.dart';
 
-class ChangePasswordCubit extends Cubit<ChangePasswordState> {
-  ChangePasswordCubit() : super(ChangePasswordInitial());
+class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
+  ForgotPasswordCubit() : super(ForgotPasswordInitial());
 }

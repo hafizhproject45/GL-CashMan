@@ -2,24 +2,41 @@
 import 'package:equatable/equatable.dart';
 
 class PaymentEntity extends Equatable {
-  final String id;
-  final String paymentFrom;
-  final String email;
-  final String date;
-  final String imageUrl;
-  final String createdAt;
+  final int? id;
+  final int? userId;
+  final String? imageUrl;
+  final String paymentDate;
+  final String? createdAt;
+  final String? updatedAt;
 
   const PaymentEntity({
-    required this.id,
-    required this.paymentFrom,
-    required this.email,
-    required this.date,
-    required this.imageUrl,
-    required this.createdAt,
+    this.id,
+    this.userId,
+    this.imageUrl,
+    required this.paymentDate,
+    this.createdAt,
+    this.updatedAt,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'user_id': userId,
+      'image_url': imageUrl,
+      'payment_date': paymentDate,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
+    };
+  }
+
   @override
-  List<Object> get props {
-    return [id, paymentFrom, email, date, imageUrl, createdAt];
+  List<Object?> get props {
+    return [
+      id,
+      userId,
+      imageUrl,
+      paymentDate,
+      createdAt,
+      updatedAt,
+    ];
   }
 }

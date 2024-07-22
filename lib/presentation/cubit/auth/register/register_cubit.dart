@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/utils/utility.dart';
 import '../../../../domain/entities/auth/register_request_entity.dart';
 import '../../../../domain/usecases/auth/register_usecase.dart';
 
@@ -22,14 +23,16 @@ class RegisterCubit extends Cubit<RegisterState> {
       email: request.email,
       contact: request.contact,
       password: request.password,
-      createdAt: request.createdAt,
-      updatedAt: request.updatedAt,
+      createdAt: Utility.formatDatePostApi(DateTime.now()),
+      updatedAt: Utility.formatDatePostApi(DateTime.now()),
     );
 
     final result = await registerUsecase.call(registerRequest);
 
     result.fold(
-      (l) => emit(RegisterFailed(message: l.message!)),
+      (l) => emit(
+        RegisterFailed(message: l.message ?? 'Email already registered'),
+      ),
       (r) => emit(RegisterSuccess()),
     );
   }

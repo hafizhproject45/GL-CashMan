@@ -27,7 +27,7 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _pickImageFromGallery();
+        _showPicker(context);
       },
       child: selectedImage != null
           ? Container(
@@ -84,17 +84,58 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     );
   }
 
-  Future<void> _pickImageFromGallery() async {
-    final pickedImage = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
+  void _showPicker(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.white,
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.photo_library,
+                  color: AppColor.textSmall,
+                ),
+                title: const Text('Gallery'),
+                onTap: () {
+                  _pickImage(ImageSource.gallery);
+                  Navigator.of(context).pop();
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.photo_camera,
+                  color: AppColor.textSmall,
+                ),
+                title: const Text('Camera'),
+                onTap: () {
+                  _pickImage(ImageSource.camera);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedImage = await ImagePicker().pickImage(source: source);
     if (pickedImage != null) {
       final File imageFile = File(pickedImage.path);
 
       int fileSize = await imageFile.length();
 
-      if (fileSize > 300 * 1024) {
-        dangerToast(msg: 'Ukuran file tidak boleh lebih dari 300kb');
+      if (fileSize > 500 * 1024) {
+        dangerToast(msg: 'File size max: 500kb');
       } else {
         final croppedImage = await ImageCropper().cropImage(
           sourcePath: imageFile.path,

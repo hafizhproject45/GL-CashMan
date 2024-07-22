@@ -1,9 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'domain/usecases/payment/delete_payment_usecase.dart';
+import 'presentation/cubit/payment/delete_payment/delete_payment_cubit.dart';
+import 'data/datasources/faq/faq_datasource.dart';
+import 'domain/repositories/faq/faq_repository.dart';
+import 'domain/usecases/faq/get_faq_usecase.dart';
+import 'domain/usecases/payment/get_payment_usecase.dart';
+import 'presentation/cubit/faq/get_faq_cubit.dart';
+import 'presentation/cubit/payment/get_payment/get_payment_cubit.dart';
+import 'data/repositories/faq/faq_repository_impl.dart';
+import 'domain/usecases/payment/get_image_url_usecase.dart';
+import 'domain/usecases/payment/payment_usecase.dart';
+import 'presentation/cubit/payment/get_image_url/get_image_url_cubit.dart';
+import 'presentation/cubit/payment/payment/payment_cubit.dart';
+import 'data/datasources/payment/payment_datasource.dart';
 import 'data/datasources/auth/auth_local_datasource.dart';
 import 'data/datasources/auth/auth_remote_datasource.dart';
+import 'domain/repositories/payment/payment_repository.dart';
 import 'data/repositories/auth/auth_repository_impl.dart';
+import 'data/repositories/payment/payment_repository_impl.dart';
 import 'domain/repositories/auth/auth_repository.dart';
 import 'domain/usecases/auth/check_login_usecase.dart';
 import 'domain/usecases/auth/forgot_password_usecase.dart';
@@ -27,8 +45,12 @@ Future<void> initLocator() async {
   ///////////////
 
   final SupabaseClient sb = Supabase.instance.client;
+  final FirebaseStorage fs = FirebaseStorage.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   sl.registerSingleton<SupabaseClient>(sb);
+  sl.registerSingleton<FirebaseStorage>(fs);
+  sl.registerSingleton<FirebaseAuth>(auth);
 
   ///////////////
   ///! Bloc / Cubit
@@ -49,8 +71,17 @@ Future<void> initLocator() async {
     () => UpdateUserCubit(updateUserUsecase: sl()),
   );
   // sl.registerFactory(
-  //   () => ChangePasswordCubit(),
+  //   () => ForgotPasswordCubit(),
   // );
+
+  //? Payment
+  sl.registerFactory(() => PaymentCubit(paymentUsecase: sl()));
+  sl.registerFactory(() => GetImageUrlCubit(getImageUrlUsecase: sl()));
+  sl.registerFactory(() => GetPaymentCubit(getPaymentUsecase: sl()));
+  sl.registerFactory(() => DeletePaymentCubit(deletePaymentUsecase: sl()));
+
+  //? FAQ
+  sl.registerFactory(() => GetFaqCubit(getFaqUsecase: sl()));
 
   ///////////////
   //! Usecase
@@ -65,6 +96,35 @@ Future<void> initLocator() async {
   sl.registerLazySingleton(() => UpdateUserUsecase(authRepository: sl()));
   sl.registerLazySingleton(() => GetUserDataUsecase(authRepository: sl()));
 
+  //? Payment
+  sl.registerLazySingleton(
+    () => PaymentUsecase(
+      authRepository: sl(),
+      paymentRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => GetImageUrlUsecase(
+      authRepository: sl(),
+      paymentRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => GetPaymentUsecase(
+      authRepository: sl(),
+      paymentRepository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => DeletePaymentUsecase(
+      paymentRepository: sl(),
+      authRepository: sl(),
+    ),
+  );
+
+  //? FAQ
+  sl.registerLazySingleton(() => GetFaqUsecase(faqRepository: sl()));
+
   ///////////////
   //! Repository
   ///////////////
@@ -77,15 +137,35 @@ Future<void> initLocator() async {
     ),
   );
 
+  //? Payment
+  sl.registerLazySingleton<PaymentRepository>(
+    () => PaymentRepositoryImpl(paymentDatasource: sl()),
+  );
+
+  //? FAQ
+  sl.registerLazySingleton<FaqRepository>(
+    () => FaqRepositoryImpl(faqDatasource: sl()),
+  );
+
   ///////////////
   //! DataSource
   ///////////////
 
   //? Authentication
   sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(supabase: sb),
+    () => AuthRemoteDataSourceImpl(supabase: sl(), auth: sl()),
   );
   sl.registerLazySingleton<AuthLocalDatasource>(
     () => AuthLocalDatasourceImpl(),
+  );
+
+  //? Payment
+  sl.registerLazySingleton<PaymentDatasource>(
+    () => PaymentDatasourceImpl(supabase: sl(), storage: sl()),
+  );
+
+  //? FAQ
+  sl.registerLazySingleton<FaqDatasource>(
+    () => FaqDatasourceImpl(supabase: sl()),
   );
 }

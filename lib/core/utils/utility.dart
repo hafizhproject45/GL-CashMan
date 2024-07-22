@@ -11,18 +11,33 @@ import 'env.dart';
 class Utility {
   /// Format date post API
   static String formatDatePostApi(DateTime date) {
-    DateFormat formattor = DateFormat('yyyy-MM-dd hh:mm:ss', DATE_LOCALE);
+    DateFormat formattor = DateFormat('yyyy-MM-dd HH:mm:ss', DATE_LOCALE);
     return formattor.format(date);
   }
 
   /// Format date to `25 April 2024`
-  static String formatDateFromString(String dateString) {
+  static String formatDateFromStringToDate(String dateString) {
     try {
       // Parse the date string
       DateTime date = DateTime.parse(dateString);
 
       // Format the date
       DateFormat formatter = DateFormat('dd MMM yyyy', DATE_LOCALE);
+      return formatter.format(date);
+    } catch (e) {
+      // Handle invalid date format
+      return '-';
+    }
+  }
+
+  /// Format date to `13:14`
+  static String formatDateFromStringToHours(String dateString) {
+    try {
+      // Parse the date string
+      DateTime date = DateTime.parse(dateString);
+
+      // Format the date
+      DateFormat formatter = DateFormat('HH:mm', DATE_LOCALE);
       return formatter.format(date);
     } catch (e) {
       // Handle invalid date format
@@ -92,15 +107,29 @@ class Utility {
       return "${difference.inMinutes} minutes ago";
     } else if (difference.inHours < 24) {
       return "${difference.inHours} hours ago";
-    } else if (difference.inDays < 7) {
-      return "${difference.inDays} days ago";
-    } else if (difference.inDays < 365) {
-      int weeks = difference.inDays ~/ 7;
-      return "$weeks weeks ago";
     } else {
-      int years = difference.inDays ~/ 365;
-      return "$years years ago";
+      return '${Utility.formatDateFromStringToDate(rawDate)} - ${Utility.formatDateFromStringToHours(rawDate)} WIB';
     }
+  }
+
+  static String removeStrip(String? input) {
+    if (input == null) {
+      return "";
+    }
+
+    return input.replaceAll('-', ' | ');
+  }
+
+  static String getFirstWordFromString(String input) {
+    List<String> parts = input.split('-');
+
+    return parts.isNotEmpty ? parts[0] : '--';
+  }
+
+  static String getLastWordFromString(String input) {
+    List<String> parts = input.split('-');
+
+    return parts.isNotEmpty ? parts[1] : '--';
   }
 
   /// Format int to `0.0`

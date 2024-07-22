@@ -56,7 +56,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
 
   List<Widget> _buildScreens() {
     return [
-      HomePage(),
+      const HomePage(),
       const PaymentPage(),
       const ProfilePage(),
     ];

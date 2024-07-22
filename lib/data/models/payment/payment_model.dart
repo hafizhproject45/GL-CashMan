@@ -3,12 +3,21 @@ import '../../../domain/entities/payment/payment_entity.dart';
 class PaymentModel extends PaymentEntity {
   const PaymentModel({
     required super.id,
-    required super.paymentFrom,
-    required super.email,
-    required super.date,
+    required super.userId,
     required super.imageUrl,
+    required super.paymentDate,
     required super.createdAt,
+    required super.updatedAt,
   });
 
-  // create factory original
+  factory PaymentModel.fromJson(Map<String, dynamic> json) {
+    return PaymentModel(
+      id: json['id'],
+      userId: json['user_id'],
+      imageUrl: json['image_url'],
+      paymentDate: json['payment_date'],
+      createdAt: json['created_at'],
+      updatedAt: json['updated_at'],
+    );
+  }
 }
