@@ -191,12 +191,12 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                 return MyButtonWidget(
                   label: 'REGISTER',
                   onPressed: () {
-                    _fullnameController.text = 'Hafizh Athallah Yovanka';
-                    _blockController.text = '88 B';
-                    _contactController.text = '085175435207';
-                    _emailController.text = 'hafizhathallah45@gmail.com';
-                    _passwordController.text = 'hafizh123';
-                    _confirmPasswordController.text = 'hafizh123';
+                    // _fullnameController.text = 'Hafizh Athallah Yovanka';
+                    // _blockController.text = '88 B';
+                    // _contactController.text = '085175435207';
+                    // _emailController.text = 'hafizhathallah45@gmail.com';
+                    // _passwordController.text = 'hafizh123';
+                    // _confirmPasswordController.text = 'hafizh123';
 
                     if (state is! RegisterLoading) {
                       _fullnameFocusNode.unfocus();
