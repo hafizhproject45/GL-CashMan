@@ -31,6 +31,7 @@ class QuestionContainerWidget extends StatelessWidget {
               Text(
                 question,
                 style: AppTextStyle.body,
+                textAlign: TextAlign.start,
               ),
               const Divider()
             ],
@@ -39,6 +40,7 @@ class QuestionContainerWidget extends StatelessWidget {
           subtitle: Text(
             answer,
             style: AppTextStyle.medium,
+            textAlign: TextAlign.start,
           ),
         ),
       ),
