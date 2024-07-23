@@ -1,7 +1,7 @@
 name: gl_cashman
 description: "Cash Manager"
 publish_to: "none"
-version: 2.0.0
+version: 1.0.0
 
 environment:
   sdk: ">=3.3.1 <4.0.0"

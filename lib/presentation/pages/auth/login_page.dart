@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<LoginCubit>(),
+      create: (_) => sl<LoginCubit>(),
       child: _content(),
     );
   }

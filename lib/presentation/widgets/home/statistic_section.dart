@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gl_cashman/core/utils/utility.dart';
 
-import '../../../core/utils/colors.dart';
-import '../../../core/utils/text_style.dart';
+import 'payment_multi_value_card.dart';
+import 'payment_single_value_card.dart';
+import '../../../core/utils/utility.dart';
 import '../../../domain/entities/payment/payment_entity.dart';
 import '../../cubit/payment/get_payment/get_payment_cubit.dart';
+import '../global/shimmer/my_shimmer_custom.dart';
 
 class StatisticSection extends StatelessWidget {
   const StatisticSection({
@@ -43,39 +44,35 @@ class StatisticSection extends StatelessWidget {
               if (state is GetPaymentLoaded) {
                 final List<PaymentEntity>? payment = state.data;
 
-                return Padding(
-                  padding: const EdgeInsets.all(20),
+                return PaymentSingleCard(
+                  title: 'Payment Count',
+                  value: '${payment?.length ?? 0}',
+                );
+              } else if (state is GetPaymentLoading) {
+                return const Padding(
+                  padding: EdgeInsets.all(20),
                   child: Stack(
                     children: [
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 30),
-                          child: Text(
-                            '${payment?.length ?? 0}',
-                            style: const TextStyle(
-                              fontSize: 46,
-                              color: AppColor.primary,
-                              fontWeight: FontWeight.w700,
-                            ),
+                          padding: EdgeInsets.only(bottom: 30),
+                          child: ShimmerCustomWidget(
+                            height: 50,
+                            width: 50,
                           ),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         right: 0,
                         left: 0,
                         bottom: 10,
-                        child: Text(
-                          'Payment Count',
-                          style: AppTextStyle.mediumPrimary,
-                          textAlign: TextAlign.center,
+                        child: ShimmerCustomWidget(
+                          height: 20,
+                          width: double.infinity,
                         ),
                       ),
                     ],
                   ),
-                );
-              } else if (state is GetPaymentLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
                 );
               } else {
                 return Text(state.message!);
@@ -102,87 +99,58 @@ class StatisticSection extends StatelessWidget {
                 final List<PaymentEntity>? payment = state.data;
 
                 if (payment == null || payment.isEmpty) {
-                  return const Padding(
-                    padding: EdgeInsets.all(20),
-                    child: Stack(
-                      children: [
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 30),
-                            child: Text(
-                              '--',
-                              style: AppTextStyle.headingPrimary,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 0,
-                          left: 0,
-                          bottom: 10,
-                          child: Text(
-                            'Payment Latest',
-                            style: AppTextStyle.mediumPrimary,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
+                  return const PaymentSingleCard(
+                    title: 'Latest Payment',
+                    value: '--',
                   );
                 }
 
                 final length = payment.length - payment.length;
 
-                return Padding(
-                  padding: const EdgeInsets.all(20),
+                return PaymentMultiValueCard(
+                  title: 'Latest Payment',
+                  month: Utility.getFirstWordFromString(
+                    payment[length].paymentDate,
+                  ),
+                  year: Utility.getLastWordFromString(
+                    payment[length].paymentDate,
+                  ),
+                );
+              } else if (state is GetPaymentLoading) {
+                return const Padding(
+                  padding: EdgeInsets.all(20),
                   child: Stack(
                     children: [
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(bottom: 30),
+                          padding: EdgeInsets.only(bottom: 30),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                Utility.getFirstWordFromString(
-                                  payment[length].paymentDate,
-                                ),
-                                style: AppTextStyle.headingPrimary,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
+                              ShimmerCustomWidget(
+                                height: 20,
+                                width: 70,
                               ),
-                              Text(
-                                Utility.getLastWordFromString(
-                                  payment[length].paymentDate,
-                                ),
-                                style: AppTextStyle.mediumPrimary,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
+                              SizedBox(height: 5),
+                              ShimmerCustomWidget(
+                                height: 20,
+                                width: 70,
                               ),
                             ],
                           ),
                         ),
                       ),
-                      const Positioned(
+                      Positioned(
                         right: 0,
                         left: 0,
                         bottom: 10,
-                        child: Text(
-                          'Payment Latest',
-                          style: AppTextStyle.mediumPrimary,
-                          textAlign: TextAlign.center,
+                        child: ShimmerCustomWidget(
+                          height: 20,
+                          width: double.infinity,
                         ),
                       ),
                     ],
                   ),
-                );
-              } else if (state is GetPaymentLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
                 );
               } else {
                 return Text(state.message!);

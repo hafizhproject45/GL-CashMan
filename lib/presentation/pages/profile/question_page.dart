@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
-import 'package:gl_cashman/presentation/widgets/global/shimmer/my_shimmer_custom.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../domain/entities/faq/faq_entity.dart';
 import '../../cubit/faq/get_faq_cubit.dart';
-import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../injection_container.dart';
+import '../../widgets/global/shimmer/my_shimmer_custom.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../widgets/profile/profile_bg_section.dart';
 import '../../widgets/profile/question_container_widget.dart';
@@ -30,10 +29,10 @@ class _QuestionPageState extends State<QuestionPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<GetUserCubit>()..getData(),
+          create: (_) => sl<GetUserCubit>()..getData(),
         ),
         BlocProvider(
-          create: (context) => faqCubit..getData(),
+          create: (_) => faqCubit..getData(),
         ),
       ],
       child: _content(),
@@ -52,8 +51,10 @@ class _QuestionPageState extends State<QuestionPage> {
               const ProfileBgSection(),
               const SizedBox(height: 20),
               const Center(
-                child: Text('Frequently Asked Questions',
-                    style: AppTextStyle.heading),
+                child: Text(
+                  'Frequently Asked Questions',
+                  style: AppTextStyle.headingPrimary,
+                ),
               ),
               const SizedBox(height: 30),
               BlocBuilder<GetFaqCubit, GetFaqState>(
@@ -61,7 +62,13 @@ class _QuestionPageState extends State<QuestionPage> {
                   if (state is GetFaqLoaded) {
                     final List<FaqEntity>? faq = state.data;
                     if (faq == null || faq.isEmpty) {
-                      return const Center(child: Text('FAQ Not Found'));
+                      return const Center(
+                        child: Text(
+                          'FAQ not Found',
+                          textAlign: TextAlign.center,
+                          style: AppTextStyle.mediumThin,
+                        ),
+                      );
                     }
                     return ListView.builder(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -103,16 +110,14 @@ class _QuestionPageState extends State<QuestionPage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        child: FloatingActionButton(
-          onPressed: () {
-            Get.back();
-          },
-          backgroundColor: Colors.white,
-          foregroundColor: AppColor.primary,
-          child: const Icon(Icons.arrow_back_ios_new),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.back();
+        },
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        child: const Icon(Icons.arrow_back),
       ),
     );
   }

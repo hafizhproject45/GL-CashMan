@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:gl_cashman/domain/usecases/payment/delete_payment_usecase.dart';
+import '../../../../domain/usecases/payment/delete_payment_usecase.dart';
 
 part 'delete_payment_state.dart';
 

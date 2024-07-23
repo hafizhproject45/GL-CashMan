@@ -28,7 +28,7 @@ class _MyAppBarState extends State<MyAppBar> {
         children: [
           const Text(
             'Welcome back, ',
-            style: AppTextStyle.body,
+            style: AppTextStyle.mediumThin,
           ),
           const SizedBox(height: 3),
           BlocBuilder<GetUserCubit, GetUserState>(

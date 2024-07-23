@@ -1,9 +1,10 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 
+import '../../../core/utils/toast.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/utility.dart';
@@ -64,8 +65,8 @@ class _PaymentCardState extends State<PaymentCard> {
           style: AppTextStyle.mediumThin,
         ),
         trailing: MyButtonWidget(
-          label: 'Detail',
-          width: 90,
+          label: 'Details',
+          width: 100,
           height: 40,
           onPressed: () {
             Get.dialog(
@@ -82,56 +83,87 @@ class _PaymentCardState extends State<PaymentCard> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const SizedBox(width: 40),
+                              const SizedBox(width: 10),
                               const Text(
                                 'Payment Details',
-                                style: AppTextStyle.headingPrimary,
+                                style: AppTextStyle.subHeadingPrimaryBold,
                               ),
+                              const Spacer(),
                               IconButton(
-                                icon: const Icon(Icons.clear),
+                                icon: const Icon(Icons.clear_rounded),
                                 onPressed: () => Get.close(1),
-                                iconSize: 40,
+                                iconSize: 30,
                                 color: AppColor.textSmall,
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(height: 30),
-                          InstaImageViewer(
-                            imageUrl: widget.dataPayment.imageUrl!,
-                            backgroundColor: AppColor.textSmall,
-                            disableSwipeToDismiss: true,
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppColor.textSmall),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(3),
-                                child: Image.network(
-                                  widget.dataPayment.imageUrl!,
-                                  height: 160,
-                                  width: 120,
-                                  fit: BoxFit.cover,
-                                  filterQuality: FilterQuality.high,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    }
-                                    return const ShimmerCustomWidget(
+                          widget.dataPayment.imageUrl!.isNotEmpty
+                              ? InstaImageViewer(
+                                  imageUrl: widget.dataPayment.imageUrl!,
+                                  backgroundColor: AppColor.textSmall,
+                                  disableSwipeToDismiss: true,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: AppColor.textSmall),
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(3),
+                                      child: Image.network(
+                                        widget.dataPayment.imageUrl!,
+                                        height: 160,
+                                        width: 120,
+                                        fit: BoxFit.cover,
+                                        filterQuality: FilterQuality.high,
+                                        loadingBuilder: (BuildContext context,
+                                            Widget child,
+                                            ImageChunkEvent? loadingProgress) {
+                                          if (loadingProgress == null) {
+                                            return child;
+                                          }
+                                          return const ShimmerCustomWidget(
+                                            height: 160,
+                                            width: 120,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: AppColor.textSmall),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(3),
+                                    child: Image.network(
+                                      'https://via.placeholder.com/120x160.png?text=No+Image',
                                       height: 160,
                                       width: 120,
-                                    );
-                                  },
+                                      fit: BoxFit.cover,
+                                      filterQuality: FilterQuality.high,
+                                      loadingBuilder: (BuildContext context,
+                                          Widget child,
+                                          ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return const ShimmerCustomWidget(
+                                          height: 160,
+                                          width: 120,
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
                           const SizedBox(height: 30),
                           Column(
                             children: [
@@ -169,6 +201,9 @@ class _PaymentCardState extends State<PaymentCard> {
                                         .delete(widget.dataPayment.id!);
                                     Get.close(2);
                                     context.read<GetPaymentCubit>().getData();
+                                    successToast(
+                                        msg:
+                                            'Success delete payment "${Utility.removeStrip(widget.dataPayment.paymentDate)}"');
                                   },
                                 ),
                               );

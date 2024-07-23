@@ -21,8 +21,8 @@ class GetImageUrlUsecase implements UseCase<String, NoParams> {
     late int userID;
 
     getId.fold(
-      (l) => Left(l),
-      (r) => Right(userID = r),
+      (l) => l,
+      (r) => userID = r,
     );
 
     final loginDataRequest = await authRepository.getRemoteUserData(userID);
@@ -30,8 +30,8 @@ class GetImageUrlUsecase implements UseCase<String, NoParams> {
     late String userEmail;
 
     loginDataRequest.fold(
-      (l) => Left(l),
-      (r) => Right(userEmail = r.email),
+      (l) => l,
+      (r) => userEmail = r.email,
     );
 
     final result = await paymentRepository.getImageUrl(userEmail);

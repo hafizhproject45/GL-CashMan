@@ -8,7 +8,7 @@ import '../../presentation/pages/landing_page.dart';
 import '../../presentation/pages/profile/about_page.dart';
 import '../../presentation/pages/profile/contact_page.dart';
 import '../../presentation/pages/profile/question_page.dart';
-import '../../presentation/pages/profile/update_profile_page.dart';
+import '../../presentation/pages/profile/update_user_page.dart';
 import '../../presentation/widgets/global/navbar.dart';
 
 class AppRoute {

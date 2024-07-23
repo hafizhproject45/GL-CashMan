@@ -36,6 +36,11 @@ class AppTextStyle {
     fontWeight: FontWeight.w600, // MEDIUM
     color: AppColor.primary,
   );
+  static const TextStyle subHeadingPrimaryBold = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w800, // MEDIUM
+    color: AppColor.primary,
+  );
   static const TextStyle subHeadingAccent = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600, // MEDIUM

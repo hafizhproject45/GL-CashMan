@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<LoginCubit>()..checkLogin(),
+      create: (_) => sl<LoginCubit>()..checkLogin(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'GL Manager',

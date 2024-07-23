@@ -32,7 +32,7 @@ class ContactListWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           elevation: 2,
           fixedSize: const Size.fromHeight(60),
-          backgroundColor: AppColor.primary,
+          backgroundColor: Colors.grey.shade300,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(5),
@@ -45,12 +45,12 @@ class ContactListWidget extends StatelessWidget {
             const Icon(
               Icons.phone,
               size: 20,
-              color: Colors.white,
+              color: AppColor.primary,
             ),
             const SizedBox(width: 10),
             Text(
               name,
-              style: AppTextStyle.mediumWhite,
+              style: AppTextStyle.mediumBold,
             )
           ],
         ),

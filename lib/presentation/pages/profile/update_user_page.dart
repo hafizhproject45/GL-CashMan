@@ -24,10 +24,10 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<GetUserCubit>()..getData(),
+          create: (_) => sl<GetUserCubit>()..getData(),
         ),
         BlocProvider(
-          create: (context) => sl<UpdateUserCubit>(),
+          create: (_) => sl<UpdateUserCubit>(),
         ),
       ],
       child: SafeArea(
@@ -44,16 +44,33 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
                   filterQuality: FilterQuality.high,
                 ),
               ),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 30),
-                    Text(
-                      'Edit Profile',
-                      style: AppTextStyle.headingWhite,
-                    ),
-                    SizedBox(height: 100),
+                    const SizedBox(height: 30),
                     Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () => Get.back(),
+                            icon: const Icon(Icons.arrow_back),
+                            color: Colors.white,
+                          ),
+                          const Text(
+                            'Edit Profile',
+                            style: AppTextStyle.headingWhite,
+                          ),
+                          const Icon(
+                            Icons.remove,
+                            color: Colors.transparent,
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 100),
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.0),
                       child: UpdateUserForm(),
                     ),
@@ -61,19 +78,6 @@ class _UpdateUserPageState extends State<UpdateUserPage> {
                 ),
               ),
             ],
-          ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.miniStartTop,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            child: FloatingActionButton(
-              onPressed: () {
-                Get.back();
-              },
-              backgroundColor: Colors.white,
-              foregroundColor: AppColor.primary,
-              child: const Icon(Icons.arrow_back_ios_new),
-            ),
           ),
         ),
       ),

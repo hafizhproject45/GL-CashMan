@@ -23,8 +23,8 @@ class PaymentUsecase implements UseCase<void, PaymentEntity> {
     late int userID;
 
     getId.fold(
-      (l) => Left(l),
-      (r) => Right(userID = r),
+      (l) => l,
+      (r) => userID = r,
     );
 
     final getEmail = await authRepository.getRemoteUserData(userID);
@@ -32,8 +32,8 @@ class PaymentUsecase implements UseCase<void, PaymentEntity> {
     late String userEmail;
 
     getEmail.fold(
-      (l) => Left(l),
-      (r) => Right(userEmail = r.email),
+      (l) => l,
+      (r) => userEmail = r.email,
     );
 
     final paymentData = await paymentRepository.getImageUrl(userEmail);
@@ -41,8 +41,8 @@ class PaymentUsecase implements UseCase<void, PaymentEntity> {
     late String imageUrl;
 
     paymentData.fold(
-      (l) => Left(l),
-      (r) => Right(imageUrl = r),
+      (l) => l,
+      (r) => imageUrl = r,
     );
 
     final newPayment = PaymentEntity(

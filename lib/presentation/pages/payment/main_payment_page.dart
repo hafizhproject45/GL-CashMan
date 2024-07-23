@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
-import '../../../domain/entities/payment/payment_entity.dart';
-import '../../cubit/payment/payment/payment_cubit.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import '../../../domain/entities/payment/payment_entity.dart';
+import '../../cubit/payment/payment/payment_cubit.dart';
+import '../../cubit/payment/upload_image/upload_image_cubit.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
@@ -45,10 +48,13 @@ class _PaymentPageState extends State<PaymentPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getUserCubit..getData(),
+          create: (_) => getUserCubit..getData(),
         ),
         BlocProvider(
-          create: (context) => sl<PaymentCubit>(),
+          create: (_) => sl<PaymentCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => sl<UploadImageCubit>(),
         ),
       ],
       child: _content(),
@@ -117,6 +123,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                         paymentDate: _dateController.text,
                                       ),
                                     );
+                                await context.read<UploadImageCubit>().upload();
                               }
                             }
                           },

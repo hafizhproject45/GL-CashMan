@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gl_cashman/presentation/cubit/payment/delete_payment/delete_payment_cubit.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../injection_container.dart';
+import '../../cubit/payment/delete_payment/delete_payment_cubit.dart';
 import '../../cubit/payment/get_payment/get_payment_cubit.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../widgets/global/my_app_bar.dart';

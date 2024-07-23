@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
@@ -17,10 +17,21 @@ class PaymentRepositoryImpl extends PaymentRepository {
   });
 
   @override
-  Future<Either<Failure, String>> getImageUrl(String name,
+  Future<Either<Failure, TaskSnapshot>> uploadImage(String email) async {
+    try {
+      final res = await paymentDatasource.uploadImage(email);
+
+      return Right(res);
+    } catch (e) {
+      return Left(_handleException(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> getImageUrl(String email,
       {bool getImageUrl = true}) async {
     try {
-      final res = await paymentDatasource.getImageUrl(name);
+      final res = await paymentDatasource.getImageUrl(email);
 
       return Right(res);
     } catch (e) {
@@ -53,10 +64,13 @@ class PaymentRepositoryImpl extends PaymentRepository {
   @override
   Future<Either<Failure, void>> deletePayment(
     int paymentId,
-    String imageUrl,
+    // String imageUrl,
   ) async {
     try {
-      final res = await paymentDatasource.deletePayment(paymentId, imageUrl);
+      final res = await paymentDatasource.deletePayment(
+        paymentId,
+        // imageUrl,
+      );
       return Right(res);
     } catch (e) {
       return Left(_handleException(e));

@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'domain/usecases/payment/upload_image_usecase.dart';
+import 'presentation/cubit/payment/upload_image/upload_image_cubit.dart';
 import 'domain/usecases/payment/delete_payment_usecase.dart';
 import 'presentation/cubit/payment/delete_payment/delete_payment_cubit.dart';
 import 'data/datasources/faq/faq_datasource.dart';
@@ -75,6 +77,7 @@ Future<void> initLocator() async {
   // );
 
   //? Payment
+  sl.registerFactory(() => UploadImageCubit(uploadImageUsecase: sl()));
   sl.registerFactory(() => PaymentCubit(paymentUsecase: sl()));
   sl.registerFactory(() => GetImageUrlCubit(getImageUrlUsecase: sl()));
   sl.registerFactory(() => GetPaymentCubit(getPaymentUsecase: sl()));
@@ -97,6 +100,12 @@ Future<void> initLocator() async {
   sl.registerLazySingleton(() => GetUserDataUsecase(authRepository: sl()));
 
   //? Payment
+  sl.registerLazySingleton(
+    () => UploadImageUsecase(
+      authRepository: sl(),
+      paymentRepository: sl(),
+    ),
+  );
   sl.registerLazySingleton(
     () => PaymentUsecase(
       authRepository: sl(),

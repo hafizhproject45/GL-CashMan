@@ -1,22 +1,22 @@
 import 'package:dartz/dartz.dart';
-import '../../entities/payment/payment_entity.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
 import '../../repositories/auth/auth_repository.dart';
 import '../../repositories/payment/payment_repository.dart';
 
-class GetPaymentUsecase implements UseCase<List<PaymentEntity>, NoParams> {
+class UploadImageUsecase implements UseCase<TaskSnapshot, NoParams> {
   final PaymentRepository paymentRepository;
   final AuthRepository authRepository;
 
-  GetPaymentUsecase({
+  UploadImageUsecase({
     required this.paymentRepository,
     required this.authRepository,
   });
 
   @override
-  Future<Either<Failure, List<PaymentEntity>>> call(NoParams noParams) async {
+  Future<Either<Failure, TaskSnapshot>> call(NoParams params) async {
     final getId = await authRepository.getUserID();
 
     late int userID;
@@ -26,7 +26,16 @@ class GetPaymentUsecase implements UseCase<List<PaymentEntity>, NoParams> {
       (r) => userID = r,
     );
 
-    final result = await paymentRepository.getPayment(userID);
+    final getEmail = await authRepository.getRemoteUserData(userID);
+
+    late String userEmail;
+
+    getEmail.fold(
+      (l) => l,
+      (r) => userEmail = r.email,
+    );
+
+    final result = await paymentRepository.uploadImage(userEmail);
 
     return result.fold(
       (l) => Left(l),

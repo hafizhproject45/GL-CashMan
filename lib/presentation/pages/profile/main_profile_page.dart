@@ -25,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return BlocProvider(
-      create: (context) => sl<GetUserCubit>()..getData(),
+      create: (_) => sl<GetUserCubit>()..getData(),
       child: _content(screenWidth, context),
     );
   }

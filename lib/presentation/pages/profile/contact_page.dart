@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 
-import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../injection_container.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
@@ -20,22 +19,28 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<GetUserCubit>()..getData(),
+      create: (_) => sl<GetUserCubit>()..getData(),
       child: _content(),
     );
   }
 
   Widget _content() {
     return Scaffold(
-      body: Column(
-        children: [
-          const ProfileBgSection(),
-          const SizedBox(height: 20),
-          const Center(
-              child: Text('Contact List', style: AppTextStyle.heading)),
-          const SizedBox(height: 40),
-          Expanded(
-            child: ListView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const ProfileBgSection(),
+            const SizedBox(height: 20),
+            const Center(
+              child: Text(
+                'Contact List',
+                style: AppTextStyle.headingPrimary,
+              ),
+            ),
+            const SizedBox(height: 30),
+            ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 30),
               children: const [
                 ContactListWidget(
@@ -59,21 +64,19 @@ class _ContactPageState extends State<ContactPage> {
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 30),
-        ],
+            const SizedBox(height: 30),
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        child: FloatingActionButton(
-          onPressed: () {
-            Get.back();
-          },
-          backgroundColor: Colors.white,
-          foregroundColor: AppColor.primary,
-          child: const Icon(Icons.arrow_back_ios_new),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.back();
+        },
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        child: const Icon(Icons.arrow_back),
       ),
     );
   }
