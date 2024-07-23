@@ -3,7 +3,7 @@ import 'package:envied/envied.dart';
 part 'env.g.dart';
 
 @Envied(
-  path: 'secret.env',
+  path: '.env',
   obfuscate: true,
 )
 abstract class Env {
