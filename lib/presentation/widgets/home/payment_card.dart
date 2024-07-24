@@ -145,7 +145,7 @@ class _PaymentCardState extends State<PaymentCard> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(3),
                                     child: Image.network(
-                                      'https://via.placeholder.com/120x160.png?text=No+Image',
+                                      Utility.imagePlaceHolder(120, 160),
                                       height: 160,
                                       width: 120,
                                       fit: BoxFit.cover,

@@ -16,6 +16,7 @@ class AppRoute {
         GetPage<LandingPage>(
           name: '/',
           page: () => const LandingPage(),
+          transition: get_trans.Transition.fadeIn,
           transitionDuration: const Duration(seconds: 2),
         ),
         GetPage<LoginPage>(

@@ -1,5 +1,5 @@
 <p align="center">
-  <img style="border-radius: 20%; width: 240px;" src="assets/images/thumbnail.png">
+  <img style="border-radius: 20%; width: 240px;" src="assets/images/img_thumbnail.png">
 </p>
 
 # GL CashMan
@@ -22,7 +22,16 @@ For help getting started with Flutter, view our online [documentation](https://f
 
 ## Run this Project
 
-- If you useing IDE Visual Studio Code please open menu `Run and Debug` and select environment then click icon RUN.
+**Setup ENV :**
+
+Create file `.env` in project root directory.
+
+```BASH
+SUPABASE_URL=[SUPABASE_URL]
+SUPABASE_ANON_KEY=[SUPABASE_ANON_KEY]
+```
+
+:warning: Please replace value inside [ ] with real keys.
 
 **For Install or get packages :**
 
@@ -35,6 +44,8 @@ flutter pub get
 ```BASH
 flutter run
 ```
+
+- If you using Visual Studio Code please open menu `Run` and click `Start Debugging`.
 
 ## Build APK
 

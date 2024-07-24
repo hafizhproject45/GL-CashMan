@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -48,11 +47,9 @@ Future<void> initLocator() async {
 
   final SupabaseClient sb = Supabase.instance.client;
   final FirebaseStorage fs = FirebaseStorage.instance;
-  final FirebaseAuth auth = FirebaseAuth.instance;
 
   sl.registerSingleton<SupabaseClient>(sb);
   sl.registerSingleton<FirebaseStorage>(fs);
-  sl.registerSingleton<FirebaseAuth>(auth);
 
   ///////////////
   ///! Bloc / Cubit
@@ -162,7 +159,7 @@ Future<void> initLocator() async {
 
   //? Authentication
   sl.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(supabase: sl(), auth: sl()),
+    () => AuthRemoteDataSourceImpl(supabase: sl()),
   );
   sl.registerLazySingleton<AuthLocalDatasource>(
     () => AuthLocalDatasourceImpl(),

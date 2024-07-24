@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       create: (_) => sl<LoginCubit>()..checkLogin(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'GL Manager',
+        title: 'GL CashMan',
         theme: ThemeData(
           scaffoldBackgroundColor: AppColor.background,
           primaryColor: AppColor.primary,

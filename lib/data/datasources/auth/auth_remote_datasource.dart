@@ -1,6 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supabase/supabase.dart' as sb;
 
 import '../../../core/errors/failures.dart';
@@ -30,11 +29,9 @@ abstract class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   final sb.SupabaseClient supabase;
-  final FirebaseAuth auth;
 
   AuthRemoteDataSourceImpl({
     required this.supabase,
-    required this.auth,
   });
 
   @override
