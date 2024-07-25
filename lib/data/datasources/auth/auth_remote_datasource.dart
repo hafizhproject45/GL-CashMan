@@ -49,16 +49,16 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<int> getUserID() async {
     try {
-      final email = supabase.auth.currentUser?.email;
+      final authId = supabase.auth.currentUser?.id;
 
       final response = await supabase
           .from('users')
           .select('id')
-          .eq('email', email!)
+          .eq('auth_id', authId!)
           .single();
 
-      final id = response['id'] as int;
-      return id;
+      final userId = response['id'] as int;
+      return userId;
     } catch (e) {
       return _handleException(e);
     }

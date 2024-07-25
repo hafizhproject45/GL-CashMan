@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_null_comparison, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -195,15 +195,18 @@ class _PaymentCardState extends State<PaymentCard> {
                                   title: 'DELETE',
                                   text:
                                       'Are you sure\nto delete payment "${Utility.removeStrip(widget.dataPayment.paymentDate)}"?',
-                                  onClick: () {
+                                  onClick: () async {
                                     context
                                         .read<DeletePaymentCubit>()
                                         .delete(widget.dataPayment.id!);
                                     Get.close(2);
+                                    await Future.delayed(
+                                        const Duration(milliseconds: 100));
                                     context.read<GetPaymentCubit>().getData();
                                     successToast(
-                                        msg:
-                                            'Success delete payment "${Utility.removeStrip(widget.dataPayment.paymentDate)}"');
+                                      msg:
+                                          'Success delete payment "${Utility.removeStrip(widget.dataPayment.paymentDate)}"',
+                                    );
                                   },
                                 ),
                               );

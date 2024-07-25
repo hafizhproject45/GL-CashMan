@@ -26,7 +26,7 @@ class GetPaymentUsecase implements UseCase<List<PaymentEntity>, NoParams> {
       (r) => userID = r,
     );
 
-    final result = await paymentRepository.getPayment(userID);
+    final result = await paymentRepository.getPaymentByUserId(userID);
 
     return result.fold(
       (l) => Left(l),

@@ -15,41 +15,18 @@ class DeletePaymentUsecase implements UseCase<void, int> {
 
   @override
   Future<Either<Failure, void>> call(int params) async {
-    // final getId = await authRepository.getUserID();
-    // int? userID;
-    // getId.fold(
-    //   (l) => null,
-    //   (r) => userID = r,
-    // );
-    // if (userID == null) {
-    //   return const Left(ServerFailure(message: 'Failed to get user ID'));
-    // }
+    final getimageName = await paymentRepository.getPayment(params);
 
-    // final getEmail = await authRepository.getRemoteUserData(userID!);
-    // String? userEmail;
-    // getEmail.fold(
-    //   (l) => null,
-    //   (r) => userEmail = r.email,
-    // );
-    // if (userEmail == null) {
-    //   return const Left(ServerFailure(message: 'Failed to get user email'));
-    // }
+    late String imageName;
 
-    // final getImageUrl =
-    //     await paymentRepository.getImageUrl(userEmail!, getImageUrl: false);
-    // String? imageUrl;
-    // getImageUrl.fold(
-    //   (l) => null,
-    //   (r) => imageUrl = r,
-    // );
-    // log('$imageUrl');
-    // if (imageUrl == null) {
-    //   return const Left(ServerFailure(message: 'Failed to get image URL'));
-    // }
+    getimageName.fold(
+      (l) => Left(l),
+      (r) => Right(imageName = r.imageName!),
+    );
 
     final result = await paymentRepository.deletePayment(
       params,
-      // imageUrl!,
+      imageName,
     );
     return result.fold(
       (l) => Left(l),

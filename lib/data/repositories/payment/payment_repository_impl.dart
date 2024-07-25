@@ -17,9 +17,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   });
 
   @override
-  Future<Either<Failure, TaskSnapshot>> uploadImage(String email) async {
+  Future<Either<Failure, void>> payment(
+      PaymentEntity request, String email) async {
     try {
-      final res = await paymentDatasource.uploadImage(email);
+      final res = await paymentDatasource.payment(request, email);
 
       return Right(res);
     } catch (e) {
@@ -28,10 +29,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<Failure, String>> getImageUrl(String email,
-      {bool getImageUrl = true}) async {
+  Future<Either<Failure, PaymentEntity>> getPayment(int paymentId) async {
     try {
-      final res = await paymentDatasource.getImageUrl(email);
+      final res = await paymentDatasource.getPayment(paymentId);
 
       return Right(res);
     } catch (e) {
@@ -40,20 +40,10 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<Failure, void>> payment(PaymentEntity request) async {
+  Future<Either<Failure, List<PaymentEntity>>> getPaymentByUserId(
+      int userId) async {
     try {
-      final res = await paymentDatasource.payment(request);
-
-      return Right(res);
-    } catch (e) {
-      return Left(_handleException(e));
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<PaymentEntity>>> getPayment(int userId) async {
-    try {
-      final res = await paymentDatasource.getPayment(userId);
+      final res = await paymentDatasource.getPaymentByUserId(userId);
 
       return Right(res);
     } catch (e) {
@@ -63,14 +53,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<Failure, void>> deletePayment(
-    int paymentId,
-    // String imageUrl,
-  ) async {
+      int paymentId, String imageName) async {
     try {
-      final res = await paymentDatasource.deletePayment(
-        paymentId,
-        // imageUrl,
-      );
+      final res = await paymentDatasource.deletePayment(paymentId, imageName);
       return Right(res);
     } catch (e) {
       return Left(_handleException(e));

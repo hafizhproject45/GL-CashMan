@@ -29,31 +29,21 @@ class PaymentUsecase implements UseCase<void, PaymentEntity> {
 
     final getEmail = await authRepository.getRemoteUserData(userID);
 
-    late String userEmail;
+    late String email;
 
     getEmail.fold(
       (l) => l,
-      (r) => userEmail = r.email,
-    );
-
-    final paymentData = await paymentRepository.getImageUrl(userEmail);
-
-    late String imageUrl;
-
-    paymentData.fold(
-      (l) => l,
-      (r) => imageUrl = r,
+      (r) => email = r.email,
     );
 
     final newPayment = PaymentEntity(
       userId: userID,
       paymentDate: params.paymentDate,
-      imageUrl: imageUrl,
       createdAt: Utility.formatDatePostApi(DateTime.now()),
       updatedAt: Utility.formatDatePostApi(DateTime.now()),
     );
 
-    final result = await paymentRepository.payment(newPayment);
+    final result = await paymentRepository.payment(newPayment, email);
 
     return result.fold(
       (l) => Left(l),

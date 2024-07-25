@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class RegisterRequestEntity extends Equatable {
-  final String? id;
+  final int? id;
   final String fullname;
   final String block;
   final String contact;

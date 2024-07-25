@@ -3,6 +3,7 @@ import '../../../domain/entities/auth/user_entity.dart';
 class UserModel extends UserEntity {
   const UserModel({
     required super.id,
+    required super.authId,
     required super.fullname,
     required super.block,
     required super.contact,
@@ -14,6 +15,7 @@ class UserModel extends UserEntity {
   static UserModel fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json['id'] ?? 0,
+      authId: json['auth_id'] ?? '',
       fullname: json['fullname'] ?? '',
       block: json['block'] ?? '',
       contact: json['contact'] ?? '',

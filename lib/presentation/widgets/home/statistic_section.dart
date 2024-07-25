@@ -110,10 +110,10 @@ class StatisticSection extends StatelessWidget {
                 return PaymentMultiValueCard(
                   title: 'Latest Payment',
                   month: Utility.getFirstWordFromString(
-                    payment[length].paymentDate,
+                    payment[length].paymentDate!,
                   ),
                   year: Utility.getLastWordFromString(
-                    payment[length].paymentDate,
+                    payment[length].paymentDate!,
                   ),
                 );
               } else if (state is GetPaymentLoading) {

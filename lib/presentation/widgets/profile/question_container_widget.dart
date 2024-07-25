@@ -26,21 +26,22 @@ class QuestionContainerWidget extends StatelessWidget {
           ),
         ),
         child: ListTile(
+          leading: const Icon(Icons.question_answer),
+          subtitle: Text(
+            answer,
+            style: AppTextStyle.medium,
+            textAlign: TextAlign.start,
+          ),
           title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 question,
                 style: AppTextStyle.body,
                 textAlign: TextAlign.start,
               ),
-              const Divider()
+              const Divider(),
             ],
-          ),
-          leading: const Icon(Icons.question_answer),
-          subtitle: Text(
-            answer,
-            style: AppTextStyle.medium,
-            textAlign: TextAlign.start,
           ),
         ),
       ),

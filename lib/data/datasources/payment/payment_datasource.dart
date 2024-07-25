@@ -12,14 +12,10 @@ import '../../../presentation/widgets/global/imagePicker_widget.dart';
 import '../../models/payment/payment_model.dart';
 
 abstract class PaymentDatasource {
-  Future<TaskSnapshot> uploadImage(String email);
-  Future<void> payment(PaymentEntity request);
-  Future<String> getImageUrl(String email, {bool getImageUrl = true});
-  Future<List<PaymentEntity>> getPayment(int userId);
-  Future<void> deletePayment(
-    int paymentId,
-    // String imageUrl,
-  );
+  Future<void> payment(PaymentEntity request, String email);
+  Future<PaymentEntity> getPayment(int paymentId);
+  Future<List<PaymentEntity>> getPaymentByUserId(int userId);
+  Future<void> deletePayment(int paymentId, String imageName);
 }
 
 class PaymentDatasourceImpl extends PaymentDatasource {
@@ -32,7 +28,7 @@ class PaymentDatasourceImpl extends PaymentDatasource {
   });
 
   @override
-  Future<TaskSnapshot> uploadImage(String email) async {
+  Future<void> payment(PaymentEntity request, String email) async {
     try {
       File? uploadFile = File(selectedImage!.path);
       final date = Utility.formatDatePostApi(DateTime.now());
@@ -41,35 +37,20 @@ class PaymentDatasourceImpl extends PaymentDatasource {
           .ref('payments')
           .child('${email}_$date.jpg')
           .putFile(uploadFile);
-      return uploadTask;
-    } catch (e) {
-      return _handleException(e);
-    }
-  }
 
-  @override
-  Future<String> getImageUrl(String email, {bool getImageUrl = true}) async {
-    try {
-      final image = await uploadImage(email);
+      final imageUrl = await uploadTask.ref.getDownloadURL();
+      final imageName = uploadTask.ref.fullPath.split('/')[1];
 
-      if (getImageUrl) {
-        // result = https://firebasestorage.googleapis.com/v0/b/gl-cashman.appspot.com...
-        final imageUrl = await image.ref.getDownloadURL();
-        return imageUrl;
-      } else {
-        // result = payments/hafizhathallah45@gmail.com_2024-07-22 15:40:47
-        final imageName = image.ref.fullPath;
-        return imageName;
-      }
-    } catch (e) {
-      return _handleException(e);
-    }
-  }
-
-  @override
-  Future<void> payment(PaymentEntity request) async {
-    try {
-      await supabase.from('payments').insert(request.toJson());
+      await supabase.from('payments').insert(
+            PaymentEntity(
+              userId: request.userId,
+              imageUrl: imageUrl,
+              imageName: imageName,
+              paymentDate: request.paymentDate,
+              createdAt: request.createdAt,
+              updatedAt: request.updatedAt,
+            ),
+          );
     } catch (e) {
       return _handleException(e);
     } finally {
@@ -78,7 +59,19 @@ class PaymentDatasourceImpl extends PaymentDatasource {
   }
 
   @override
-  Future<List<PaymentEntity>> getPayment(int userId) async {
+  Future<PaymentEntity> getPayment(int paymentId) async {
+    try {
+      final res =
+          await supabase.from('payments').select().eq('id', paymentId).single();
+
+      return PaymentModel.fromJson(res);
+    } catch (e) {
+      return _handleException(e);
+    }
+  }
+
+  @override
+  Future<List<PaymentEntity>> getPaymentByUserId(int userId) async {
     try {
       final res = await supabase
           .from('payments')
@@ -93,15 +86,12 @@ class PaymentDatasourceImpl extends PaymentDatasource {
   }
 
   @override
-  Future<void> deletePayment(
-    int paymentId,
-    // String imageUrl,
-  ) async {
+  Future<void> deletePayment(int paymentId, String imageName) async {
     try {
       await supabase.from('payments').delete().eq('id', paymentId);
 
       // Delete the image from Firebase Storage
-      // await storage.ref().child(imageUrl).delete();
+      await storage.ref('payments').child(imageName).delete();
     } catch (e) {
       return _handleException(e);
     }

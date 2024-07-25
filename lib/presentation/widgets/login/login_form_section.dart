@@ -96,8 +96,8 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 return MyButtonWidget(
                   label: 'LOGIN',
                   onPressed: () {
-                    // _emailController.text = 'hafizhathallah45@gmail.com';
-                    // _passwordController.text = 'hafizh123';
+                    _emailController.text = 'hafizhathallah45@gmail.com';
+                    _passwordController.text = 'Hafizh123';
 
                     if (state is! LoginLoading) {
                       _emailFocusNode.unfocus();

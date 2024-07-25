@@ -7,7 +7,6 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../domain/entities/payment/payment_entity.dart';
 import '../../cubit/payment/payment/payment_cubit.dart';
-import '../../cubit/payment/upload_image/upload_image_cubit.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
@@ -52,9 +51,6 @@ class _PaymentPageState extends State<PaymentPage> {
         ),
         BlocProvider(
           create: (_) => sl<PaymentCubit>(),
-        ),
-        BlocProvider(
-          create: (_) => sl<UploadImageCubit>(),
         ),
       ],
       child: _content(),
@@ -123,7 +119,6 @@ class _PaymentPageState extends State<PaymentPage> {
                                         paymentDate: _dateController.text,
                                       ),
                                     );
-                                await context.read<UploadImageCubit>().upload();
                               }
                             }
                           },

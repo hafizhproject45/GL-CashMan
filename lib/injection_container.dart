@@ -2,8 +2,6 @@ import 'package:get_it/get_it.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'domain/usecases/payment/upload_image_usecase.dart';
-import 'presentation/cubit/payment/upload_image/upload_image_cubit.dart';
 import 'domain/usecases/payment/delete_payment_usecase.dart';
 import 'presentation/cubit/payment/delete_payment/delete_payment_cubit.dart';
 import 'data/datasources/faq/faq_datasource.dart';
@@ -13,9 +11,7 @@ import 'domain/usecases/payment/get_payment_usecase.dart';
 import 'presentation/cubit/faq/get_faq_cubit.dart';
 import 'presentation/cubit/payment/get_payment/get_payment_cubit.dart';
 import 'data/repositories/faq/faq_repository_impl.dart';
-import 'domain/usecases/payment/get_image_url_usecase.dart';
 import 'domain/usecases/payment/payment_usecase.dart';
-import 'presentation/cubit/payment/get_image_url/get_image_url_cubit.dart';
 import 'presentation/cubit/payment/payment/payment_cubit.dart';
 import 'data/datasources/payment/payment_datasource.dart';
 import 'data/datasources/auth/auth_local_datasource.dart';
@@ -74,9 +70,7 @@ Future<void> initLocator() async {
   // );
 
   //? Payment
-  sl.registerFactory(() => UploadImageCubit(uploadImageUsecase: sl()));
   sl.registerFactory(() => PaymentCubit(paymentUsecase: sl()));
-  sl.registerFactory(() => GetImageUrlCubit(getImageUrlUsecase: sl()));
   sl.registerFactory(() => GetPaymentCubit(getPaymentUsecase: sl()));
   sl.registerFactory(() => DeletePaymentCubit(deletePaymentUsecase: sl()));
 
@@ -98,19 +92,7 @@ Future<void> initLocator() async {
 
   //? Payment
   sl.registerLazySingleton(
-    () => UploadImageUsecase(
-      authRepository: sl(),
-      paymentRepository: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
     () => PaymentUsecase(
-      authRepository: sl(),
-      paymentRepository: sl(),
-    ),
-  );
-  sl.registerLazySingleton(
-    () => GetImageUrlUsecase(
       authRepository: sl(),
       paymentRepository: sl(),
     ),
