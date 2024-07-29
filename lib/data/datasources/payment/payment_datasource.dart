@@ -12,7 +12,7 @@ import '../../../presentation/widgets/global/imagePicker_widget.dart';
 import '../../models/payment/payment_model.dart';
 
 abstract class PaymentDatasource {
-  Future<void> payment(PaymentEntity request, String email);
+  Future<void> payment(PaymentEntity request, String name);
   Future<PaymentEntity> getPayment(int paymentId);
   Future<List<PaymentEntity>> getPaymentByUserId(int userId);
   Future<void> deletePayment(int paymentId, String imageName);
@@ -28,14 +28,14 @@ class PaymentDatasourceImpl extends PaymentDatasource {
   });
 
   @override
-  Future<void> payment(PaymentEntity request, String email) async {
+  Future<void> payment(PaymentEntity request, String name) async {
     try {
       File? uploadFile = File(selectedImage!.path);
       final date = Utility.formatDatePostApi(DateTime.now());
 
       final uploadTask = await storage
           .ref('payments')
-          .child('${email}_$date.jpg')
+          .child('${name}_$date.jpg')
           .putFile(uploadFile);
 
       final imageUrl = await uploadTask.ref.getDownloadURL();

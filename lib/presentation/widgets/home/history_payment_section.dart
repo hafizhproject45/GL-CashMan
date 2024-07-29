@@ -92,7 +92,7 @@ class HistoryPaymentSection extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 3,
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 10),

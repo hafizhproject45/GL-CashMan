@@ -73,7 +73,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    TextFieldNormalWidget(
+                    MyTextFieldNormal(
                       name: 'Payment for',
                       width: 310,
                       focusNode: _dateFocusNode,
@@ -139,6 +139,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
   void _onRefresh(BuildContext context) {
     getUserCubit.getData();
+    _dateController.clear();
     _refreshController.refreshCompleted();
   }
 }

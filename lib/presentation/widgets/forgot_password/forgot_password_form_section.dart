@@ -6,30 +6,26 @@ import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
 import '../../cubit/auth/login/login_cubit.dart';
 import '../global/button/my_button_widget.dart';
-import '../global/text_field_auth/text_field_password_widget.dart';
 import '../global/text_field_auth/text_field_text_widget.dart';
 
-class LoginFormSection extends StatefulWidget {
-  const LoginFormSection({super.key});
+class ForgotPasswordFormSection extends StatefulWidget {
+  const ForgotPasswordFormSection({super.key});
 
   @override
-  State<LoginFormSection> createState() => _LoginFormSectionState();
+  State<ForgotPasswordFormSection> createState() =>
+      _ForgotPasswordFormSectionState();
 }
 
-class _LoginFormSectionState extends State<LoginFormSection> {
+class _ForgotPasswordFormSectionState extends State<ForgotPasswordFormSection> {
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
-  final FocusNode _passwordFocusNode = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();
     _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
     super.dispose();
   }
 
@@ -45,8 +41,17 @@ class _LoginFormSectionState extends State<LoginFormSection> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'LOGIN',
+              'Forgot Password',
               style: AppTextStyle.headingWhite,
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: screenWidth * 0.8,
+              child: const Text(
+                "Enter your email\nand we'll send you a link to reset your password.",
+                style: AppTextStyle.mediumWhite,
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(height: 40),
             MyTextFieldText(
@@ -70,30 +75,6 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                 return null;
               },
             ),
-            MyTextFieldPassword(
-              textInputAction: TextInputAction.send,
-              iconz: Icons.lock,
-              controller: _passwordController,
-              focusNode: _passwordFocusNode,
-              width: screenWidth * 0.85,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Password is required";
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 5),
-            GestureDetector(
-              onTap: () => Get.toNamed('/forgot-password'),
-              child: const Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: Text(
-                  'Forgot Password?',
-                  style: AppTextStyle.mediumWhite,
-                ),
-              ),
-            ),
             const SizedBox(height: 30),
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
@@ -102,53 +83,24 @@ class _LoginFormSectionState extends State<LoginFormSection> {
                     msg: state.message,
                   );
                 } else if (state is LoginLoggedIn) {
-                  Get.offAllNamed('/navbar');
+                  Get.offAllNamed('/');
                 }
               },
               builder: (context, state) {
                 return MyButtonWidget(
-                  label: 'LOGIN',
+                  label: 'SEND',
                   width: screenWidth * 0.85,
                   onPressed: () {
-                    // _emailController.text = 'hafizhathallah45@gmail.com';
-                    // _passwordController.text = 'Hafizh123';
                     if (state is! LoginLoading) {
                       _emailFocusNode.unfocus();
-                      _passwordFocusNode.unfocus();
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
-                        context.read<LoginCubit>().login(
-                              _emailController.text,
-                              _passwordController.text,
-                            );
                       }
                     }
                   },
                   isLoading: state is LoginLoading,
                 );
               },
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Don't have an account?",
-                    style: AppTextStyle.mediumWhite,
-                  ),
-                  GestureDetector(
-                    child: const Text(
-                      ' Register',
-                      style: AppTextStyle.bodyBoldWhite,
-                    ),
-                    onTap: () {
-                      Get.offNamed('/register');
-                    },
-                  ),
-                ],
-              ),
             ),
           ],
         ),

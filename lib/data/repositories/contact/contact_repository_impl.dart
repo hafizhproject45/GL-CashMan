@@ -3,21 +3,21 @@ import 'package:dartz/dartz.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/utils/constants.dart';
-import '../../../domain/entities/faq/faq_entity.dart';
-import '../../../domain/repositories/faq/faq_repository.dart';
-import '../../datasources/faq/faq_datasource.dart';
+import '../../../domain/entities/contact/contact_entity.dart';
+import '../../../domain/repositories/contact/contact_repository.dart';
+import '../../datasources/contact/contact_datasource.dart';
 
-class FaqRepositoryImpl extends FaqRepository {
-  final FaqDatasource faqDatasource;
+class ContactRepositoryImpl extends ContactRepository {
+  final ContactDatasource contactDatasource;
 
-  FaqRepositoryImpl({
-    required this.faqDatasource,
+  ContactRepositoryImpl({
+    required this.contactDatasource,
   });
 
   @override
-  Future<Either<Failure, List<FaqEntity>>> getFaq() async {
+  Future<Either<Failure, List<ContactEntity>>> getContact() async {
     try {
-      final res = await faqDatasource.getFaq();
+      final res = await contactDatasource.getContact();
       return Right(res);
     } catch (e) {
       return _handleException(e);

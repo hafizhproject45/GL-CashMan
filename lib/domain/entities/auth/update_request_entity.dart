@@ -4,14 +4,14 @@ class UpdateRequestEntity extends Equatable {
   final int? id;
   final String fullname;
   final String block;
-  final String contact;
+  final String phone;
   final String? updatedAt;
 
   const UpdateRequestEntity({
     this.id,
     required this.fullname,
     required this.block,
-    required this.contact,
+    required this.phone,
     this.updatedAt,
   });
 
@@ -19,7 +19,7 @@ class UpdateRequestEntity extends Equatable {
     return {
       'fullname': fullname,
       'block': block,
-      'contact': contact,
+      'phone': phone,
       'updated_at': updatedAt,
     };
   }
@@ -30,7 +30,7 @@ class UpdateRequestEntity extends Equatable {
       id,
       fullname,
       block,
-      contact,
+      phone,
       updatedAt,
     ];
   }

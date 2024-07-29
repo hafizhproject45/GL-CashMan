@@ -44,10 +44,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
                 children: [
                   const Text(
                     'Welcome back,',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
+                    style: AppTextStyle.bodyWhite,
                     textAlign: TextAlign.center,
                   ),
                   BlocBuilder<GetUserCubit, GetUserState>(
@@ -63,16 +60,23 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
 
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: Text(
-                            data.fullname,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                            ),
-                            textAlign: TextAlign.center,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                          child: Column(
+                            children: [
+                              Text(
+                                data.fullname,
+                                style: AppTextStyle.subHeadingWhite,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                data.email,
+                                style: AppTextStyle.mediumWhite,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
                         );
                       } else if (state is GetUserLoading) {
@@ -91,7 +95,7 @@ class _ProfileBgSectionState extends State<ProfileBgSection> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             MyButtonWidget(
               height: 45,
               width: 170,

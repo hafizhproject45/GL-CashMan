@@ -22,11 +22,11 @@ class UpdateUserForm extends StatefulWidget {
 class _UpdateUserFormState extends State<UpdateUserForm> {
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _blockController = TextEditingController();
-  final TextEditingController _contactController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   final FocusNode _fullnameFocusNode = FocusNode();
   final FocusNode _blockFocusNode = FocusNode();
-  final FocusNode _contactFocusNode = FocusNode();
+  final FocusNode _phoneFocusNode = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -34,10 +34,10 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
   void dispose() {
     _fullnameController.dispose();
     _blockController.dispose();
-    _contactController.dispose();
+    _phoneController.dispose();
     _fullnameFocusNode.dispose();
     _blockFocusNode.dispose();
-    _contactFocusNode.dispose();
+    _phoneFocusNode.dispose();
     super.dispose();
   }
 
@@ -56,7 +56,7 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
               // Set text controllers only if data is not null
               _fullnameController.text = data.fullname;
               _blockController.text = data.block;
-              _contactController.text = data.contact;
+              _phoneController.text = data.phone;
 
               return Column(
                 children: [
@@ -102,8 +102,8 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                         iconz: Icons.phone_android,
                         textInputAction: TextInputAction.next,
                         type: TextInputType.number,
-                        focusNode: _contactFocusNode,
-                        controller: _contactController,
+                        focusNode: _phoneFocusNode,
+                        controller: _phoneController,
                         width: screenWidth * 0.9,
                         validator: (value) {
                           String pattern = r'(^[0-9]{10,15}$)';
@@ -137,7 +137,7 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                         onPressed: () {
                           if (state is! UpdateUserLoading) {
                             _fullnameFocusNode.unfocus();
-                            _contactFocusNode.unfocus();
+                            _phoneFocusNode.unfocus();
                             _blockFocusNode.unfocus();
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
@@ -145,7 +145,7 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                                     UpdateRequestEntity(
                                       fullname: _fullnameController.text,
                                       block: _blockController.text,
-                                      contact: _contactController.text,
+                                      phone: _phoneController.text,
                                     ),
                                   );
                             }

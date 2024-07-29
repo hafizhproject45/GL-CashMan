@@ -39,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const ListOfFeaturesWidget(
               name: "Contact List",
               icon: Icons.contact_phone,
-              route: 'profile/contact',
+              route: 'profile/phone',
             ),
             const ListOfFeaturesWidget(
               name: "Frequently Asked Questions",
@@ -82,7 +82,7 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (_) => DialogConfirmation(
         title: 'LOGOUT',
-        text: 'Apakah anda yakin ingin keluar dari aplikasi?',
+        text: 'Are you sure to logout the app?',
         onClick: () {
           Get.close(1);
           sl<LoginCubit>().logout();

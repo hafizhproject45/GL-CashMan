@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+
+import '../../widgets/forgot_password/forgot_password_form_section.dart';
 import '../../../core/utils/text_style.dart';
-import '../../../injection_container.dart';
-import '../../cubit/auth/login/login_cubit.dart';
 import '../../widgets/global/my_background_image.dart';
-
 import '../../../core/utils/images.dart';
-import '../../widgets/login/login_form_section.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<LoginCubit>(),
-      child: _content(),
-    );
+    return _content();
   }
 
   Widget _content() {
@@ -61,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const Padding(
                       padding: EdgeInsets.only(top: 100),
-                      child: LoginFormSection(),
+                      child: ForgotPasswordFormSection(),
                     ),
                     const Positioned(
                       left: 0,
@@ -72,6 +67,20 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           '© Copyright 2024 by Grand Laswi, Al Right Reserved',
                           style: AppTextStyle.small,
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 20,
+                      left: -10,
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: IconButton(
+                          onPressed: () => Get.back(),
+                          icon: const Icon(
+                            Icons.arrow_back_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

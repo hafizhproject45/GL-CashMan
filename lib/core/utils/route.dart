@@ -2,11 +2,12 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart'
     as get_trans;
 
+import '../../presentation/pages/forgot_password/forgot_password_page.dart';
 import '../../presentation/pages/auth/login_page.dart';
 import '../../presentation/pages/auth/register_page.dart';
 import '../../presentation/pages/landing_page.dart';
 import '../../presentation/pages/profile/about_page.dart';
-import '../../presentation/pages/profile/contact_page.dart';
+import '../../presentation/pages/profile/contacts_page.dart';
 import '../../presentation/pages/profile/question_page.dart';
 import '../../presentation/pages/profile/update_user_page.dart';
 import '../../presentation/widgets/global/navbar.dart';
@@ -22,6 +23,12 @@ class AppRoute {
         GetPage<LoginPage>(
           name: '/login',
           page: () => const LoginPage(),
+          transition: get_trans.Transition.fadeIn,
+          transitionDuration: const Duration(milliseconds: 500),
+        ),
+        GetPage<ForgotPasswordPage>(
+          name: '/forgot-password',
+          page: () => const ForgotPasswordPage(),
           transition: get_trans.Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 500),
         ),
@@ -43,9 +50,9 @@ class AppRoute {
           transition: get_trans.Transition.fadeIn,
           transitionDuration: const Duration(milliseconds: 500),
         ),
-        GetPage<ContactPage>(
-          name: '/profile/contact',
-          page: () => const ContactPage(),
+        GetPage<ContactsPage>(
+          name: '/profile/phone',
+          page: () => const ContactsPage(),
           transition: get_trans.Transition.rightToLeftWithFade,
         ),
         GetPage<QuestionPage>(

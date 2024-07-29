@@ -3,12 +3,12 @@
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../domain/entities/auth/login_local_entity.dart';
+import '../../../domain/entities/auth/user_local_entity.dart';
 
-part 'login_local_model.g.dart';
+part 'user_local_model.g.dart';
 
 @HiveType(typeId: 1)
-class LoginLocalModel extends LoginLocalEntity {
+class UserLocalModel extends UserLocalEntity {
   @HiveField(0)
   final int userId;
   @HiveField(1)
@@ -18,7 +18,7 @@ class LoginLocalModel extends LoginLocalEntity {
   @HiveField(3)
   final String session;
 
-  const LoginLocalModel({
+  const UserLocalModel({
     required this.userId,
     required this.email,
     required this.fullname,
@@ -30,8 +30,8 @@ class LoginLocalModel extends LoginLocalEntity {
           session: session,
         );
 
-  factory LoginLocalModel.fromJson(Map<String, dynamic> map) {
-    return LoginLocalModel(
+  factory UserLocalModel.fromJson(Map<String, dynamic> map) {
+    return UserLocalModel(
       userId: map['id'] as int,
       email: map['email'] as String,
       fullname: map['fullname'] as String,

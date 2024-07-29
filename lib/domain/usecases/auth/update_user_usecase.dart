@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/utils/utility.dart';
 import '../../entities/auth/update_request_entity.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
@@ -28,8 +27,8 @@ class UpdateUserUsecase implements UseCase<void, UpdateRequestEntity> {
       id: userID,
       fullname: params.fullname,
       block: params.block,
-      contact: params.contact,
-      updatedAt: Utility.formatDatePostApi(DateTime.now()),
+      phone: params.phone,
+      updatedAt: DateTime.now().toIso8601String(),
     );
 
     final result = await authRepository.updateUser(updateRequest);

@@ -2,12 +2,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../../core/errors/exceptions.dart';
 import '../../../core/utils/constants.dart';
-import '../../models/auth/login_local_model.dart';
+import '../../models/auth/user_local_model.dart';
 
 abstract class AuthLocalDatasource {
   Future<bool> checkLogin();
-  Future<LoginLocalModel> getLocalUserData();
-  Future<void> saveLoginData(LoginLocalModel request);
+  Future<UserLocalModel> getLocalUserData();
+  Future<void> saveLoginData(UserLocalModel request);
   Future<bool> deleteLoginData();
 }
 
@@ -28,7 +28,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDatasource {
   }
 
   @override
-  Future<LoginLocalModel> getLocalUserData() async {
+  Future<UserLocalModel> getLocalUserData() async {
     Box cacheBox = await getCacheBox();
 
     if (cacheBox.containsKey(LOGIN_DATA_ID)) {
@@ -39,7 +39,7 @@ class AuthLocalDatasourceImpl implements AuthLocalDatasource {
   }
 
   @override
-  Future<void> saveLoginData(LoginLocalModel request) async {
+  Future<void> saveLoginData(UserLocalModel request) async {
     Box cacheBox = await getCacheBox();
 
     cacheBox.put(LOGIN_DATA_ID, request).onError((error, stackTrace) {

@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/utils/utility.dart';
 
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
@@ -27,23 +26,23 @@ class PaymentUsecase implements UseCase<void, PaymentEntity> {
       (r) => userID = r,
     );
 
-    final getEmail = await authRepository.getRemoteUserData(userID);
+    final getName = await authRepository.getRemoteUserData(userID);
 
-    late String email;
+    late String name;
 
-    getEmail.fold(
+    getName.fold(
       (l) => l,
-      (r) => email = r.email,
+      (r) => name = '${r.fullname}-${r.block}',
     );
 
     final newPayment = PaymentEntity(
       userId: userID,
       paymentDate: params.paymentDate,
-      createdAt: Utility.formatDatePostApi(DateTime.now()),
-      updatedAt: Utility.formatDatePostApi(DateTime.now()),
+      createdAt: DateTime.now().toIso8601String(),
+      updatedAt: DateTime.now().toIso8601String(),
     );
 
-    final result = await paymentRepository.payment(newPayment, email);
+    final result = await paymentRepository.payment(newPayment, name);
 
     return result.fold(
       (l) => Left(l),

@@ -25,6 +25,9 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _content() {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenheight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: MyBackgroundImage(
         children: [
@@ -37,32 +40,42 @@ class _RegisterPageState extends State<RegisterPage> {
               filterQuality: FilterQuality.high,
             ),
           ),
-          Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+          SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: SizedBox(
+              width: screenWidth * 0.85,
+              height: screenheight * 0.95,
+              child: Stack(
                 children: [
-                  Image.asset(
-                    AppImages.logoGL,
-                    width: 150,
-                    fit: BoxFit.cover,
-                    filterQuality: FilterQuality.high,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.asset(
+                        AppImages.logoGL,
+                        width: 150,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                  const RegisterFormSection(),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: RegisterFormSection(),
+                  ),
+                  const Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '© Copyright 2024 by Grand Laswi, Al Right Reserved',
+                        style: AppTextStyle.small,
+                      ),
+                    ),
+                  ),
                 ],
-              ),
-            ),
-          ),
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 10,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                '© Copyright 2024 by Grand Laswi, Al Right Reserved',
-                style: AppTextStyle.small,
               ),
             ),
           ),

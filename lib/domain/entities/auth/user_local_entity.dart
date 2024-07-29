@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class LoginLocalEntity extends Equatable {
+class UserLocalEntity extends Equatable {
   final int userId;
   final String email;
   final String fullname;
   final String session;
 
-  const LoginLocalEntity({
+  const UserLocalEntity({
     required this.userId,
     required this.email,
     required this.fullname,

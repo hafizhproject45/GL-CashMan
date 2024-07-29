@@ -6,7 +6,7 @@ class UserEntity extends Equatable {
   final String? authId;
   final String fullname;
   final String block;
-  final String contact;
+  final String phone;
   final String email;
   final String? createdAt;
   final String? updateAt;
@@ -16,7 +16,7 @@ class UserEntity extends Equatable {
     required this.authId,
     required this.fullname,
     required this.block,
-    required this.contact,
+    required this.phone,
     required this.email,
     required this.createdAt,
     required this.updateAt,
@@ -29,7 +29,7 @@ class UserEntity extends Equatable {
       authId,
       fullname,
       block,
-      contact,
+      phone,
       email,
       createdAt,
       updateAt,

@@ -6,18 +6,18 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/text_style.dart';
 
-class ContactListWidget extends StatelessWidget {
-  const ContactListWidget({
+class PhoneListWidget extends StatelessWidget {
+  const PhoneListWidget({
     required this.name,
-    required this.contactNumber,
+    required this.phoneNumber,
     super.key,
   });
 
   final String name;
-  final String contactNumber;
+  final String phoneNumber;
 
-  void launchWhatsapp(contactNumber) async {
-    Uri url = Uri.parse("https://wa.me/$contactNumber");
+  void launchWhatsapp(phoneNumber) async {
+    Uri url = Uri.parse("https://wa.me/$phoneNumber");
     await launchUrl(url);
   }
 
@@ -27,7 +27,7 @@ class ContactListWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15),
       child: ElevatedButton(
         onPressed: () {
-          launchWhatsapp(contactNumber);
+          launchWhatsapp(phoneNumber);
         },
         style: ElevatedButton.styleFrom(
           elevation: 2,

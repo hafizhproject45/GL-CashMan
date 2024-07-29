@@ -108,7 +108,7 @@ class Utility {
     } else if (difference.inHours < 24) {
       return "${difference.inHours} hours ago";
     } else {
-      return '${Utility.formatDateFromStringToDate(rawDate)} - ${Utility.formatDateFromStringToHours(rawDate)} WIB';
+      return Utility.formatDateFromStringToDate(rawDate);
     }
   }
 

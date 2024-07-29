@@ -18,9 +18,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
 
   @override
   Future<Either<Failure, void>> payment(
-      PaymentEntity request, String email) async {
+      PaymentEntity request, String name) async {
     try {
-      final res = await paymentDatasource.payment(request, email);
+      final res = await paymentDatasource.payment(request, name);
 
       return Right(res);
     } catch (e) {

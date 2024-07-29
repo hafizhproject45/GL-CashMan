@@ -24,6 +24,9 @@ dependencies:
   # Link to Whatsapp
   url_launcher: ^6.2.6
 
+  # Dynamic Links
+  app_links: ^6.1.4
+
   # Supabase Package
   supabase: ^2.2.4
   supabase_flutter: ^2.5.8

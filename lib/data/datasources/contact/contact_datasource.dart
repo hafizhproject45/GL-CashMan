@@ -3,26 +3,26 @@ import 'package:supabase/supabase.dart';
 import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/utils/constants.dart';
-import '../../../domain/entities/faq/faq_entity.dart';
-import '../../models/faq/faq_model.dart';
+import '../../../domain/entities/contact/contact_entity.dart';
+import '../../models/contact/contact_model.dart';
 
-abstract class FaqDatasource {
-  Future<List<FaqEntity>> getFaq();
+abstract class ContactDatasource {
+  Future<List<ContactEntity>> getContact();
 }
 
-class FaqDatasourceImpl extends FaqDatasource {
+class ContactDatasourceImpl extends ContactDatasource {
   final SupabaseClient supabase;
 
-  FaqDatasourceImpl({
+  ContactDatasourceImpl({
     required this.supabase,
   });
 
   @override
-  Future<List<FaqEntity>> getFaq() async {
+  Future<List<ContactEntity>> getContact() async {
     try {
-      final res = await supabase.from('faq').select();
+      final res = await supabase.from('contact').select();
 
-      return res.map((x) => FaqModel.fromJson(x)).toList();
+      return res.map((x) => ContactModel.fromJson(x)).toList();
     } catch (e) {
       return _handleException(e);
     }

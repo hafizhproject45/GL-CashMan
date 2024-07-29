@@ -1,7 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:gl_cashman/domain/usecases/contact/get_contact_usecase.dart';
+import 'package:gl_cashman/presentation/cubit/contact/get_contact_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'data/datasources/contact/contact_datasource.dart';
+import 'data/repositories/contact/contact_repository_impl.dart';
+import 'domain/repositories/contact/contact_repository.dart';
 import 'domain/usecases/payment/delete_payment_usecase.dart';
 import 'presentation/cubit/payment/delete_payment/delete_payment_cubit.dart';
 import 'data/datasources/faq/faq_datasource.dart';
@@ -77,6 +82,9 @@ Future<void> initLocator() async {
   //? FAQ
   sl.registerFactory(() => GetFaqCubit(getFaqUsecase: sl()));
 
+  //? FAQ
+  sl.registerFactory(() => GetContactCubit(getContactUsecase: sl()));
+
   ///////////////
   //! Usecase
   ///////////////
@@ -113,6 +121,9 @@ Future<void> initLocator() async {
   //? FAQ
   sl.registerLazySingleton(() => GetFaqUsecase(faqRepository: sl()));
 
+  //? FAQ
+  sl.registerLazySingleton(() => GetContactUsecase(contactRepository: sl()));
+
   ///////////////
   //! Repository
   ///////////////
@@ -135,6 +146,11 @@ Future<void> initLocator() async {
     () => FaqRepositoryImpl(faqDatasource: sl()),
   );
 
+  //? FAQ
+  sl.registerLazySingleton<ContactRepository>(
+    () => ContactRepositoryImpl(contactDatasource: sl()),
+  );
+
   ///////////////
   //! DataSource
   ///////////////
@@ -155,5 +171,10 @@ Future<void> initLocator() async {
   //? FAQ
   sl.registerLazySingleton<FaqDatasource>(
     () => FaqDatasourceImpl(supabase: sl()),
+  );
+
+  //? FAQ
+  sl.registerLazySingleton<ContactDatasource>(
+    () => ContactDatasourceImpl(supabase: sl()),
   );
 }

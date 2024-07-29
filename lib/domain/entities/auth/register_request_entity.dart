@@ -4,7 +4,7 @@ class RegisterRequestEntity extends Equatable {
   final int? id;
   final String fullname;
   final String block;
-  final String contact;
+  final String phone;
   final String email;
   final String password;
   final String? createdAt;
@@ -14,7 +14,7 @@ class RegisterRequestEntity extends Equatable {
     this.id,
     required this.fullname,
     required this.block,
-    required this.contact,
+    required this.phone,
     required this.email,
     required this.password,
     this.createdAt,
@@ -25,7 +25,7 @@ class RegisterRequestEntity extends Equatable {
     return {
       'fullname': fullname,
       'block': block,
-      'contact': contact,
+      'phone': phone,
       'email': email,
       'created_at': createdAt,
       'updated_at': updatedAt,
@@ -38,7 +38,7 @@ class RegisterRequestEntity extends Equatable {
       id,
       fullname,
       block,
-      contact,
+      phone,
       email,
       password,
       createdAt,

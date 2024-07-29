@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../core/utils/utility.dart';
 import '../../entities/auth/register_request_entity.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/usecases/usecase.dart';
@@ -19,10 +18,10 @@ class RegisterUsecase implements UseCase<void, RegisterRequestEntity> {
       fullname: params.fullname,
       block: params.block,
       email: params.email,
-      contact: params.contact,
+      phone: params.phone,
       password: params.password,
-      createdAt: Utility.formatDatePostApi(DateTime.now()),
-      updatedAt: Utility.formatDatePostApi(DateTime.now()),
+      createdAt: DateTime.now().toIso8601String(),
+      updatedAt: DateTime.now().toIso8601String(),
     );
 
     final result = await authRepository.register(registerRequest);

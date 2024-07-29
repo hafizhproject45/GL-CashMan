@@ -14,7 +14,7 @@ import '../../../domain/entities/auth/user_entity.dart';
 import 'dart:developer';
 
 abstract class AuthRemoteDataSource {
-  sb.Session? get getCurrentUserSession;
+  sb.Session? get getSession;
 
   Future<String> getUserIDAuth();
   Future<int> getUserID();
@@ -35,7 +35,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   });
 
   @override
-  sb.Session? get getCurrentUserSession => supabase.auth.currentSession;
+  sb.Session? get getSession => supabase.auth.currentSession;
 
   @override
   Future<String> getUserIDAuth() async {
@@ -67,7 +67,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   @override
   Future<bool> checkLogin() async {
     try {
-      if (getCurrentUserSession != null) {
+      if (getSession != null) {
         return true;
       }
       return false;

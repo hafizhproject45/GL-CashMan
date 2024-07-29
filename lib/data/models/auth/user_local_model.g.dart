@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_local_model.dart';
+part of 'user_local_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class LoginLocalModelAdapter extends TypeAdapter<LoginLocalModel> {
+class UserLocalModelAdapter extends TypeAdapter<UserLocalModel> {
   @override
   final int typeId = 1;
 
   @override
-  LoginLocalModel read(BinaryReader reader) {
+  UserLocalModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return LoginLocalModel(
+    return UserLocalModel(
       userId: fields[0] as int,
       email: fields[1] as String,
       fullname: fields[2] as String,
@@ -25,7 +25,7 @@ class LoginLocalModelAdapter extends TypeAdapter<LoginLocalModel> {
   }
 
   @override
-  void write(BinaryWriter writer, LoginLocalModel obj) {
+  void write(BinaryWriter writer, UserLocalModel obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -44,7 +44,7 @@ class LoginLocalModelAdapter extends TypeAdapter<LoginLocalModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LoginLocalModelAdapter &&
+      other is UserLocalModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -3,7 +3,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../core/utils/constants.dart';
-import '../data/models/auth/login_local_model.dart';
+import '../data/models/auth/user_local_model.dart';
 import '../injection_container.dart' as service_locator;
 
 class InitializeApp {
@@ -23,7 +23,7 @@ class InitializeApp {
     await Hive.initFlutter();
 
     // Register Hive
-    Hive.registerAdapter(LoginLocalModelAdapter());
+    Hive.registerAdapter(UserLocalModelAdapter());
 
     await Hive.deleteBoxFromDisk(LOGIN_DATA_ID);
   }

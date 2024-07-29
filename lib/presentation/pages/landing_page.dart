@@ -50,7 +50,7 @@ class LandingPage extends StatelessWidget {
                       ),
                       const Text(
                         'Aplikasi pengelola pembayaran uang kas.',
-                        style: TextStyle(fontSize: 10, color: Colors.white),
+                        style: AppTextStyle.mediumWhite,
                       ),
                       const SizedBox(height: 30),
                       MyButtonWidget(
