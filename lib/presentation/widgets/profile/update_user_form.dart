@@ -55,7 +55,7 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
             final UserEntity? data = state.data;
 
             if (data != null) {
-              // Set text controllers only if data is not null
+              // Set text controllers only if data isn't null
               _fullnameController.text = data.fullname;
               _blockController.text = data.block;
               _phoneController.text = data.phone;
@@ -97,7 +97,7 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                           if (value!.isEmpty) {
                             return "Block is required";
                           } else if (value.length > 5) {
-                            return "Block doesn't valid";
+                            return "Block isn't valid";
                           }
                           return null;
                         },
@@ -112,13 +112,13 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                         controller: _phoneController,
                         width: screenWidth * 0.9,
                         validator: (value) {
-                          String pattern = r'(^[0-9]{10,15}$)';
+                          String pattern = r'^(?:\+62|0)[0-9]{9,15}$';
                           RegExp regExp = RegExp(pattern);
 
                           if (value!.isEmpty) {
                             return "Phone is required";
                           } else if (!regExp.hasMatch(value)) {
-                            return "Phone doesn't valid";
+                            return "Phone isn't valid";
                           }
                           return null;
                         },

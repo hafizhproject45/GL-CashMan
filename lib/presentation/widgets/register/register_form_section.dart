@@ -107,7 +107,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               if (value!.isEmpty) {
                 return "Block is required";
               } else if (value.length > 5) {
-                return "Block doesn't valid";
+                return "Block isn't valid";
               }
               return null;
             },
@@ -121,13 +121,13 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             controller: _phoneController,
             width: screenWidth * 0.85,
             validator: (value) {
-              String pattern = r'(^[0-9]{10,15}$)';
+              String pattern = r'^(?:\+62|0)[0-9]{9,15}$';
               RegExp regExp = RegExp(pattern);
 
               if (value!.isEmpty) {
                 return "Phone is required";
               } else if (!regExp.hasMatch(value)) {
-                return "Phone doesn't valid";
+                return "Phone isn't valid";
               }
               return null;
             },
@@ -148,7 +148,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               if (value!.isEmpty) {
                 return 'Email is required';
               } else if (!regex.hasMatch(value)) {
-                return "Email doesn't valid";
+                return "Email isn't valid";
               }
               return null;
             },

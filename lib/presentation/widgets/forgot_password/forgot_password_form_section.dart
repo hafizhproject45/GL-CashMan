@@ -70,7 +70,7 @@ class _ForgotPasswordFormSectionState extends State<ForgotPasswordFormSection> {
                 if (value!.isEmpty) {
                   return 'Email is required';
                 } else if (!regex.hasMatch(value)) {
-                  return "Email doesn't valid";
+                  return "Email isn't valid";
                 }
                 return null;
               },
