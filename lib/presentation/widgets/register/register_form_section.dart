@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
+import '../../../core/utils/utility.dart';
 import '../../../core/utils/text_style.dart';
 import '../../../core/utils/toast.dart';
 import '../../../domain/entities/auth/register_request_entity.dart';
@@ -76,7 +77,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
           ),
           const SizedBox(height: 30),
           MyTextFieldText(
-            name: "Nama Lengkap",
+            name: "Fullname",
             iconz: Icons.person,
             textInputAction: TextInputAction.next,
             type: TextInputType.name,
@@ -85,15 +86,15 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             width: screenWidth * 0.85,
             validator: (value) {
               if (value!.isEmpty) {
-                return "Nama Lengkap tidak boleh kosong";
+                return "Fullname is required";
               } else if (value.length > 50) {
-                return "Nama Lengkap terlalu panjang";
+                return "Fullname to long";
               }
               return null;
             },
           ),
           MyTextFieldNormal(
-            name: "Nomor rumah",
+            name: "Block",
             iconz: Icons.home_work_rounded,
             type: TextInputType.streetAddress,
             textInputAction: TextInputAction.next,
@@ -104,15 +105,15 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             width: screenWidth * 0.85,
             validator: (value) {
               if (value!.isEmpty) {
-                return "Nomor rumah tidak boleh kosong";
+                return "Block is required";
               } else if (value.length > 5) {
-                return "Nomor rumah tidak valid";
+                return "Block doesn't valid";
               }
               return null;
             },
           ),
           MyTextFieldText(
-            name: "Nomor Handphone",
+            name: "Phone",
             iconz: Icons.phone_android,
             textInputAction: TextInputAction.next,
             type: TextInputType.phone,
@@ -124,9 +125,9 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               RegExp regExp = RegExp(pattern);
 
               if (value!.isEmpty) {
-                return "Kontak tidak boleh kosong";
+                return "Phone is required";
               } else if (!regExp.hasMatch(value)) {
-                return "Kontak tidak valid";
+                return "Phone doesn't valid";
               }
               return null;
             },
@@ -145,9 +146,9 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
               RegExp regex = RegExp(pattern);
 
               if (value!.isEmpty) {
-                return 'Email tidak boleh kosong';
+                return 'Email is required';
               } else if (!regex.hasMatch(value)) {
-                return 'Email tidak valid';
+                return "Email doesn't valid";
               }
               return null;
             },
@@ -160,11 +161,11 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             width: screenWidth * 0.85,
             validator: (value) {
               if (value!.isEmpty) {
-                return "Password tidak boleh kosong";
+                return "Password is required";
               } else if (value.length < 6) {
-                return "Password minimal 6 karakter";
+                return "Password min 6 characters";
               } else if (value.length >= 30) {
-                return "Password maksimal 30 karakter";
+                return "Password maksimal 30 characters";
               }
               return null;
             },
@@ -178,14 +179,14 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
             width: screenWidth * 0.85,
             validator: (value) {
               if (value!.isEmpty) {
-                return "Confirm Password tidak boleh kosong";
+                return "Confirm Password is required";
               } else if (value.length < 6) {
-                return "Password minimal 6 karakter";
+                return "Password min 6 characters";
               } else if (_passwordController.text !=
                   _confirmPasswordController.text) {
-                return "Password harus sama";
+                return "Password not matches";
               } else if (value.length >= 30) {
-                return "Password maksimal 30 karakter";
+                return "Password maksimal 30 characters";
               }
               return null;
             },
@@ -197,7 +198,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                 dangerToast(msg: state.message);
               } else if (state is RegisterSuccess) {
                 Get.offAllNamed('/login');
-                successToast(msg: 'Berhasil membuat akun');
+                successToast(msg: 'Successfully created an account');
               }
             },
             builder: (context, state) {
@@ -217,7 +218,7 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                             RegisterRequestEntity(
                               fullname: _fullnameController.text,
                               block: _blockController.text,
-                              phone: _phoneController.text,
+                              phone: Utility.converPhone(_phoneController.text),
                               email: _emailController.text,
                               password: _passwordController.text,
                             ),

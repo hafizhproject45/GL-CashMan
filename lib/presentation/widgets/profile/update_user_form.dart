@@ -9,6 +9,7 @@ import '../../../domain/entities/auth/user_entity.dart';
 import '../global/button/my_button_widget.dart';
 import '../global/shimmer/my_shimmer_custom.dart';
 import '../global/text_field_auth/text_field_text_widget.dart';
+import '../global/text_field_normal/text_field_normal_widget.dart';
 
 class UpdateUserForm extends StatefulWidget {
   const UpdateUserForm({
@@ -64,44 +65,48 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MyTextFieldText(
-                        name: "Nama Lengkap",
+                        name: "Fullname",
                         iconz: Icons.person,
                         textInputAction: TextInputAction.next,
+                        type: TextInputType.name,
                         focusNode: _fullnameFocusNode,
                         controller: _fullnameController,
                         width: screenWidth * 0.9,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Nama Lengkap tidak boleh kosong";
+                            return "Fullname is required";
                           } else if (value.length > 50) {
-                            return "Nama Lengkap terlalu panjang";
+                            return "Fullname to long";
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 10),
-                      MyTextFieldText(
-                        name: "Nomor rumah",
+                      MyTextFieldNormal(
+                        name: "Block",
                         iconz: Icons.home_work_rounded,
+                        type: TextInputType.streetAddress,
                         textInputAction: TextInputAction.next,
                         focusNode: _blockFocusNode,
+                        isBlock: true,
+                        textwhite: true,
                         controller: _blockController,
                         width: screenWidth * 0.9,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Nomor rumah tidak boleh kosong";
+                            return "Block is required";
                           } else if (value.length > 5) {
-                            return "Nomor rumah tidak valid";
+                            return "Block doesn't valid";
                           }
                           return null;
                         },
                       ),
                       const SizedBox(height: 10),
                       MyTextFieldText(
-                        name: "Nomor Handphone",
+                        name: "Phone",
                         iconz: Icons.phone_android,
                         textInputAction: TextInputAction.next,
-                        type: TextInputType.number,
+                        type: TextInputType.phone,
                         focusNode: _phoneFocusNode,
                         controller: _phoneController,
                         width: screenWidth * 0.9,
@@ -110,9 +115,9 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                           RegExp regExp = RegExp(pattern);
 
                           if (value!.isEmpty) {
-                            return "Kontak tidak boleh kosong";
+                            return "Phone is required";
                           } else if (!regExp.hasMatch(value)) {
-                            return "Kontak tidak valid";
+                            return "Phone doesn't valid";
                           }
                           return null;
                         },

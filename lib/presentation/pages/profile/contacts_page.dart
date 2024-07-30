@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
-import 'package:gl_cashman/domain/entities/contact/contact_entity.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../../cubit/contact/get_contact_cubit.dart';
 
 import '../../../core/utils/text_style.dart';
+import '../../../domain/entities/contact/contact_entity.dart';
 import '../../../injection_container.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
+import '../../cubit/contact/get_contact_cubit.dart';
 import '../../widgets/global/shimmer/my_shimmer_custom.dart';
 import '../../widgets/profile/contactList_widget.dart';
 import '../../widgets/profile/profile_bg_section.dart';

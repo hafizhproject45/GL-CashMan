@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:gl_cashman/domain/usecases/contact/get_contact_usecase.dart';
-import 'package:gl_cashman/presentation/cubit/contact/get_contact_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'domain/usecases/contact/get_contact_usecase.dart';
+import 'presentation/cubit/contact/get_contact_cubit.dart';
 import 'data/datasources/contact/contact_datasource.dart';
 import 'data/repositories/contact/contact_repository_impl.dart';
 import 'domain/repositories/contact/contact_repository.dart';

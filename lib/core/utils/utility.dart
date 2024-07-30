@@ -143,6 +143,19 @@ class Utility {
     return double.parse(formattedString);
   }
 
+  /// Format `08...` to `+62`
+  static String converPhone(String? phoneNumber) {
+    if (phoneNumber == null) {
+      return '-';
+    }
+
+    if (phoneNumber.startsWith("0")) {
+      return "+62${phoneNumber.substring(1)}";
+    } else {
+      return phoneNumber;
+    }
+  }
+
   /// Remote Tag HTML
   static String removeHtmlTags(String htmlText) {
     // Membuat sebuah regex untuk mencocokkan semua tag HTML
