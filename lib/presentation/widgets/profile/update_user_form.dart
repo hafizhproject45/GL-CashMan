@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
+import '../../../core/utils/utility.dart';
 import '../../cubit/auth/get_user/get_user_cubit.dart';
 import '../../cubit/auth/update_user/update_user_cubit.dart';
 import '../../../core/utils/toast.dart';
@@ -150,7 +151,8 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
                                     UpdateRequestEntity(
                                       fullname: _fullnameController.text,
                                       block: _blockController.text,
-                                      phone: _phoneController.text,
+                                      phone: Utility.convertPhone(
+                                          _phoneController.text),
                                     ),
                                   );
                             }

@@ -144,7 +144,7 @@ class Utility {
   }
 
   /// Format `08...` to `+62`
-  static String converPhone(String? phoneNumber) {
+  static String convertPhone(String? phoneNumber) {
     if (phoneNumber == null) {
       return '-';
     }

@@ -218,7 +218,8 @@ class _RegisterFormSectionState extends State<RegisterFormSection> {
                             RegisterRequestEntity(
                               fullname: _fullnameController.text,
                               block: _blockController.text,
-                              phone: Utility.converPhone(_phoneController.text),
+                              phone:
+                                  Utility.convertPhone(_phoneController.text),
                               email: _emailController.text,
                               password: _passwordController.text,
                             ),
