@@ -164,6 +164,11 @@ class _PaymentCardState extends State<PaymentCard> {
                                     ),
                                   ),
                                 ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Image size: ${Utility.convertBytesToKilobytes(widget.dataPayment.imageSize!).toStringAsFixed(2)} KB',
+                            style: AppTextStyle.mediumThin,
+                          ),
                           const SizedBox(height: 30),
                           Column(
                             children: [

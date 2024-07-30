@@ -156,6 +156,11 @@ class Utility {
     }
   }
 
+  // Fungsi untuk mengonversi bytes ke kilobytes
+  static double convertBytesToKilobytes(int bytes) {
+    return bytes / 1024; // 1 KB = 1024 bytes
+  }
+
   /// Remote Tag HTML
   static String removeHtmlTags(String htmlText) {
     // Membuat sebuah regex untuk mencocokkan semua tag HTML
