@@ -20,7 +20,8 @@ class ContactDatasourceImpl extends ContactDatasource {
   @override
   Future<List<ContactEntity>> getContact() async {
     try {
-      final res = await supabase.from('contact').select();
+      final res =
+          await supabase.from('contact').select().order('id', ascending: true);
 
       return res.map((x) => ContactModel.fromJson(x)).toList();
     } catch (e) {
